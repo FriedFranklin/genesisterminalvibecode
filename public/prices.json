@@ -1,1 +1,520 @@
-{}
+{
+  "Sealed Genesis Terminal": {
+    "success": false
+  },
+  "AK-47 | The Oligarch (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ AK-47 | The Oligarch (Factory New)": {
+    "success": false
+  },
+  "AK-47 | The Oligarch (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ AK-47 | The Oligarch (Minimal Wear)": {
+    "success": false
+  },
+  "AK-47 | The Oligarch (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ AK-47 | The Oligarch (Field-Tested)": {
+    "success": false
+  },
+  "AK-47 | The Oligarch (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ AK-47 | The Oligarch (Well-Worn)": {
+    "success": false
+  },
+  "AK-47 | The Oligarch (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ AK-47 | The Oligarch (Battle-Scarred)": {
+    "success": false
+  },
+  "M4A4 | Full Throttle (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ M4A4 | Full Throttle (Factory New)": {
+    "success": false
+  },
+  "M4A4 | Full Throttle (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ M4A4 | Full Throttle (Minimal Wear)": {
+    "success": false
+  },
+  "M4A4 | Full Throttle (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ M4A4 | Full Throttle (Field-Tested)": {
+    "success": false
+  },
+  "M4A4 | Full Throttle (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ M4A4 | Full Throttle (Well-Worn)": {
+    "success": false
+  },
+  "M4A4 | Full Throttle (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ M4A4 | Full Throttle (Battle-Scarred)": {
+    "success": false
+  },
+  "AWP | Ice Coaled (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Factory New)": {
+    "success": false
+  },
+  "AWP | Ice Coaled (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Minimal Wear)": {
+    "success": false
+  },
+  "AWP | Ice Coaled (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Field-Tested)": {
+    "success": false
+  },
+  "AWP | Ice Coaled (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Well-Worn)": {
+    "success": false
+  },
+  "AWP | Ice Coaled (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Battle-Scarred)": {
+    "success": false
+  },
+  "Glock-18 | Mirror Mosaic (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ Glock-18 | Mirror Mosaic (Factory New)": {
+    "success": false
+  },
+  "Glock-18 | Mirror Mosaic (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ Glock-18 | Mirror Mosaic (Minimal Wear)": {
+    "success": false
+  },
+  "Glock-18 | Mirror Mosaic (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ Glock-18 | Mirror Mosaic (Field-Tested)": {
+    "success": false
+  },
+  "Glock-18 | Mirror Mosaic (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ Glock-18 | Mirror Mosaic (Well-Worn)": {
+    "success": false
+  },
+  "Glock-18 | Mirror Mosaic (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ Glock-18 | Mirror Mosaic (Battle-Scarred)": {
+    "success": false
+  },
+  "MP7 | Smoking Kills (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ MP7 | Smoking Kills (Factory New)": {
+    "success": false
+  },
+  "MP7 | Smoking Kills (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ MP7 | Smoking Kills (Minimal Wear)": {
+    "success": false
+  },
+  "MP7 | Smoking Kills (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ MP7 | Smoking Kills (Field-Tested)": {
+    "success": false
+  },
+  "MP7 | Smoking Kills (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ MP7 | Smoking Kills (Well-Worn)": {
+    "success": false
+  },
+  "MP7 | Smoking Kills (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ MP7 | Smoking Kills (Battle-Scarred)": {
+    "success": false
+  },
+  "M4A1-S | Liquidation (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ M4A1-S | Liquidation (Factory New)": {
+    "success": false
+  },
+  "M4A1-S | Liquidation (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ M4A1-S | Liquidation (Minimal Wear)": {
+    "success": false
+  },
+  "M4A1-S | Liquidation (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ M4A1-S | Liquidation (Field-Tested)": {
+    "success": false
+  },
+  "M4A1-S | Liquidation (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ M4A1-S | Liquidation (Well-Worn)": {
+    "success": false
+  },
+  "M4A1-S | Liquidation (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ M4A1-S | Liquidation (Battle-Scarred)": {
+    "success": false
+  },
+  "Dual Berettas | Angel Eyes (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ Dual Berettas | Angel Eyes (Factory New)": {
+    "success": false
+  },
+  "Dual Berettas | Angel Eyes (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ Dual Berettas | Angel Eyes (Minimal Wear)": {
+    "success": false
+  },
+  "Dual Berettas | Angel Eyes (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ Dual Berettas | Angel Eyes (Field-Tested)": {
+    "success": false
+  },
+  "Dual Berettas | Angel Eyes (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ Dual Berettas | Angel Eyes (Well-Worn)": {
+    "success": false
+  },
+  "Dual Berettas | Angel Eyes (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ Dual Berettas | Angel Eyes (Battle-Scarred)": {
+    "success": false
+  },
+  "UMP-45 | Continuum (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ UMP-45 | Continuum (Factory New)": {
+    "success": false
+  },
+  "UMP-45 | Continuum (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ UMP-45 | Continuum (Minimal Wear)": {
+    "success": false
+  },
+  "UMP-45 | Continuum (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ UMP-45 | Continuum (Field-Tested)": {
+    "success": false
+  },
+  "UMP-45 | Continuum (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ UMP-45 | Continuum (Well-Worn)": {
+    "success": false
+  },
+  "UMP-45 | Continuum (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ UMP-45 | Continuum (Battle-Scarred)": {
+    "success": false
+  },
+  "MAC-10 | Cat Fight (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ MAC-10 | Cat Fight (Factory New)": {
+    "success": false
+  },
+  "MAC-10 | Cat Fight (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ MAC-10 | Cat Fight (Minimal Wear)": {
+    "success": false
+  },
+  "MAC-10 | Cat Fight (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ MAC-10 | Cat Fight (Field-Tested)": {
+    "success": false
+  },
+  "MAC-10 | Cat Fight (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ MAC-10 | Cat Fight (Well-Worn)": {
+    "success": false
+  },
+  "MAC-10 | Cat Fight (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ MAC-10 | Cat Fight (Battle-Scarred)": {
+    "success": false
+  },
+  "Nova | Ocular (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ Nova | Ocular (Factory New)": {
+    "success": false
+  },
+  "Nova | Ocular (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ Nova | Ocular (Minimal Wear)": {
+    "success": false
+  },
+  "Nova | Ocular (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ Nova | Ocular (Field-Tested)": {
+    "success": false
+  },
+  "Nova | Ocular (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ Nova | Ocular (Well-Worn)": {
+    "success": false
+  },
+  "Nova | Ocular (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ Nova | Ocular (Battle-Scarred)": {
+    "success": false
+  },
+  "AUG | Trigger Discipline (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ AUG | Trigger Discipline (Factory New)": {
+    "success": false
+  },
+  "AUG | Trigger Discipline (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ AUG | Trigger Discipline (Minimal Wear)": {
+    "success": false
+  },
+  "AUG | Trigger Discipline (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ AUG | Trigger Discipline (Field-Tested)": {
+    "success": false
+  },
+  "AUG | Trigger Discipline (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ AUG | Trigger Discipline (Well-Worn)": {
+    "success": false
+  },
+  "AUG | Trigger Discipline (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ AUG | Trigger Discipline (Battle-Scarred)": {
+    "success": false
+  },
+  "P2000 | Red Wing (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ P2000 | Red Wing (Factory New)": {
+    "success": false
+  },
+  "P2000 | Red Wing (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ P2000 | Red Wing (Minimal Wear)": {
+    "success": false
+  },
+  "P2000 | Red Wing (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ P2000 | Red Wing (Field-Tested)": {
+    "success": false
+  },
+  "P2000 | Red Wing (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ P2000 | Red Wing (Well-Worn)": {
+    "success": false
+  },
+  "P2000 | Red Wing (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ P2000 | Red Wing (Battle-Scarred)": {
+    "success": false
+  },
+  "MP5-SD | Focus (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ MP5-SD | Focus (Factory New)": {
+    "success": false
+  },
+  "MP5-SD | Focus (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ MP5-SD | Focus (Minimal Wear)": {
+    "success": false
+  },
+  "MP5-SD | Focus (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ MP5-SD | Focus (Field-Tested)": {
+    "success": false
+  },
+  "MP5-SD | Focus (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ MP5-SD | Focus (Well-Worn)": {
+    "success": false
+  },
+  "MP5-SD | Focus (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ MP5-SD | Focus (Battle-Scarred)": {
+    "success": false
+  },
+  "MP9 | Broken Record (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ MP9 | Broken Record (Factory New)": {
+    "success": false
+  },
+  "MP9 | Broken Record (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ MP9 | Broken Record (Minimal Wear)": {
+    "success": false
+  },
+  "MP9 | Broken Record (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ MP9 | Broken Record (Field-Tested)": {
+    "success": false
+  },
+  "MP9 | Broken Record (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ MP9 | Broken Record (Well-Worn)": {
+    "success": false
+  },
+  "MP9 | Broken Record (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ MP9 | Broken Record (Battle-Scarred)": {
+    "success": false
+  },
+  "MAG-7 | MAGnitude (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ MAG-7 | MAGnitude (Factory New)": {
+    "success": false
+  },
+  "MAG-7 | MAGnitude (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ MAG-7 | MAGnitude (Minimal Wear)": {
+    "success": false
+  },
+  "MAG-7 | MAGnitude (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ MAG-7 | MAGnitude (Field-Tested)": {
+    "success": false
+  },
+  "MAG-7 | MAGnitude (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ MAG-7 | MAGnitude (Well-Worn)": {
+    "success": false
+  },
+  "MAG-7 | MAGnitude (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ MAG-7 | MAGnitude (Battle-Scarred)": {
+    "success": false
+  },
+  "P250 | Bullfrog (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ P250 | Bullfrog (Factory New)": {
+    "success": false
+  },
+  "P250 | Bullfrog (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ P250 | Bullfrog (Minimal Wear)": {
+    "success": false
+  },
+  "P250 | Bullfrog (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ P250 | Bullfrog (Field-Tested)": {
+    "success": false
+  },
+  "P250 | Bullfrog (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ P250 | Bullfrog (Well-Worn)": {
+    "success": false
+  },
+  "P250 | Bullfrog (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ P250 | Bullfrog (Battle-Scarred)": {
+    "success": false
+  },
+  "SCAR-20 | Caged (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ SCAR-20 | Caged (Factory New)": {
+    "success": false
+  },
+  "SCAR-20 | Caged (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ SCAR-20 | Caged (Minimal Wear)": {
+    "success": false
+  },
+  "SCAR-20 | Caged (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ SCAR-20 | Caged (Field-Tested)": {
+    "success": false
+  },
+  "SCAR-20 | Caged (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ SCAR-20 | Caged (Well-Worn)": {
+    "success": false
+  },
+  "SCAR-20 | Caged (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ SCAR-20 | Caged (Battle-Scarred)": {
+    "success": false
+  },
+  "_meta": {
+    "source": "Steam Community Market search/render",
+    "generatedAt": "2026-09-22T22:31:44.262Z",
+    "note": "Prices are exact buyer-facing sell_price_text values returned by Steam."
+  }
+}
