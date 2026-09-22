@@ -27,6 +27,7 @@ const cacheTtl = 60 * 1000
 let refreshTimer
 let marketRefreshInFlight = false
 let conditionRefreshInFlight = false
+let staticPricesPromise
 
 document.body.insertAdjacentHTML('beforeend', '<div id="price-cache-status">Prices have not been fetched yet</div>')
 
@@ -64,6 +65,21 @@ function startAutoRefresh(callback) {
   refreshTimer = setInterval(callback, 1000)
 }
 
+async function getMarketPrice(marketName) {
+  try {
+    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(marketName)}`)
+    if (response.ok) {
+      const value = await response.json()
+      if (value.success) return value
+    }
+  } catch {
+    // GitHub Pages has no server API, so use the generated snapshot below.
+  }
+  staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`).then((response) => response.ok ? response.json() : {})
+  const snapshot = await staticPricesPromise
+  return snapshot[marketName] || { success: false }
+}
+
 app.innerHTML = `
   <main class="overview">
     <header class="header"><a class="brand" href="/">DROP<span>WATCH</span></a><nav><a href="#price">Market</a><a href="#weapons">Weapon pool</a><a href="https://steamcommunity.com/market/listings/730/Sealed%20Genesis%20Terminal" target="_blank" rel="noreferrer">Steam ↗</a></nav></header>
@@ -94,9 +110,7 @@ async function loadMarketPrice(force = false) {
   updated.textContent = 'Fetching current listing...'
   message.textContent = 'Requesting the latest market snapshot.'
   try {
-    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(marketHashName)}`)
-    if (!response.ok) throw new Error('Market cache request failed')
-    const value = await response.json()
+    const value = await getMarketPrice(marketHashName)
     if (!value.success) throw new Error('Item was not found in the Steam Market')
     value.listings = value.listings?.toLocaleString() || 'Unavailable'
     saveCachedPrice(`overview:${marketHashName}`, value)
@@ -193,9 +207,7 @@ async function loadConditionPrices(displayName, force = false) {
       const cached = getCachedPrice(`skin:${marketName}`)
       if (cached && !force) return cached.value
       try {
-        const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(marketName)}`)
-        if (!response.ok) return 'Unavailable'
-        const data = await response.json()
+        const data = await getMarketPrice(marketName)
         if (data.success && data.price) {
           saveCachedPrice(`skin:${marketName}`, data.price)
           return data.price

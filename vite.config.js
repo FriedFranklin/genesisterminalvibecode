@@ -74,6 +74,7 @@ function marketCachePlugin() {
 }
 
 export default defineConfig({
+  base: './',
   plugins: [marketCachePlugin()],
   server: {
     proxy: {
