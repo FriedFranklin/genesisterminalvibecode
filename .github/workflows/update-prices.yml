@@ -5,13 +5,17 @@ on:
   schedule:
     - cron: '*/15 * * * *'
 
+concurrency:
+  group: steam-price-snapshot
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -19,7 +23,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Fetch and cache prices
         run: node scripts/update-prices.mjs

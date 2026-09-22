@@ -34,16 +34,31 @@ async function lookup(marketHashName, includeVolume = false) {
   return { success: true, price: exact.sell_price_text, listings: exact.sell_listings, volume }
 }
 
+async function lookupCondition(weapon, skin, condition) {
+  const baseName = `${weapon} | ${skin} (${condition})`
+  const query = encodeURIComponent(baseName)
+  const response = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
+  const search = await response.json()
+  const normal = search.results?.find((item) => item.hash_name === baseName)
+  const stattrakName = `StatTrak™ ${baseName}`
+  const stattrak = search.results?.find((item) => item.hash_name === stattrakName)
+  return [
+    [baseName, normal],
+    [stattrakName, stattrak],
+  ]
+}
+
 const prices = {}
 const container = 'Sealed Genesis Terminal'
 prices[container] = await lookup(container, true)
 for (const [weapon, skin] of skins) {
   for (const condition of conditions) {
-    for (const variant of [`${weapon} | ${skin}`, `StatTrak™ ${weapon} | ${skin}`]) {
-      const marketHashName = `${variant} (${condition})`
-      prices[marketHashName] = await lookup(marketHashName)
-      await wait(300)
+    for (const [marketHashName, result] of await lookupCondition(weapon, skin, condition)) {
+      prices[marketHashName] = result?.sell_price_text
+        ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: '--' }
+        : { success: false }
     }
+    await wait(300)
   }
 }
 
