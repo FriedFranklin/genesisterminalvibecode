@@ -2,6 +2,15 @@
 
 Dropwatch is a small Counter-Strike 2 Genesis Terminal market board. It shows the container price, the 17 available skins, and Normal/StatTrak prices for every wear condition.
 
+> [!IMPORTANT]
+> ## AI-Assisted Project Disclaimer
+>
+> This project was created and maintained with the assistance of AI coding tools. AI-generated code can contain mistakes, incomplete assumptions, security issues, or inaccurate data-handling decisions. Review and test all code before using it in production.
+>
+> Dropwatch is an informational hobby project. Prices are market snapshots, not guaranteed quotes, offers, or financial advice. Steam data may be delayed, incomplete, rate-limited, unavailable, or changed by Steam without notice. Always verify the current price and listing directly on Steam before making any purchase or sale.
+>
+> This project is not affiliated with, endorsed by, or sponsored by Valve Corporation or Steam. Steam, Counter-Strike, and related trademarks belong to their respective owners. Do not provide Steam passwords, session cookies, API keys, or other credentials to this project.
+
 ## Data model
 
 Prices come from Steam Community Market search results and use Steam's buyer-facing `sell_price_text` value. Each snapshot also records its generation time in `prices.json`.

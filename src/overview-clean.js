@@ -19,6 +19,7 @@ let refreshTimer
 let staticPricesPromise
 let marketRequestActive = false
 let conditionRequestActive = false
+let steamFallbackTimer
 
 const steamUrl = (name) => `https://steamcommunity.com/market/listings/730/${encodeURIComponent(name)}`
 const now = () => new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })
@@ -51,6 +52,19 @@ function beginRefreshLoop(callback) {
 }
 
 async function getPrice(name) {
+  staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`, { cache: 'no-store' })
+    .then((response) => (response.ok ? response.json() : {}))
+    .catch(() => ({}))
+  const snapshot = await staticPricesPromise
+  const snapshotValue = snapshot[name]
+  if (snapshotValue?.success) {
+    if (snapshot._meta?.generatedAt) snapshotValue.fetchedAt = snapshot._meta.generatedAt
+    return snapshotValue
+  }
+
+  // GitHub Pages has no local API. Do not wait for a request that cannot work.
+  if (window.location.hostname.endsWith('.github.io')) return { success: false }
+
   try {
     const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(name)}`)
     if (response.ok) {
@@ -61,16 +75,15 @@ async function getPrice(name) {
     // The local API is unavailable on GitHub Pages.
   }
 
-  staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`).then((response) => response.ok ? response.json() : {})
-  const snapshot = await staticPricesPromise
-  const value = snapshot[name] || { success: false }
-  if (value.success && snapshot._meta?.generatedAt) value.fetchedAt = snapshot._meta.generatedAt
-  return value
+  return { success: false }
 }
 
 function steamFallback(name, target) {
   if (!target || target.querySelector('.steam-fallback')) return
   target.insertAdjacentHTML('beforeend', ` <a class="steam-fallback" href="${steamUrl(name)}" target="_blank" rel="noreferrer">Open official Steam listing ↗</a>`)
+  target.insertAdjacentHTML('beforeend', ' <small class="steam-fallback-note">Redirecting to Steam...</small>')
+  clearTimeout(steamFallbackTimer)
+  steamFallbackTimer = setTimeout(() => { window.location.replace(steamUrl(name)) }, 0)
 }
 
 function renderOverview() {
@@ -220,6 +233,7 @@ async function loadConditionPrice(name, force) {
 
 function route() {
   clearInterval(refreshTimer)
+  clearTimeout(steamFallbackTimer)
   document.querySelector('#price-cache-status')?.remove()
   const match = window.location.hash.match(/^#skin=(\d+)$/)
   if (match && WEAPONS[Number(match[1])]) renderDetail(Number(match[1]))
