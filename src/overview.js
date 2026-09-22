@@ -20,21 +20,23 @@ const weapons = [
   ['P250', 'Bullfrog', 'Mil-Spec'],
   ['SCAR-20', 'Caged', 'Mil-Spec'],
 ]
+const skinArtwork = []
 const app = document.querySelector('#app')
 
 app.innerHTML = `
   <main class="overview">
     <header class="header"><a class="brand" href="/">DROP<span>WATCH</span></a><nav><a href="#price">Market</a><a href="#weapons">Weapon pool</a><a href="https://steamcommunity.com/market/listings/730/Sealed%20Genesis%20Terminal" target="_blank" rel="noreferrer">Steam ↗</a></nav></header>
     <section class="hero"><div><p class="eyebrow">COUNTER-STRIKE 2 &gt; CONTAINER</p><h1>Genesis Terminal</h1><p class="lede">Steam Community Market overview</p></div><div class="online"><i></i><span id="connection-label">Connecting to Steam Market</span></div></section>
-    <section class="market-card" id="price" aria-live="polite"><div class="card-top"><span>GENESIS TERMINAL / CURRENT MARKET PRICE</span><span id="updated">Fetching...</span></div><div class="price-block"><span class="currency">USD</span><strong id="price-value">--</strong><span>lowest current listing</span></div><div class="metrics"><div><span>Active listings</span><strong id="volume">--</strong></div><div><span>Median price</span><strong id="median">--</strong></div><div><span>Market</span><strong>Steam</strong></div></div><div class="card-footer"><span id="message">Prices load directly from Steam when available.</span><button id="refresh" type="button">Refresh price</button></div></section>
-    <section class="weapons" id="weapons"><div class="section-title"><h2>Weapons you can get</h2><span>17 skins in the Genesis Terminal</span></div><div class="weapon-row">${weapons.map(([weapon, skin, rarity], index) => `<a class="weapon" href="https://steamcommunity.com/market/search?q=${encodeURIComponent(`${weapon} | ${skin}`)}&appid=730" target="_blank" rel="noreferrer"><span class="weapon-image weapon-${index}"><img data-skin="${index}" alt="${weapon} | ${skin}" loading="lazy"><b>${weapon.slice(0, 2)}</b></span><strong>${weapon}</strong><small>${skin}</small><em>${rarity}</em></a>`).join('')}</div><p class="note">Weapon pool from the Genesis Terminal. Thumbnails and names are loaded from Steam Market search.</p></section>
+    <section class="market-card" id="price" aria-live="polite"><div class="card-top"><span>GENESIS TERMINAL / CURRENT MARKET PRICE</span><span id="updated">Fetching...</span></div><div class="price-block"><span class="currency">USD</span><strong id="price-value">--</strong><span>lowest current listing</span></div><div class="metrics"><div><span>Active listings</span><strong id="listings">--</strong></div><div><span>24h sales</span><strong id="volume">--</strong></div><div><span>Lowest price</span><strong id="lowest">--</strong></div></div><div class="card-footer"><span id="message">Prices load directly from Steam when available.</span><button id="refresh" type="button">Refresh price</button></div></section>
+    <section class="weapons" id="weapons"><div class="section-title"><h2>Weapons you can get</h2><span>17 skins in the Genesis Terminal</span></div><div class="weapon-row">${weapons.map(([weapon, skin, rarity], index) => `<a class="weapon" href="#skin=${index}"><span class="weapon-image weapon-${index}"><img data-skin="${index}" alt="${weapon} | ${skin}" loading="lazy"><b>${weapon.slice(0, 2)}</b></span><strong>${weapon}</strong><small>${skin}</small><em>${rarity}</em></a>`).join('')}</div><p class="note">Weapon pool from the Genesis Terminal. Click a skin to view live prices by condition.</p></section>
     <footer>Dropwatch 2004-style market board <span>Last request: <b id="footer-time">--</b></span></footer>
   </main>
 `
 
 async function loadMarketPrice() {
   const price = document.querySelector('#price-value')
-  const median = document.querySelector('#median')
+  const lowest = document.querySelector('#lowest')
+  const listings = document.querySelector('#listings')
   const volume = document.querySelector('#volume')
   const updated = document.querySelector('#updated')
   const message = document.querySelector('#message')
@@ -46,12 +48,23 @@ async function loadMarketPrice() {
   updated.textContent = 'Fetching current listing...'
   message.textContent = 'Requesting the latest market snapshot.'
   try {
-    const response = await fetch(`/steam/market/priceoverview/?appid=730&currency=1&market_hash_name=${encodeURIComponent(marketHashName)}`)
-    if (!response.ok) throw new Error(`Steam returned ${response.status}`)
-    const data = await response.json()
+    const overviewResponse = await fetch(`/steam/market/priceoverview/?appid=730&currency=1&market_hash_name=${encodeURIComponent(marketHashName)}`, { cache: 'no-store' })
+    if (!overviewResponse.ok) throw new Error('Steam price request failed')
+    const data = await overviewResponse.json()
     if (!data.success) throw new Error('Item was not found in the Steam Market')
+    let exactResult
+    try {
+      const searchResponse = await fetch(`/steam/market/search/render/?query=${encodeURIComponent(marketHashName)}&start=0&count=10&search_descriptions=0&sort_column=popular&sort_dir=desc&appid=730&norender=1`, { cache: 'no-store' })
+      if (searchResponse.ok) {
+        const searchData = await searchResponse.json()
+        exactResult = searchData.results?.find((result) => result.hash_name === marketHashName)
+      }
+    } catch {
+      // Priceoverview remains usable when Steam throttles search metadata.
+    }
     price.textContent = data.lowest_price || '--'
-    median.textContent = data.median_price || '--'
+    lowest.textContent = data.lowest_price || '--'
+    listings.textContent = exactResult?.sell_listings?.toLocaleString() || 'Unavailable'
     volume.textContent = data.volume || '--'
     updated.textContent = `Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
     document.querySelector('#footer-time').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -59,7 +72,8 @@ async function loadMarketPrice() {
     message.textContent = 'Values reflect Steam Community Market listings.'
   } catch {
     price.textContent = '--'
-    median.textContent = '--'
+    lowest.textContent = '--'
+    listings.textContent = '--'
     volume.textContent = '--'
     updated.textContent = 'Unable to fetch current listing'
     connection.textContent = 'Steam Market unavailable'
@@ -69,9 +83,6 @@ async function loadMarketPrice() {
   }
 }
 
-document.querySelector('#refresh').addEventListener('click', loadMarketPrice)
-loadMarketPrice()
-
 async function loadSkinImages() {
   try {
     const response = await fetch('/skin-catalog/skins.json')
@@ -79,6 +90,7 @@ async function loadSkinImages() {
     weapons.forEach(([weapon, skin], index) => {
       const artwork = catalog.find((item) => item.name === `${weapon} | ${skin}`)?.image
       if (!artwork) return
+      skinArtwork[index] = artwork
       const image = document.querySelector(`[data-skin="${index}"]`)
       image.src = artwork
       image.onload = () => image.nextElementSibling.hidden = true
@@ -88,4 +100,80 @@ async function loadSkinImages() {
   }
 }
 
-loadSkinImages()
+const conditions = ['Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred']
+const overviewMarkup = app.innerHTML
+
+function bindOverview() {
+  document.querySelector('#refresh').addEventListener('click', loadMarketPrice)
+  loadMarketPrice()
+  loadSkinImages()
+  document.querySelectorAll('.weapon').forEach((link) => link.addEventListener('click', (event) => {
+    event.preventDefault()
+    window.location.hash = link.getAttribute('href').slice(1)
+  }))
+}
+
+function renderSkinDetail(index) {
+  const [weapon, skin, rarity] = weapons[index]
+  const displayName = `${weapon} | ${skin}`
+  app.innerHTML = `
+    <main class="overview detail-page">
+      <header class="header"><a class="brand" href="#">DROP<span>WATCH</span></a><nav><a href="#">Market</a><a href="#">Weapon pool</a><a href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">Steam ↗</a></nav></header>
+      <div class="market-crumb"><a href="#">Community Market</a> &gt; Genesis Terminal &gt; ${displayName}</div>
+      <section class="item-overview">
+        <div class="item-art-panel"><div class="item-art-large weapon-image"><img src="${skinArtwork[index] || ''}" alt="${displayName}"><b>${weapon.slice(0, 2)}</b></div><span class="art-caption">Counter-Strike 2</span></div>
+        <div class="item-summary"><p class="eyebrow">GENESIS TERMINAL / ${rarity.toUpperCase()}</p><h1>${displayName}</h1><p class="item-description">A weapon skin from the Genesis Terminal collection.</p><div class="detail-lowest"><span>Lowest listing across all conditions</span><strong id="detail-lowest">Loading...</strong></div><div class="item-tags"><span>Normal quality</span><span>CS2</span><span>${rarity}</span></div><div class="item-actions"><a class="steam-button" href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">View on Steam Market ↗</a><a href="#" class="return-link">← Back to collection</a></div></div>
+      </section>
+      <section class="condition-card"><div class="card-top"><span>LISTINGS FOR ${displayName.toUpperCase()}</span><span id="detail-status">Fetching...</span></div><div class="condition-intro"><strong>Price by condition</strong><span>Lowest listing / USD</span></div><div class="condition-grid">${conditions.map((condition, row) => `<article class="condition-column" data-condition="${row}"><header><strong>${condition}</strong><small>${row === 0 ? 'Cleanest finish' : row === 4 ? 'Heavy wear' : 'Wear condition'}</small></header><div class="condition-offer"><span>Normal</span><strong class="normal-price">Loading...</strong><a class="normal-link" target="_blank" rel="noreferrer">Steam ↗</a></div><div class="condition-offer stattrak-offer"><span>StatTrak™</span><strong class="stattrak-price">Loading...</strong><a class="stattrak-link" target="_blank" rel="noreferrer">Steam ↗</a></div></article>`).join('')}</div><div class="card-footer"><span>Prices are fetched live from Steam Community Market.</span><a href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">View all listings</a></div></section>
+      <footer>Dropwatch 2004-style market board <span>${displayName}</span></footer>
+    </main>`
+  document.querySelector('.return-link').addEventListener('click', (event) => { event.preventDefault(); window.location.hash = '' })
+  loadConditionPrices(displayName)
+}
+
+async function loadConditionPrices(displayName) {
+  const columns = [...document.querySelectorAll('.condition-column')]
+  const prices = []
+  for (const [index, condition] of conditions.entries()) {
+    const column = columns[index]
+    const normalName = `${displayName} (${condition})`
+    const stattrakName = `StatTrak™ ${displayName} (${condition})`
+    column.querySelector('.normal-link').href = `https://steamcommunity.com/market/listings/730/${encodeURIComponent(normalName)}`
+    column.querySelector('.stattrak-link').href = `https://steamcommunity.com/market/listings/730/${encodeURIComponent(stattrakName)}`
+    const fetchPrice = async (marketName) => {
+      try {
+        const searchResponse = await fetch(`/steam/market/search/render/?query=${encodeURIComponent(marketName)}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
+        if (searchResponse.ok) {
+          const searchData = await searchResponse.json()
+          const exactResult = searchData.results?.find((result) => result.hash_name === marketName)
+          if (exactResult?.sell_price_text) return exactResult.sell_price_text
+        }
+        return 'Unavailable'
+      } catch {
+        return 'Unavailable'
+      }
+    }
+    const normalPrice = await fetchPrice(normalName)
+    const stattrakPrice = await fetchPrice(stattrakName)
+    column.querySelector('.normal-price').textContent = normalPrice
+    column.querySelector('.stattrak-price').textContent = stattrakPrice
+    ;[normalPrice, stattrakPrice].forEach((value) => {
+      const numeric = Number.parseFloat(value.replace('$', ''))
+      if (Number.isFinite(numeric)) prices.push(numeric)
+    })
+  }
+  document.querySelector('#detail-lowest').textContent = prices.length ? `$${Math.min(...prices).toFixed(2)}` : 'Unavailable'
+  document.querySelector('#detail-status').textContent = `Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+}
+
+function route() {
+  const match = window.location.hash.match(/^#skin=(\d+)$/)
+  if (match && weapons[Number(match[1])]) renderSkinDetail(Number(match[1]))
+  else {
+    app.innerHTML = overviewMarkup
+    bindOverview()
+  }
+}
+
+window.addEventListener('hashchange', route)
+route()
