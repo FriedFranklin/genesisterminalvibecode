@@ -19,7 +19,6 @@ let refreshTimer
 let staticPricesPromise
 let marketRequestActive = false
 let conditionRequestActive = false
-let steamFallbackTimer
 
 const steamUrl = (name) => `https://steamcommunity.com/market/listings/730/${encodeURIComponent(name)}`
 const now = () => new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })
@@ -78,13 +77,7 @@ async function getPrice(name) {
   return { success: false }
 }
 
-function steamFallback(name, target) {
-  if (!target || target.querySelector('.steam-fallback')) return
-  target.insertAdjacentHTML('beforeend', ` <a class="steam-fallback" href="${steamUrl(name)}" target="_blank" rel="noreferrer">Open official Steam listing ↗</a>`)
-  target.insertAdjacentHTML('beforeend', ' <small class="steam-fallback-note">Redirecting to Steam...</small>')
-  clearTimeout(steamFallbackTimer)
-  steamFallbackTimer = setTimeout(() => { window.location.replace(steamUrl(name)) }, 0)
-}
+
 
 function renderOverview() {
   app.innerHTML = `<main class="overview">
@@ -116,7 +109,8 @@ async function loadOverviewPrice(force = false) {
   if (saved && !force) return showOverviewPrice(saved.value, true)
   if (marketRequestActive) return
   marketRequestActive = true
-  document.querySelector('#refresh').disabled = true
+  const refreshBtn = document.querySelector('#refresh')
+  if (refreshBtn) refreshBtn.disabled = true
   try {
     const value = await getPrice(MARKET_HASH_NAME)
     if (!value.success) throw new Error('Price unavailable')
@@ -125,10 +119,9 @@ async function loadOverviewPrice(force = false) {
     showOverviewPrice(value)
   } catch {
     setOverviewUnavailable()
-    steamFallback(MARKET_HASH_NAME, document.querySelector('#message'))
   } finally {
     marketRequestActive = false
-    document.querySelector('#refresh').disabled = false
+    if (refreshBtn) refreshBtn.disabled = false
   }
 }
 
@@ -216,7 +209,6 @@ async function loadConditions(displayName, force = false) {
   if (!prices.length) {
     const source = document.querySelector('#detail-source')
     source.textContent = 'No current price found. Open the official Steam listing to view current data.'
-    steamFallback(displayName, source)
   }
   conditionRequestActive = false
 }
@@ -233,7 +225,6 @@ async function loadConditionPrice(name, force) {
 
 function route() {
   clearInterval(refreshTimer)
-  clearTimeout(steamFallbackTimer)
   document.querySelector('#price-cache-status')?.remove()
   const match = window.location.hash.match(/^#skin=(\d+)$/)
   if (match && WEAPONS[Number(match[1])]) renderDetail(Number(match[1]))
