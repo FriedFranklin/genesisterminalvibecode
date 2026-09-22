@@ -142,10 +142,17 @@ function renderMarketPrice(value, cached = false) {
 
 async function loadSkinImages() {
   try {
-    const response = await fetch('/skin-catalog/skins.json')
-    const catalog = await response.json()
+    let response = await fetch('/skin-catalog/skins.json')
+    if (!response.ok) response = await fetch(`${import.meta.env.BASE_URL}skins.json`)
+    if (!response.ok) throw new Error('Skin catalog unavailable')
+    let catalog = await response.json()
+    if (!Array.isArray(catalog) && Object.keys(catalog).length === 0) {
+      const remoteResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json')
+      if (remoteResponse.ok) catalog = await remoteResponse.json()
+    }
     weapons.forEach(([weapon, skin], index) => {
-      const artwork = catalog.find((item) => item.name === `${weapon} | ${skin}`)?.image
+      const name = `${weapon} | ${skin}`
+      const artwork = Array.isArray(catalog) ? catalog.find((item) => item.name === name)?.image : catalog[name]
       if (!artwork) return
       skinArtwork[index] = artwork
       const image = document.querySelector(`[data-skin="${index}"]`)

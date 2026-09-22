@@ -49,6 +49,7 @@ async function lookupCondition(weapon, skin, condition) {
 }
 
 const prices = {}
+const skinCatalog = {}
 const container = 'Sealed Genesis Terminal'
 prices[container] = await lookup(container, true)
 for (const [weapon, skin] of skins) {
@@ -62,6 +63,16 @@ for (const [weapon, skin] of skins) {
   }
 }
 
+const catalogResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json')
+if (catalogResponse.ok) {
+  const catalog = await catalogResponse.json()
+  for (const [weapon, skin] of skins) {
+    const item = catalog.find((entry) => entry.name === `${weapon} | ${skin}`)
+    if (item?.image) skinCatalog[`${weapon} | ${skin}`] = item.image
+  }
+}
+
 await mkdir('public', { recursive: true })
 await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
+await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
 console.log(`Wrote ${Object.keys(prices).length} Steam prices to public/prices.json`)
