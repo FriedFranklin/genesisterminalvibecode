@@ -22,6 +22,47 @@ const weapons = [
 ]
 const skinArtwork = []
 const app = document.querySelector('#app')
+const cacheKey = 'dropwatch-steam-prices-v1'
+const cacheTtl = 60 * 1000
+let refreshTimer
+let marketRefreshInFlight = false
+let conditionRefreshInFlight = false
+
+document.body.insertAdjacentHTML('beforeend', '<div id="price-cache-status">Prices have not been fetched yet</div>')
+
+function readPriceCache() {
+  try {
+    return JSON.parse(localStorage.getItem(cacheKey) || '{}')
+  } catch {
+    return {}
+  }
+}
+
+function writePriceCache(cache) {
+  localStorage.setItem(cacheKey, JSON.stringify(cache))
+}
+
+function getCachedPrice(key) {
+  const entry = readPriceCache()[key]
+  return entry && Date.now() - entry.savedAt < cacheTtl ? entry : null
+}
+
+function saveCachedPrice(key, value) {
+  const cache = readPriceCache()
+  cache[key] = { value, savedAt: Date.now() }
+  writePriceCache(cache)
+  updateCacheStatus(cache[key].savedAt)
+}
+
+function updateCacheStatus(timestamp = Math.max(0, ...Object.values(readPriceCache()).map((entry) => entry.savedAt || 0))) {
+  const status = document.querySelector('#price-cache-status')
+  if (status && timestamp) status.textContent = `Steam Community Market · fetched ${new Date(timestamp).toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })}`
+}
+
+function startAutoRefresh(callback) {
+  clearInterval(refreshTimer)
+  refreshTimer = setInterval(callback, 1000)
+}
 
 app.innerHTML = `
   <main class="overview">
@@ -33,7 +74,7 @@ app.innerHTML = `
   </main>
 `
 
-async function loadMarketPrice() {
+async function loadMarketPrice(force = false) {
   const price = document.querySelector('#price-value')
   const lowest = document.querySelector('#lowest')
   const listings = document.querySelector('#listings')
@@ -43,44 +84,46 @@ async function loadMarketPrice() {
   const connection = document.querySelector('#connection-label')
   const refresh = document.querySelector('#refresh')
 
+  const cached = getCachedPrice(`overview:${marketHashName}`)
+  if (cached && !force) renderMarketPrice(cached.value, true)
+  if (cached && !force) return
+  if (marketRefreshInFlight) return
+  marketRefreshInFlight = true
   refresh.disabled = true
   connection.textContent = 'Connecting to Steam Market'
   updated.textContent = 'Fetching current listing...'
   message.textContent = 'Requesting the latest market snapshot.'
   try {
-    const overviewResponse = await fetch(`/steam/market/priceoverview/?appid=730&currency=1&market_hash_name=${encodeURIComponent(marketHashName)}`, { cache: 'no-store' })
-    if (!overviewResponse.ok) throw new Error('Steam price request failed')
-    const data = await overviewResponse.json()
-    if (!data.success) throw new Error('Item was not found in the Steam Market')
-    let exactResult
-    try {
-      const searchResponse = await fetch(`/steam/market/search/render/?query=${encodeURIComponent(marketHashName)}&start=0&count=10&search_descriptions=0&sort_column=popular&sort_dir=desc&appid=730&norender=1`, { cache: 'no-store' })
-      if (searchResponse.ok) {
-        const searchData = await searchResponse.json()
-        exactResult = searchData.results?.find((result) => result.hash_name === marketHashName)
-      }
-    } catch {
-      // Priceoverview remains usable when Steam throttles search metadata.
-    }
-    price.textContent = data.lowest_price || '--'
-    lowest.textContent = data.lowest_price || '--'
-    listings.textContent = exactResult?.sell_listings?.toLocaleString() || 'Unavailable'
-    volume.textContent = data.volume || '--'
-    updated.textContent = `Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
-    document.querySelector('#footer-time').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    connection.textContent = 'Live from Steam Market'
-    message.textContent = 'Values reflect Steam Community Market listings.'
+    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(marketHashName)}`)
+    if (!response.ok) throw new Error('Market cache request failed')
+    const value = await response.json()
+    if (!value.success) throw new Error('Item was not found in the Steam Market')
+    value.listings = value.listings?.toLocaleString() || 'Unavailable'
+    saveCachedPrice(`overview:${marketHashName}`, value)
+    renderMarketPrice(value)
   } catch {
-    price.textContent = '--'
-    lowest.textContent = '--'
-    listings.textContent = '--'
-    volume.textContent = '--'
+    price.textContent = 'Unavailable'
+    lowest.textContent = 'Unavailable'
+    listings.textContent = 'Unavailable'
+    volume.textContent = 'Unavailable'
     updated.textContent = 'Unable to fetch current listing'
     connection.textContent = 'Steam Market unavailable'
     message.textContent = 'Steam may be rate-limiting requests. Try refreshing in a moment.'
   } finally {
+    marketRefreshInFlight = false
     refresh.disabled = false
   }
+}
+
+function renderMarketPrice(value, cached = false) {
+  document.querySelector('#price-value').textContent = value.price
+  document.querySelector('#lowest').textContent = value.price
+  document.querySelector('#listings').textContent = value.listings
+  document.querySelector('#volume').textContent = value.volume
+  document.querySelector('#updated').textContent = cached ? 'Showing cached price' : `Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+  document.querySelector('#footer-time').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  document.querySelector('#connection-label').textContent = cached ? 'Cached Steam Market data' : 'Live from Steam Market'
+  document.querySelector('#message').textContent = cached ? 'Cached price is less than 60 seconds old.' : 'Values reflect Steam Community Market listings.'
 }
 
 async function loadSkinImages() {
@@ -106,6 +149,8 @@ const overviewMarkup = app.innerHTML
 function bindOverview() {
   document.querySelector('#refresh').addEventListener('click', loadMarketPrice)
   loadMarketPrice()
+  updateCacheStatus()
+  startAutoRefresh(loadMarketPrice)
   loadSkinImages()
   document.querySelectorAll('.weapon').forEach((link) => link.addEventListener('click', (event) => {
     event.preventDefault()
@@ -124,14 +169,18 @@ function renderSkinDetail(index) {
         <div class="item-art-panel"><div class="item-art-large weapon-image"><img src="${skinArtwork[index] || ''}" alt="${displayName}"><b>${weapon.slice(0, 2)}</b></div><span class="art-caption">Counter-Strike 2</span></div>
         <div class="item-summary"><p class="eyebrow">GENESIS TERMINAL / ${rarity.toUpperCase()}</p><h1>${displayName}</h1><p class="item-description">A weapon skin from the Genesis Terminal collection.</p><div class="detail-lowest"><span>Lowest listing across all conditions</span><strong id="detail-lowest">Loading...</strong></div><div class="item-tags"><span>Normal quality</span><span>CS2</span><span>${rarity}</span></div><div class="item-actions"><a class="steam-button" href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">View on Steam Market ↗</a><a href="#" class="return-link">← Back to collection</a></div></div>
       </section>
-      <section class="condition-card"><div class="card-top"><span>LISTINGS FOR ${displayName.toUpperCase()}</span><span id="detail-status">Fetching...</span></div><div class="condition-intro"><strong>Price by condition</strong><span>Lowest listing / USD</span></div><div class="condition-grid">${conditions.map((condition, row) => `<article class="condition-column" data-condition="${row}"><header><strong>${condition}</strong><small>${row === 0 ? 'Cleanest finish' : row === 4 ? 'Heavy wear' : 'Wear condition'}</small></header><div class="condition-offer"><span>Normal</span><strong class="normal-price">Loading...</strong><a class="normal-link" target="_blank" rel="noreferrer">Steam ↗</a></div><div class="condition-offer stattrak-offer"><span>StatTrak™</span><strong class="stattrak-price">Loading...</strong><a class="stattrak-link" target="_blank" rel="noreferrer">Steam ↗</a></div></article>`).join('')}</div><div class="card-footer"><span>Prices are fetched live from Steam Community Market.</span><a href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">View all listings</a></div></section>
+      <section class="condition-card"><div class="card-top"><span>LISTINGS FOR ${displayName.toUpperCase()}</span><span id="detail-status">Fetching...</span></div><div class="condition-intro"><strong>Price by condition</strong><span>Lowest listing / USD</span></div><div class="condition-grid">${conditions.map((condition, row) => `<article class="condition-column" data-condition="${row}"><header><strong>${condition}</strong><small>${row === 0 ? 'Cleanest finish' : row === 4 ? 'Heavy wear' : 'Wear condition'}</small></header><div class="condition-offer"><span>Normal</span><strong class="normal-price">Loading...</strong><a class="normal-link" target="_blank" rel="noreferrer">Steam ↗</a></div><div class="condition-offer stattrak-offer"><span>StatTrak™</span><strong class="stattrak-price">Loading...</strong><a class="stattrak-link" target="_blank" rel="noreferrer">Steam ↗</a></div></article>`).join('')}</div><div class="card-footer"><span id="detail-source">Source: Steam Community Market · buyer-facing sell price</span><a href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">View all listings</a></div></section>
       <footer>Dropwatch 2004-style market board <span>${displayName}</span></footer>
     </main>`
   document.querySelector('.return-link').addEventListener('click', (event) => { event.preventDefault(); window.location.hash = '' })
   loadConditionPrices(displayName)
+  updateCacheStatus()
+  startAutoRefresh(() => loadConditionPrices(displayName))
 }
 
-async function loadConditionPrices(displayName) {
+async function loadConditionPrices(displayName, force = false) {
+  if (conditionRefreshInFlight) return
+  conditionRefreshInFlight = true
   const columns = [...document.querySelectorAll('.condition-column')]
   const prices = []
   for (const [index, condition] of conditions.entries()) {
@@ -141,12 +190,15 @@ async function loadConditionPrices(displayName) {
     column.querySelector('.normal-link').href = `https://steamcommunity.com/market/listings/730/${encodeURIComponent(normalName)}`
     column.querySelector('.stattrak-link').href = `https://steamcommunity.com/market/listings/730/${encodeURIComponent(stattrakName)}`
     const fetchPrice = async (marketName) => {
+      const cached = getCachedPrice(`skin:${marketName}`)
+      if (cached && !force) return cached.value
       try {
-        const searchResponse = await fetch(`/steam/market/search/render/?query=${encodeURIComponent(marketName)}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
-        if (searchResponse.ok) {
-          const searchData = await searchResponse.json()
-          const exactResult = searchData.results?.find((result) => result.hash_name === marketName)
-          if (exactResult?.sell_price_text) return exactResult.sell_price_text
+        const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(marketName)}`)
+        if (!response.ok) return 'Unavailable'
+        const data = await response.json()
+        if (data.success && data.price) {
+          saveCachedPrice(`skin:${marketName}`, data.price)
+          return data.price
         }
         return 'Unavailable'
       } catch {
@@ -163,10 +215,15 @@ async function loadConditionPrices(displayName) {
     })
   }
   document.querySelector('#detail-lowest').textContent = prices.length ? `$${Math.min(...prices).toFixed(2)}` : 'Unavailable'
-  document.querySelector('#detail-status').textContent = `Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+  const fetchedAt = new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })
+  document.querySelector('#detail-status').textContent = `Fetched ${fetchedAt}`
+  document.querySelector('#detail-source').textContent = `Source: Steam Community Market · buyer-facing sell price · ${fetchedAt}`
+  updateCacheStatus()
+  conditionRefreshInFlight = false
 }
 
 function route() {
+  clearInterval(refreshTimer)
   const match = window.location.hash.match(/^#skin=(\d+)$/)
   if (match && weapons[Number(match[1])]) renderSkinDetail(Number(match[1]))
   else {
