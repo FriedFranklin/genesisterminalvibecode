@@ -10,26 +10,27 @@ const skins = [
 const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
 async function steam(path) {
-  for (let attempt = 0; attempt < 4; attempt += 1) {
+  for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
-      const response = await fetch(`https://steamcommunity.com${path}`)
+      const response = await fetch(`https://steamcommunity.com${path}`, { signal: AbortSignal.timeout(15000) })
       if (response.status !== 429) return response
       const retryAfter = Number(response.headers.get('retry-after'))
-      await wait(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1))
+      await wait(Math.min(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1), 5000))
     } catch {
-      await wait(2000 * (attempt + 1))
+      if (attempt === 0) await wait(2000)
     }
   }
   return null
 }
 
 async function lookup(marketHashName, includeVolume = false) {
-  const query = encodeURIComponent(marketHashName)
-  const searchResponse = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
-  if (!searchResponse?.ok) return { success: false }
-  const search = await searchResponse.json()
-  const exact = search.results?.find((item) => item.hash_name === marketHashName)
-  if (!exact?.sell_price_text) return { success: false }
+  try {
+    const query = encodeURIComponent(marketHashName)
+    const searchResponse = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
+    if (!searchResponse?.ok) return { success: false }
+    const search = await searchResponse.json()
+    const exact = search.results?.find((item) => item.hash_name === marketHashName)
+    if (!exact?.sell_price_text) return { success: false }
 
   let volume = '--'
   if (includeVolume) {
@@ -38,22 +39,27 @@ async function lookup(marketHashName, includeVolume = false) {
     const overview = await overviewResponse.json()
     volume = overview.volume || '--'
   }
-  return { success: true, price: exact.sell_price_text, listings: exact.sell_listings, volume }
+    return { success: true, price: exact.sell_price_text, listings: exact.sell_listings, volume }
+  } catch {
+    return { success: false }
+  }
 }
 
 async function lookupCondition(weapon, skin, condition) {
-  const baseName = `${weapon} | ${skin} (${condition})`
-  const query = encodeURIComponent(baseName)
-  const response = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
-  if (!response?.ok) return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
-  const search = await response.json()
-  const normal = search.results?.find((item) => item.hash_name === baseName)
-  const stattrakName = `StatTrak™ ${baseName}`
-  const stattrak = search.results?.find((item) => item.hash_name === stattrakName)
-  return [
-    [baseName, normal],
-    [stattrakName, stattrak],
-  ]
+  try {
+    const baseName = `${weapon} | ${skin} (${condition})`
+    const query = encodeURIComponent(baseName)
+    const response = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
+    if (!response?.ok) return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
+    const search = await response.json()
+    const normal = search.results?.find((item) => item.hash_name === baseName)
+    const stattrakName = `StatTrak™ ${baseName}`
+    const stattrak = search.results?.find((item) => item.hash_name === stattrakName)
+    return [[baseName, normal], [stattrakName, stattrak]]
+  } catch {
+    const baseName = `${weapon} | ${skin} (${condition})`
+    return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
+  }
 }
 
 const prices = {}
@@ -62,6 +68,7 @@ const container = 'Sealed Genesis Terminal'
 prices[container] = await lookup(container, true)
 for (const [weapon, skin] of skins) {
   for (const condition of conditions) {
+    console.log(`Fetching ${weapon} | ${skin} (${condition})`)
     for (const [marketHashName, result] of await lookupCondition(weapon, skin, condition)) {
       prices[marketHashName] = result?.sell_price_text
         ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: '--' }
@@ -71,13 +78,17 @@ for (const [weapon, skin] of skins) {
   }
 }
 
-const catalogResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json')
-if (catalogResponse.ok) {
-  const catalog = await catalogResponse.json()
-  for (const [weapon, skin] of skins) {
-    const item = catalog.find((entry) => entry.name === `${weapon} | ${skin}`)
-    if (item?.image) skinCatalog[`${weapon} | ${skin}`] = item.image
+try {
+  const catalogResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json', { signal: AbortSignal.timeout(15000) })
+  if (catalogResponse.ok) {
+    const catalog = await catalogResponse.json()
+    for (const [weapon, skin] of skins) {
+      const item = catalog.find((entry) => entry.name === `${weapon} | ${skin}`)
+      if (item?.image) skinCatalog[`${weapon} | ${skin}`] = item.image
+    }
   }
+} catch {
+  console.log('Skin catalog unavailable; preserving the existing static catalog.')
 }
 
 await mkdir('public', { recursive: true })
