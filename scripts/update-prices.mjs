@@ -1,6 +1,12 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 
-const conditions = ['Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred']
+const conditions = [
+  'Factory New',
+  'Minimal Wear',
+  'Field-Tested',
+  'Well-Worn',
+  'Battle-Scarred',
+]
 const skins = [
   ['AK-47', 'The Oligarch'], ['M4A4', 'Full Throttle'], ['AWP', 'Ice Coaled'], ['Glock-18', 'Mirror Mosaic'], ['MP7', 'Smoking Kills'],
   ['M4A1-S', 'Liquidation'], ['Dual Berettas', 'Angel Eyes'], ['UMP-45', 'Continuum'], ['MAC-10', 'Cat Fight'], ['Nova', 'Ocular'],
@@ -26,19 +32,22 @@ async function steam(path) {
 async function lookup(marketHashName, includeVolume = false) {
   try {
     const query = encodeURIComponent(marketHashName)
-    const searchResponse = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
+    const searchResponse = await steam(
+      `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`,
+    )
     if (!searchResponse?.ok) return { success: false }
     const search = await searchResponse.json()
     const exact = search.results?.find((item) => item.hash_name === marketHashName)
     if (!exact?.sell_price_text) return { success: false }
 
-  let volume = '--'
-  if (includeVolume) {
-    const overviewResponse = await steam(`/market/priceoverview/?appid=730&currency=1&market_hash_name=${query}`)
-    if (!overviewResponse?.ok) return { success: true, price: exact.sell_price_text, listings: exact.sell_listings, volume: '--' }
-    const overview = await overviewResponse.json()
-    volume = overview.volume || '--'
-  }
+    let volume = '--'
+    if (includeVolume) {
+      const overviewResponse = await steam(`/market/priceoverview/?appid=730&currency=1&market_hash_name=${query}`)
+      if (overviewResponse?.ok) {
+        const overview = await overviewResponse.json()
+        volume = overview.volume || '--'
+      }
+    }
     return { success: true, price: exact.sell_price_text, listings: exact.sell_listings, volume }
   } catch {
     return { success: false }
@@ -49,7 +58,9 @@ async function lookupCondition(weapon, skin, condition) {
   try {
     const baseName = `${weapon} | ${skin} (${condition})`
     const query = encodeURIComponent(baseName)
-    const response = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
+    const response = await steam(
+      `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`,
+    )
     if (!response?.ok) return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
     const search = await response.json()
     const normal = search.results?.find((item) => item.hash_name === baseName)
