@@ -64,6 +64,7 @@ async function lookupCondition(weapon, skin, condition) {
 
 const prices = {}
 const skinCatalog = {}
+const generatedAt = new Date().toISOString()
 const container = 'Sealed Genesis Terminal'
 prices[container] = await lookup(container, true)
 for (const [weapon, skin] of skins) {
@@ -92,6 +93,11 @@ try {
 }
 
 await mkdir('public', { recursive: true })
+prices._meta = {
+  source: 'Steam Community Market search/render',
+  generatedAt,
+  note: 'Prices are exact buyer-facing sell_price_text values returned by Steam.',
+}
 await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
 await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
 console.log(`Wrote ${Object.keys(prices).length} Steam prices to public/prices.json`)

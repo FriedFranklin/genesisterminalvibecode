@@ -1,6 +1,7 @@
 import './retro.css'
 
 const marketHashName = 'Sealed Genesis Terminal'
+const steamListingUrl = (marketName) => `https://steamcommunity.com/market/listings/730/${encodeURIComponent(marketName)}`
 const weapons = [
   ['AK-47', 'The Oligarch', 'Covert'],
   ['M4A4', 'Full Throttle', 'Covert'],
@@ -77,7 +78,9 @@ async function getMarketPrice(marketName) {
   }
   staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`).then((response) => response.ok ? response.json() : {})
   const snapshot = await staticPricesPromise
-  return snapshot[marketName] || { success: false }
+  const value = snapshot[marketName] || { success: false }
+  if (value.success && snapshot._meta?.generatedAt) value.fetchedAt = snapshot._meta.generatedAt
+  return value
 }
 
 app.innerHTML = `
@@ -123,6 +126,12 @@ async function loadMarketPrice(force = false) {
     updated.textContent = 'Unable to fetch current listing'
     connection.textContent = 'Steam Market unavailable'
     message.textContent = 'Steam may be rate-limiting requests. Try refreshing in a moment.'
+    showSteamFallback(marketHashName, message)
+
+  function showSteamFallback(marketName, target) {
+    if (!target || target.querySelector('.steam-fallback')) return
+    target.insertAdjacentHTML('beforeend', ` <a class="steam-fallback" href="${steamListingUrl(marketName)}" target="_blank" rel="noreferrer">Open official Steam listing ↗</a>`)
+  }
   } finally {
     marketRefreshInFlight = false
     refresh.disabled = false
@@ -134,7 +143,8 @@ function renderMarketPrice(value, cached = false) {
   document.querySelector('#lowest').textContent = value.price
   document.querySelector('#listings').textContent = value.listings
   document.querySelector('#volume').textContent = value.volume
-  document.querySelector('#updated').textContent = cached ? 'Showing cached price' : `Updated ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+  const fetchedAt = value.fetchedAt ? new Date(value.fetchedAt).toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }) : new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })
+  document.querySelector('#updated').textContent = cached ? `Snapshot from ${fetchedAt}` : `Fetched ${fetchedAt}`
   document.querySelector('#footer-time').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   document.querySelector('#connection-label').textContent = cached ? 'Cached Steam Market data' : 'Live from Steam Market'
   document.querySelector('#message').textContent = cached ? 'Cached price is less than 60 seconds old.' : 'Values reflect Steam Community Market listings.'
@@ -239,6 +249,11 @@ async function loadConditionPrices(displayName, force = false) {
   document.querySelector('#detail-source').textContent = `Source: Steam Community Market · buyer-facing sell price · ${fetchedAt}`
   updateCacheStatus()
   conditionRefreshInFlight = false
+  if (!prices.length) {
+    const source = document.querySelector('#detail-source')
+    source.textContent = 'No cached price found. Open the official Steam listing to view current data.'
+    showSteamFallback(displayName, source)
+  }
 }
 
 function route() {
