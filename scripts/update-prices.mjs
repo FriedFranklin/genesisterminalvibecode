@@ -11,16 +11,22 @@ const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, mill
 
 async function steam(path) {
   for (let attempt = 0; attempt < 4; attempt += 1) {
-    const response = await fetch(`https://steamcommunity.com${path}`)
-    if (response.status !== 429) return response
-    await wait(2000 * (attempt + 1))
+    try {
+      const response = await fetch(`https://steamcommunity.com${path}`)
+      if (response.status !== 429) return response
+      const retryAfter = Number(response.headers.get('retry-after'))
+      await wait(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1))
+    } catch {
+      await wait(2000 * (attempt + 1))
+    }
   }
-  throw new Error('Steam rate limit')
+  return null
 }
 
 async function lookup(marketHashName, includeVolume = false) {
   const query = encodeURIComponent(marketHashName)
   const searchResponse = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
+  if (!searchResponse?.ok) return { success: false }
   const search = await searchResponse.json()
   const exact = search.results?.find((item) => item.hash_name === marketHashName)
   if (!exact?.sell_price_text) return { success: false }
@@ -28,6 +34,7 @@ async function lookup(marketHashName, includeVolume = false) {
   let volume = '--'
   if (includeVolume) {
     const overviewResponse = await steam(`/market/priceoverview/?appid=730&currency=1&market_hash_name=${query}`)
+    if (!overviewResponse?.ok) return { success: true, price: exact.sell_price_text, listings: exact.sell_listings, volume: '--' }
     const overview = await overviewResponse.json()
     volume = overview.volume || '--'
   }
@@ -38,6 +45,7 @@ async function lookupCondition(weapon, skin, condition) {
   const baseName = `${weapon} | ${skin} (${condition})`
   const query = encodeURIComponent(baseName)
   const response = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`)
+  if (!response?.ok) return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
   const search = await response.json()
   const normal = search.results?.find((item) => item.hash_name === baseName)
   const stattrakName = `StatTrak™ ${baseName}`
