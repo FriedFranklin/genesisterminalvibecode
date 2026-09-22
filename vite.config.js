@@ -8,6 +8,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/steam/, ''),
       },
+      '/skin-catalog': {
+        target: 'https://raw.githubusercontent.com',
+        changeOrigin: true,
+        rewrite: () => '/ByMykel/CSGO-API/main/public/api/en/skins.json',
+      },
     },
   },
 })
