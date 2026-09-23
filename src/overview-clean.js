@@ -61,19 +61,6 @@ async function getPrice(name) {
     return snapshotValue
   }
 
-  // GitHub Pages has no local API. Do not wait for a request that cannot work.
-  if (window.location.hostname.endsWith('.github.io')) return { success: false }
-
-  try {
-    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(name)}`)
-    if (response.ok) {
-      const value = await response.json()
-      if (value.success) return value
-    }
-  } catch {
-    // The local API is unavailable on GitHub Pages.
-  }
-
   return { success: false }
 }
 
@@ -190,6 +177,7 @@ async function loadConditions(displayName, force = false) {
   conditionRequestActive = true
   const columns = [...document.querySelectorAll('.condition-column')]
   const prices = []
+
   for (const [index, condition] of CONDITIONS.entries()) {
     const column = columns[index]
     const normal = `${displayName} (${condition})`
@@ -201,6 +189,7 @@ async function loadConditions(displayName, force = false) {
     column.querySelector('.stattrak-price').textContent = values[1]
     prices.push(...values.map((value) => Number.parseFloat(value.replace('$', ''))).filter(Number.isFinite))
   }
+
   const fetched = now()
   document.querySelector('#detail-lowest').textContent = prices.length ? `$${Math.min(...prices).toFixed(2)}` : 'Unavailable'
   document.querySelector('#detail-status').textContent = `Fetched ${fetched}`
