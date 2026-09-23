@@ -14,3 +14,12 @@ a { color: #0645ad; }
 @media (max-width: 700px) { .market-crumb, .item-overview, .condition-card { margin-left: 12px; margin-right: 12px; }.item-overview { grid-template-columns: 1fr; }.item-art-panel { min-height: 205px; border-right: 0; border-bottom: 1px solid #c7d0d8; }.item-summary { padding: 22px 18px; }.item-summary h1 { font-size: 23px; }.item-actions { align-items: flex-start; flex-direction: column; margin-top: 22px; }.condition-card { overflow-x: auto; }.condition-grid { min-width: 760px; }.condition-intro { padding-left: 10px; padding-right: 10px; } }
 #price-cache-status { position: fixed; right: 12px; bottom: 10px; z-index: 20; padding: 5px 8px; color: #34516c; background: #e8f0f6; border: 1px solid #9aaebe; box-shadow: 1px 1px 0 #fff; font: 10px Tahoma, Arial, sans-serif; }
 .steam-fallback-note { color: #6b7d8c; margin-left: 5px; }
+
+/* History graph / sparkline styles */
+.history-graph { width: 100%; height: 48px; margin-top: 8px; background: #f7fafc; border: 1px solid #c4ced7; position: relative; }
+.history-graph canvas { display: block; width: 100%; height: 100%; }
+.history-graph .graph-label { position: absolute; bottom: 2px; left: 4px; font-size: 8px; color: #6c7d8c; }
+.history-graph .graph-tooltip { position: absolute; pointer-events: none; font-size: 9px; color: #1c3956; background: #fff; border: 1px solid #9aaab8; padding: 2px 6px; border-radius: 3px; box-shadow: 1px 1px 3px rgba(0,0,0,0.2); display: none; z-index: 10; }
+.history-graph:hover .graph-tooltip { display: block; }
+.weapon .history-graph { margin-top: 6px; height: 36px; }
+.condition-offer .history-graph { margin-top: 4px; height: 32px; }

@@ -20,6 +20,54 @@ let staticPricesPromise
 let marketRequestActive = false
 let conditionRequestActive = false
 
+// Sparkline rendering
+function renderSparkline(canvas, history, color = '#1c3956') {
+  const ctx = canvas.getContext('2d')
+  const dpr = window.devicePixelRatio || 1
+  const width = canvas.width = canvas.offsetWidth * dpr
+  const height = canvas.height = canvas.offsetHeight * dpr
+  ctx.scale(dpr, dpr)
+  const cssWidth = canvas.offsetWidth
+  const cssHeight = canvas.offsetHeight
+
+  if (!history || history.length < 2) return
+
+  // Parse prices
+  const prices = history.map(h => parseFloat(h.price.replace('$', ''))).filter(p => !isNaN(p))
+  if (prices.length < 2) return
+
+  const minPrice = Math.min(...prices)
+  const maxPrice = Math.max(...prices)
+  const range = maxPrice - minPrice || 1
+
+  // Draw background
+  ctx.fillStyle = '#f7fafc'
+  ctx.fillRect(0, 0, cssWidth, cssHeight)
+
+  // Draw line
+  ctx.beginPath()
+  ctx.strokeStyle = color
+  ctx.lineWidth = 1.5
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+
+  prices.forEach((price, i) => {
+    const x = (i / (prices.length - 1)) * cssWidth
+    const y = cssHeight - ((price - minPrice) / range) * (cssHeight - 8) - 4
+    if (i === 0) ctx.moveTo(x, y)
+    else ctx.lineTo(x, y)
+  })
+  ctx.stroke()
+
+  // Draw last point
+  const lastX = cssWidth - 4
+  const lastY = cssHeight - ((prices[prices.length - 1] - minPrice) / range) * (cssHeight - 8) - 4
+  ctx.fillStyle = color
+  ctx.beginPath()
+  ctx.arc(lastX, lastY, 3, 0, Math.PI * 2)
+  ctx.fill()
+}
+
 const steamUrl = (name) => `https://steamcommunity.com/market/listings/730/${encodeURIComponent(name)}`
 const now = () => new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })
 
@@ -71,7 +119,7 @@ function renderOverview() {
     <header class="header"><a class="brand" href="/">DROP<span>WATCH</span></a><nav><a href="#price">Market</a><a href="#weapons">Weapon pool</a><a href="${steamUrl(MARKET_HASH_NAME)}" target="_blank" rel="noreferrer">Steam ↗</a></nav></header>
     <section class="hero"><div><p class="eyebrow">COUNTER-STRIKE 2 &gt; CONTAINER</p><h1>Genesis Terminal</h1><p class="lede">Steam Community Market overview</p></div><div class="online"><i></i><span id="connection-label">Connecting to Steam Market</span></div></section>
     <section class="market-card" id="price" aria-live="polite"><div class="card-top"><span>GENESIS TERMINAL / CURRENT MARKET PRICE</span><span id="updated">Fetching...</span></div><div class="price-block"><span class="currency">USD</span><strong id="price-value">--</strong><span>lowest current listing</span></div><div class="metrics"><div><span>Active listings</span><strong id="listings">--</strong></div><div><span>24h sales</span><strong id="volume">--</strong></div><div><span>Lowest price</span><strong id="lowest">--</strong></div></div><div class="card-footer"><span id="message">Prices load from the shared Steam snapshot when available.</span><button id="refresh" type="button">Refresh price</button></div></section>
-    <section class="weapons" id="weapons"><div class="section-title"><h2>Weapons you can get</h2><span>17 skins in the Genesis Terminal</span></div><div class="weapon-row">${WEAPONS.map(([weapon, skin, rarity], index) => `<a class="weapon" href="#skin=${index}"><span class="weapon-image weapon-${index}"><img data-skin="${index}" alt="${weapon} | ${skin}" loading="lazy"><b>${weapon.slice(0, 2)}</b></span><strong>${weapon}</strong><small>${skin}</small><em>${rarity}</em></a>`).join('')}</div><p class="note">Click a skin to view live prices by condition.</p></section>
+    <section class="weapons" id="weapons"><div class="section-title"><h2>Weapons you can get</h2><span>17 skins in the Genesis Terminal</span></div><div class="weapon-row">${WEAPONS.map(([weapon, skin, rarity], index) => `<a class="weapon" href="#skin=${index}"><span class="weapon-image weapon-${index}"><img data-skin="${index}" alt="${weapon} | ${skin}" loading="lazy"><b>${weapon.slice(0, 2)}</b></span><strong>${weapon}</strong><small>${skin}</small><em>${rarity}</em><canvas class="history-graph" data-skin-index="${index}" width="142" height="36"></canvas></a>`).join('')}</div><p class="note">Click a skin to view live prices by condition.</p></section>
     <footer>Dropwatch 2004-style market board <span>Last request: <b id="footer-time">--</b></span></footer>
   </main>`
   document.body.insertAdjacentHTML('beforeend', '<div id="price-cache-status">Prices have not been fetched yet</div>')
@@ -156,6 +204,44 @@ async function loadArtwork() {
   } catch {
     // Text initials remain visible when artwork is unavailable.
   }
+
+  // Render sparklines for overview weapons
+  renderOverviewSparklines()
+}
+
+function renderOverviewSparklines() {
+  staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`, { cache: 'no-store' })
+    .then((response) => (response.ok ? response.json() : {}))
+    .catch(() => ({}))
+
+  staticPricesPromise.then(snapshot => {
+    WEAPONS.forEach(([weapon, skin], index) => {
+      const name = `${weapon} | ${skin}`
+      // Find the condition with the lowest price that has history
+      let bestHistory = null
+      CONDITIONS.forEach(condition => {
+        const normalName = `${name} (${condition})`
+        const data = snapshot[normalName]
+        if (data?.history?.length) {
+          if (!bestHistory || data.history.length > bestHistory.length) {
+            bestHistory = data.history
+          }
+        }
+        const stattrakName = `StatTrak™ ${normalName}`
+        const stattrakData = snapshot[stattrakName]
+        if (stattrakData?.history?.length) {
+          if (!bestHistory || stattrakData.history.length > bestHistory.length) {
+            bestHistory = stattrakData.history
+          }
+        }
+      })
+
+      const canvas = document.querySelector(`canvas.history-graph[data-skin-index="${index}"]`)
+      if (canvas && bestHistory) {
+        renderSparkline(canvas, bestHistory)
+      }
+    })
+  })
 }
 
 function renderDetail(index) {
@@ -169,7 +255,7 @@ function renderDetail(index) {
 }
 
 function renderConditions() {
-  return CONDITIONS.map((condition, index) => `<article class="condition-column" data-condition="${index}"><header><strong>${condition}</strong><small>${index === 0 ? 'Cleanest finish' : index === 4 ? 'Heavy wear' : 'Wear condition'}</small></header><div class="condition-offer"><span>Normal</span><strong class="normal-price">Loading...</strong><a class="normal-link" target="_blank" rel="noreferrer">Steam ↗</a></div><div class="condition-offer stattrak-offer"><span>StatTrak™</span><strong class="stattrak-price">Loading...</strong><a class="stattrak-link" target="_blank" rel="noreferrer">Steam ↗</a></div></article>`).join('')
+  return CONDITIONS.map((condition, index) => `<article class="condition-column" data-condition="${index}"><header><strong>${condition}</strong><small>${index === 0 ? 'Cleanest finish' : index === 4 ? 'Heavy wear' : 'Wear condition'}</small></header><div class="condition-offer"><span>Normal</span><strong class="normal-price">Loading...</strong><a class="normal-link" target="_blank" rel="noreferrer">Steam ↗</a><canvas class="history-graph" data-condition="${index}" data-type="normal" width="100%" height="32"></canvas></div><div class="condition-offer stattrak-offer"><span>StatTrak™</span><strong class="stattrak-price">Loading...</strong><a class="stattrak-link" target="_blank" rel="noreferrer">Steam ↗</a><canvas class="history-graph" data-condition="${index}" data-type="stattrak" width="100%" height="32"></canvas></div></article>`).join('')
 }
 
 async function loadConditions(displayName, force = false) {
@@ -199,7 +285,35 @@ async function loadConditions(displayName, force = false) {
     const source = document.querySelector('#detail-source')
     source.textContent = 'No current price found. Open the official Steam listing to view current data.'
   }
+
+  // Render sparklines for detail page conditions
+  renderDetailSparklines(displayName)
+
   conditionRequestActive = false
+}
+
+function renderDetailSparklines(displayName) {
+  staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`, { cache: 'no-store' })
+    .then((response) => (response.ok ? response.json() : {}))
+    .catch(() => ({}))
+
+  staticPricesPromise.then(snapshot => {
+    CONDITIONS.forEach((condition, index) => {
+      const normalName = `${displayName} (${condition})`
+      const normalData = snapshot[normalName]
+      const normalCanvas = document.querySelector(`canvas.history-graph[data-condition="${index}"][data-type="normal"]`)
+      if (normalCanvas && normalData?.history?.length) {
+        renderSparkline(normalCanvas, normalData.history)
+      }
+
+      const stattrakName = `StatTrak™ ${normalName}`
+      const stattrakData = snapshot[stattrakName]
+      const stattrakCanvas = document.querySelector(`canvas.history-graph[data-condition="${index}"][data-type="stattrak"]`)
+      if (stattrakCanvas && stattrakData?.history?.length) {
+        renderSparkline(stattrakCanvas, stattrakData.history, '#a13b29')
+      }
+    })
+  })
 }
 
 async function loadConditionPrice(name, force) {

@@ -1,6 +1,32 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 
+// Keep last 50 price points per item (roughly 12.5 hours at 15-min intervals)
+const MAX_HISTORY_POINTS = 50
+
+function mergePriceHistory(existing, newData, timestamp) {
+  if (!newData?.success) return existing || { success: false }
+  if (!existing?.success) return { ...newData, history: [{ price: newData.price, timestamp }] }
+
+  const history = existing.history || []
+  const price = newData.price
+  const lastPrice = history[history.length - 1]?.price
+
+  // Only add if price changed
+  if (price !== lastPrice) {
+    history.push({ price, timestamp })
+    // Trim to max points
+    if (history.length > MAX_HISTORY_POINTS) history.shift()
+  }
+
+  return {
+    ...newData,
+    history,
+    // Keep the original first-seen timestamp
+    firstSeen: existing.firstSeen || timestamp,
+  }
+}
+
 const conditions = [
   'Factory New',
   'Minimal Wear',
@@ -56,12 +82,21 @@ async function scrapeWithBrowser() {
     }
   })
 
-  const prices = {}
+  // Load existing prices to preserve history
+  let prices = {}
+  try {
+    const existing = await import('node:fs/promises').then(fs => fs.readFile('public/prices.json', 'utf8'))
+    prices = JSON.parse(existing)
+  } catch {
+    // No existing file, start fresh
+  }
+
   const generatedAt = new Date().toISOString()
 
   // Scrape container price
   console.log(`Scraping container: ${container}`)
-  prices[container] = await scrapeListing(page, container, true)
+  const containerResult = await scrapeListing(page, container, true)
+  prices[container] = mergePriceHistory(prices[container], containerResult, generatedAt)
 
   // Scrape each skin condition
   for (const [weapon, skin] of skins) {
@@ -71,12 +106,12 @@ async function scrapeWithBrowser() {
 
       // Normal
       const normalResult = await scrapeListing(page, baseName, false)
-      prices[baseName] = normalResult
+      prices[baseName] = mergePriceHistory(prices[baseName], normalResult, generatedAt)
 
       // StatTrak
       const stattrakName = `StatTrak™ ${baseName}`
       const stattrakResult = await scrapeListing(page, stattrakName, false)
-      prices[stattrakName] = stattrakResult
+      prices[stattrakName] = mergePriceHistory(prices[stattrakName], stattrakResult, generatedAt)
 
       await wait(1500) // Be respectful to Steam
     }
