@@ -4,6 +4,13 @@ import { chromium } from 'playwright'
 // Keep last 2880 price points per item (30 days at 15-min intervals)
 const MAX_HISTORY_POINTS = 2880
 
+/**
+ * Merges new price data with existing history, preserving the longest history array.
+ * @param {Object} existing - Existing price data with history
+ * @param {Object} newData - New price data from scraper
+ * @param {string} timestamp - ISO timestamp of the scrape
+ * @returns {Object} Merged price data
+ */
 function mergePriceHistory(existing, newData, timestamp) {
   if (!newData?.success) return existing || { success: false }
   if (!existing?.success) return { ...newData, history: [{ price: newData.price, timestamp }] }
@@ -12,10 +19,10 @@ function mergePriceHistory(existing, newData, timestamp) {
   const price = newData.price
   const lastPrice = history[history.length - 1]?.price
 
-  // Only add if price changed
+  // Only add if price changed to reduce noise
   if (price !== lastPrice) {
     history.push({ price, timestamp })
-    // Trim to max points
+    // Trim to max points (30 days at 15-min intervals)
     if (history.length > MAX_HISTORY_POINTS) history.shift()
   }
 
@@ -45,8 +52,11 @@ const skins = [
 const container = 'Sealed Genesis Terminal'
 const wait = (ms) => new Promise((r) => setTimeout(r, ms))
 
+/**
+ * Main scraping function that orchestrates the browser-based price collection.
+ * Uses Playwright with realistic browser headers to avoid detection.
+ */
 async function scrapeWithBrowser() {
-  console.log('Launching browser...')
   const browser = await chromium.launch({ headless: true })
   const context = await browser.newContext({
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -55,7 +65,7 @@ async function scrapeWithBrowser() {
     timezoneId: 'America/New_York',
   })
 
-  // Add stealth-like headers
+  // Add realistic browser headers to avoid bot detection
   await context.setExtraHTTPHeaders({
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
     'Accept-Language': 'en-US,en;q=0.9',
@@ -72,7 +82,7 @@ async function scrapeWithBrowser() {
 
   const page = await context.newPage()
 
-  // Block unnecessary resources to speed up
+  // Block unnecessary resources to speed up scraping
   await page.route('**/*', (route) => {
     const resourceType = route.request().resourceType()
     if (['image', 'font', 'stylesheet', 'media'].includes(resourceType)) {
@@ -82,7 +92,7 @@ async function scrapeWithBrowser() {
     }
   })
 
-  // Load existing prices to preserve history
+  // Load existing prices to preserve history across runs
   let prices = {}
   try {
     const existing = await import('node:fs/promises').then(fs => fs.readFile('public/prices.json', 'utf8'))
@@ -94,7 +104,6 @@ async function scrapeWithBrowser() {
   const generatedAt = new Date().toISOString()
 
   // Scrape container price
-  console.log(`Scraping container: ${container}`)
   const containerResult = await scrapeListing(page, container, true)
   prices[container] = mergePriceHistory(prices[container], containerResult, generatedAt)
 
@@ -102,7 +111,6 @@ async function scrapeWithBrowser() {
   for (const [weapon, skin] of skins) {
     for (const condition of conditions) {
       const baseName = `${weapon} | ${skin} (${condition})`
-      console.log(`Scraping: ${baseName}`)
 
       // Normal
       const normalResult = await scrapeListing(page, baseName, false)
@@ -113,14 +121,14 @@ async function scrapeWithBrowser() {
       const stattrakResult = await scrapeListing(page, stattrakName, false)
       prices[stattrakName] = mergePriceHistory(prices[stattrakName], stattrakResult, generatedAt)
 
-      await wait(1500) // Be respectful to Steam
+      // Be respectful to Steam - wait between requests
+      await wait(1500)
     }
   }
 
-  // Scrape skin catalog images
+  // Scrape skin catalog images for weapon thumbnails
   const skinCatalog = {}
   try {
-    console.log('Fetching skin catalog...')
     const catalogResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json', {
       signal: AbortSignal.timeout(15000),
     })
@@ -132,7 +140,7 @@ async function scrapeWithBrowser() {
       }
     }
   } catch {
-    console.log('Skin catalog unavailable')
+    // Skin catalog unavailable - thumbnails will use text initials
   }
 
   await browser.close()
@@ -145,7 +153,6 @@ async function scrapeWithBrowser() {
   }
   await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
   await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
-  console.log(`Wrote ${Object.keys(prices).length} Steam prices to public/prices.json`)
 }
 
 async function scrapeListing(page, marketHashName, includeVolume) {

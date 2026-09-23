@@ -20,7 +20,17 @@ let staticPricesPromise
 let marketRequestActive = false
 let conditionRequestActive = false
 
-// Sparkline rendering
+/**
+ * Application entry point - reads hash route and renders appropriate view
+ */
+function route() {
+
+/**
+ * Renders a price history sparkline on a canvas element.
+ * @param {HTMLCanvasElement} canvas - The canvas to draw on
+ * @param {Array<{price: string, timestamp: string}>} history - Price history array
+ * @param {string} color - Line color (default: #1c3956)
+ */
 function renderSparkline(canvas, history, color = '#1c3956') {
   const ctx = canvas.getContext('2d')
   const dpr = window.devicePixelRatio || 1
@@ -30,11 +40,14 @@ function renderSparkline(canvas, history, color = '#1c3956') {
   const cssWidth = canvas.offsetWidth
   const cssHeight = canvas.offsetHeight
 
-  if (!history || history.length < 2) return
+  if (!history || history.length === 0) return
 
-  // Parse prices
-  const prices = history.map(h => parseFloat(h.price.replace('$', ''))).filter(p => !isNaN(p))
-  if (prices.length < 2) return
+  // Parse prices from history
+  const prices = history
+    .map(h => parseFloat(h.price.replace('$', '')))
+    .filter(p => !isNaN(p))
+
+  if (prices.length === 0) return
 
   const minPrice = Math.min(...prices)
   const maxPrice = Math.max(...prices)
@@ -44,43 +57,66 @@ function renderSparkline(canvas, history, color = '#1c3956') {
   ctx.fillStyle = '#f7fafc'
   ctx.fillRect(0, 0, cssWidth, cssHeight)
 
-  // Draw line
-  ctx.beginPath()
-  ctx.strokeStyle = color
-  ctx.lineWidth = 1.5
-  ctx.lineCap = 'round'
-  ctx.lineJoin = 'round'
+  if (prices.length === 1) {
+    // Draw single point as a dot
+    const x = cssWidth / 2
+    const y = cssHeight / 2
+    ctx.fillStyle = color
+    ctx.beginPath()
+    ctx.arc(x, y, 3, 0, Math.PI * 2)
+    ctx.fill()
+  } else {
+    // Draw line for 2+ points
+    ctx.beginPath()
+    ctx.strokeStyle = color
+    ctx.lineWidth = 1.5
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
 
-  prices.forEach((price, i) => {
-    const x = (i / (prices.length - 1)) * cssWidth
-    const y = cssHeight - ((price - minPrice) / range) * (cssHeight - 8) - 4
-    if (i === 0) ctx.moveTo(x, y)
-    else ctx.lineTo(x, y)
-  })
-  ctx.stroke()
+    prices.forEach((price, i) => {
+      const x = (i / (prices.length - 1)) * cssWidth
+      const y = cssHeight - ((price - minPrice) / range) * (cssHeight - 8) - 4
+      if (i === 0) ctx.moveTo(x, y)
+      else ctx.lineTo(x, y)
+    })
+    ctx.stroke()
 
-  // Draw last point
-  const lastX = cssWidth - 4
-  const lastY = cssHeight - ((prices[prices.length - 1] - minPrice) / range) * (cssHeight - 8) - 4
-  ctx.fillStyle = color
-  ctx.beginPath()
-  ctx.arc(lastX, lastY, 3, 0, Math.PI * 2)
-  ctx.fill()
+    // Draw last point
+    const lastX = cssWidth - 4
+    const lastY = cssHeight - ((prices[prices.length - 1] - minPrice) / range) * (cssHeight - 8) - 4
+    ctx.fillStyle = color
+    ctx.beginPath()
+    ctx.arc(lastX, lastY, 3, 0, Math.PI * 2)
+    ctx.fill()
+  }
 }
 
 const steamUrl = (name) => `https://steamcommunity.com/market/listings/730/${encodeURIComponent(name)}`
 const now = () => new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })
 
-// Shared browser cache. GitHub Pages falls back to the generated prices.json snapshot.
+/**
+ * Shared browser cache. GitHub Pages falls back to the generated prices.json snapshot.
+ * @returns {Object} Parsed cache entries from localStorage
+ */
 function cacheEntries() {
   try { return JSON.parse(localStorage.getItem(CACHE_KEY) || '{}') } catch { return {} }
 }
 
+/**
+ * Get a cached entry if it exists and is not expired
+ * @param {string} key - Cache key
+ * @returns {Object|null} Cached entry or null if missing/expired
+ */
 function cached(key) {
   const entry = cacheEntries()[key]
   return entry && Date.now() - entry.savedAt < CACHE_TTL ? entry : null
 }
 
+/**
+ * Store a value in cache with current timestamp
+ * @param {string} key - Cache key
+ * @param {*} value - Value to cache
+ */
 function cache(key, value) {
   const entries = cacheEntries()
   entries[key] = { value, savedAt: Date.now() }
@@ -88,16 +124,29 @@ function cache(key, value) {
   updateCacheStatus(entries[key].savedAt)
 }
 
+/**
+ * Update the cache status display in the footer
+ * @param {number} [timestamp] - Unix timestamp to display (defaults to most recent cache entry)
+ */
 function updateCacheStatus(timestamp = Math.max(0, ...Object.values(cacheEntries()).map((entry) => entry.savedAt || 0))) {
   const node = document.querySelector('#price-cache-status')
   if (node && timestamp) node.textContent = `Steam Community Market · fetched ${new Date(timestamp).toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })}`
 }
 
+/**
+ * Begin a periodic refresh loop
+ * @param {Function} callback - Function to call on each interval
+ */
 function beginRefreshLoop(callback) {
   clearInterval(refreshTimer)
   refreshTimer = setInterval(callback, 1000)
 }
 
+/**
+ * Gets price data for a market hash name from the shared snapshot
+ * @param {string} name - Steam market hash name
+ * @returns {Promise<Object>} Price data object with success flag
+ */
 async function getPrice(name) {
   staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`, { cache: 'no-store' })
     .then((response) => (response.ok ? response.json() : {}))
@@ -138,6 +187,10 @@ function bindOverview() {
   beginRefreshLoop(loadOverviewPrice)
 }
 
+/**
+ * Loads the overview price for the Genesis Terminal container
+ * @param {boolean} [force] - If true, bypasses cache and fetches fresh data
+ */
 async function loadOverviewPrice(force = false) {
   const key = `overview:${MARKET_HASH_NAME}`
   const saved = cached(key)
@@ -160,6 +213,11 @@ async function loadOverviewPrice(force = false) {
   }
 }
 
+/**
+ * Displays the overview price data in the UI
+ * @param {Object} value - Price data object from getPrice()
+ * @param {boolean} [fromCache] - Whether the data came from cache
+ */
 function showOverviewPrice(value, fromCache = false) {
   const fetched = value.fetchedAt ? new Date(value.fetchedAt).toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }) : now()
   document.querySelector('#price-value').textContent = value.price
@@ -172,6 +230,9 @@ function showOverviewPrice(value, fromCache = false) {
   document.querySelector('#message').textContent = fromCache ? 'Cached snapshot is less than 60 seconds old.' : 'Values reflect Steam Community Market listings.'
 }
 
+/**
+ * Displays unavailable state when price data cannot be fetched
+ */
 function setOverviewUnavailable() {
   document.querySelector('#price-value').textContent = 'Unavailable'
   document.querySelector('#lowest').textContent = 'Unavailable'
@@ -182,26 +243,39 @@ function setOverviewUnavailable() {
   document.querySelector('#message').textContent = 'No current data found.'
 }
 
+/**
+ * Loads skin artwork images from the local catalog or remote fallback.
+ * Also triggers overview sparkline rendering after images load.
+ */
 async function loadArtwork() {
   try {
     let response = await fetch('/skin-catalog/skins.json')
     if (!response.ok) response = await fetch(`${import.meta.env.BASE_URL}skins.json`)
     if (!response.ok) throw new Error('Catalog unavailable')
     let catalog = await response.json()
+
+    // Fallback to remote catalog if local is empty
     if (!Array.isArray(catalog) && !Object.keys(catalog).length) {
       const remote = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json')
       if (remote.ok) catalog = await remote.json()
     }
+
     WEAPONS.forEach(([weapon, skin], index) => {
       const name = `${weapon} | ${skin}`
-      const image = Array.isArray(catalog) ? catalog.find((item) => item.name === name)?.image : catalog[name]
+      const image = Array.isArray(catalog)
+        ? catalog.find((item) => item.name === name)?.image
+        : catalog[name]
+
       if (!image) return
+
       artwork[index] = image
       const element = document.querySelector(`[data-skin="${index}"]`)
-      element.src = image
-      element.onload = () => { element.nextElementSibling.hidden = true }
+      if (element) {
+        element.src = image
+        element.onload = () => { element.nextElementSibling.hidden = true }
+      }
     })
-  } catch {
+  } catch (err) {
     // Text initials remain visible when artwork is unavailable.
   }
 
@@ -209,6 +283,10 @@ async function loadArtwork() {
   renderOverviewSparklines()
 }
 
+/**
+ * Renders sparklines for all weapons on the overview page.
+ * Finds the condition with the most history data for each weapon.
+ */
 function renderOverviewSparklines() {
   staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`, { cache: 'no-store' })
     .then((response) => (response.ok ? response.json() : {}))
@@ -217,8 +295,8 @@ function renderOverviewSparklines() {
   staticPricesPromise.then(snapshot => {
     WEAPONS.forEach(([weapon, skin], index) => {
       const name = `${weapon} | ${skin}`
-      // Find the condition with the lowest price that has history
       let bestHistory = null
+
       CONDITIONS.forEach(condition => {
         const normalName = `${name} (${condition})`
         const data = snapshot[normalName]
@@ -292,6 +370,10 @@ async function loadConditions(displayName, force = false) {
   conditionRequestActive = false
 }
 
+/**
+ * Renders sparklines for all conditions of a weapon on the detail page.
+ * @param {string} displayName - The weapon skin name (e.g., "AK-47 | The Oligarch")
+ */
 function renderDetailSparklines(displayName) {
   staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`, { cache: 'no-store' })
     .then((response) => (response.ok ? response.json() : {}))
