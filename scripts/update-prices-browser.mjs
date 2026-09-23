@@ -1,8 +1,8 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 
-// Keep last 50 price points per item (roughly 12.5 hours at 15-min intervals)
-const MAX_HISTORY_POINTS = 50
+// Keep last 2880 price points per item (30 days at 15-min intervals)
+const MAX_HISTORY_POINTS = 2880
 
 function mergePriceHistory(existing, newData, timestamp) {
   if (!newData?.success) return existing || { success: false }
