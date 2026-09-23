@@ -2,7 +2,7 @@
   "Sealed Genesis Terminal": {
     "success": true,
     "price": "$0.09",
-    "listings": 406508,
+    "listings": 406428,
     "volume": "39,294"
   },
   "AK-47 | The Oligarch (Factory New)": {
@@ -24,16 +24,10 @@
     "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Minimal Wear)": {
-    "success": true,
-    "price": "$255.33",
-    "listings": 28,
-    "volume": "--"
+    "success": false
   },
   "AK-47 | The Oligarch (Field-Tested)": {
-    "success": true,
-    "price": "$57.44",
-    "listings": 349,
-    "volume": "--"
+    "success": false
   },
   "StatTrak™ AK-47 | The Oligarch (Field-Tested)": {
     "success": true,
@@ -55,8 +49,8 @@
   },
   "AK-47 | The Oligarch (Battle-Scarred)": {
     "success": true,
-    "price": "$31.51",
-    "listings": 117,
+    "price": "$31.56",
+    "listings": 116,
     "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Battle-Scarred)": {
@@ -91,7 +85,7 @@
   },
   "M4A4 | Full Throttle (Field-Tested)": {
     "success": true,
-    "price": "$53.50",
+    "price": "$53.45",
     "listings": 228,
     "volume": "--"
   },
@@ -116,7 +110,7 @@
   "M4A4 | Full Throttle (Battle-Scarred)": {
     "success": true,
     "price": "$28.58",
-    "listings": 112,
+    "listings": 111,
     "volume": "--"
   },
   "StatTrak™ M4A4 | Full Throttle (Battle-Scarred)": {
@@ -128,7 +122,7 @@
   "AWP | Ice Coaled (Factory New)": {
     "success": true,
     "price": "$37.15",
-    "listings": 95,
+    "listings": 94,
     "volume": "--"
   },
   "StatTrak™ AWP | Ice Coaled (Factory New)": {
@@ -140,7 +134,7 @@
   "AWP | Ice Coaled (Minimal Wear)": {
     "success": true,
     "price": "$16.96",
-    "listings": 418,
+    "listings": 417,
     "volume": "--"
   },
   "StatTrak™ AWP | Ice Coaled (Minimal Wear)": {
@@ -151,7 +145,7 @@
   },
   "AWP | Ice Coaled (Field-Tested)": {
     "success": true,
-    "price": "$8.85",
+    "price": "$8.77",
     "listings": 509,
     "volume": "--"
   },
@@ -175,7 +169,7 @@
   },
   "AWP | Ice Coaled (Battle-Scarred)": {
     "success": true,
-    "price": "$4.50",
+    "price": "$4.49",
     "listings": 259,
     "volume": "--"
   },
@@ -212,25 +206,25 @@
   "Glock-18 | Mirror Mosaic (Field-Tested)": {
     "success": true,
     "price": "$6.90",
-    "listings": 297,
+    "listings": 298,
     "volume": "--"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Field-Tested)": {
     "success": true,
     "price": "$14.50",
-    "listings": 74,
+    "listings": 75,
     "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Well-Worn)": {
     "success": true,
     "price": "$5.46",
-    "listings": 260,
+    "listings": 261,
     "volume": "--"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Well-Worn)": {
     "success": true,
     "price": "$12.33",
-    "listings": 31,
+    "listings": 29,
     "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Battle-Scarred)": {
@@ -259,7 +253,7 @@
   },
   "MP7 | Smoking Kills (Minimal Wear)": {
     "success": true,
-    "price": "$14.65",
+    "price": "$14.51",
     "listings": 318,
     "volume": "--"
   },
@@ -278,7 +272,7 @@
   "StatTrak™ MP7 | Smoking Kills (Field-Tested)": {
     "success": true,
     "price": "$18.42",
-    "listings": 48,
+    "listings": 49,
     "volume": "--"
   },
   "MP7 | Smoking Kills (Well-Worn)": {
@@ -296,7 +290,7 @@
   "MP7 | Smoking Kills (Battle-Scarred)": {
     "success": true,
     "price": "$4.43",
-    "listings": 164,
+    "listings": 163,
     "volume": "--"
   },
   "StatTrak™ MP7 | Smoking Kills (Battle-Scarred)": {
@@ -319,8 +313,8 @@
   },
   "M4A1-S | Liquidation (Minimal Wear)": {
     "success": true,
-    "price": "$5.67",
-    "listings": 807,
+    "price": "$5.94",
+    "listings": 805,
     "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Minimal Wear)": {
@@ -331,20 +325,20 @@
   },
   "M4A1-S | Liquidation (Field-Tested)": {
     "success": true,
-    "price": "$2.44",
-    "listings": 1227,
+    "price": "$2.45",
+    "listings": 1224,
     "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Field-Tested)": {
     "success": true,
     "price": "$7.10",
-    "listings": 172,
+    "listings": 171,
     "volume": "--"
   },
   "M4A1-S | Liquidation (Well-Worn)": {
     "success": true,
-    "price": "$1.55",
-    "listings": 667,
+    "price": "$1.56",
+    "listings": 666,
     "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Well-Worn)": {
@@ -355,14 +349,14 @@
   },
   "M4A1-S | Liquidation (Battle-Scarred)": {
     "success": true,
-    "price": "$1.07",
-    "listings": 644,
+    "price": "$1.05",
+    "listings": 645,
     "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Battle-Scarred)": {
     "success": true,
     "price": "$4.55",
-    "listings": 59,
+    "listings": 57,
     "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Factory New)": {
@@ -380,7 +374,7 @@
   "Dual Berettas | Angel Eyes (Minimal Wear)": {
     "success": true,
     "price": "$1.92",
-    "listings": 295,
+    "listings": 294,
     "volume": "--"
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Minimal Wear)": {
@@ -391,20 +385,20 @@
   },
   "Dual Berettas | Angel Eyes (Field-Tested)": {
     "success": true,
-    "price": "$0.85",
-    "listings": 353,
+    "price": "$0.93",
+    "listings": 349,
     "volume": "--"
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Field-Tested)": {
     "success": true,
     "price": "$1.74",
-    "listings": 94,
+    "listings": 93,
     "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Well-Worn)": {
     "success": true,
     "price": "$0.65",
-    "listings": 407,
+    "listings": 406,
     "volume": "--"
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Well-Worn)": {
@@ -446,13 +440,13 @@
   "StatTrak™ UMP-45 | Continuum (Minimal Wear)": {
     "success": true,
     "price": "$3.92",
-    "listings": 72,
+    "listings": 73,
     "volume": "--"
   },
   "UMP-45 | Continuum (Field-Tested)": {
     "success": true,
-    "price": "$0.87",
-    "listings": 458,
+    "price": "$0.86",
+    "listings": 459,
     "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Field-Tested)": {
@@ -464,7 +458,7 @@
   "UMP-45 | Continuum (Well-Worn)": {
     "success": true,
     "price": "$0.64",
-    "listings": 342,
+    "listings": 341,
     "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Well-Worn)": {
@@ -475,8 +469,8 @@
   },
   "UMP-45 | Continuum (Battle-Scarred)": {
     "success": true,
-    "price": "$0.49",
-    "listings": 431,
+    "price": "$0.52",
+    "listings": 430,
     "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Battle-Scarred)": {
@@ -499,8 +493,8 @@
   },
   "MAC-10 | Cat Fight (Minimal Wear)": {
     "success": true,
-    "price": "$1.96",
-    "listings": 308,
+    "price": "$1.85",
+    "listings": 310,
     "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Minimal Wear)": {
@@ -512,13 +506,13 @@
   "MAC-10 | Cat Fight (Field-Tested)": {
     "success": true,
     "price": "$0.80",
-    "listings": 294,
+    "listings": 292,
     "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Field-Tested)": {
     "success": true,
     "price": "$1.97",
-    "listings": 71,
+    "listings": 72,
     "volume": "--"
   },
   "MAC-10 | Cat Fight (Well-Worn)": {
@@ -584,7 +578,7 @@
   "Nova | Ocular (Well-Worn)": {
     "success": true,
     "price": "$0.65",
-    "listings": 361,
+    "listings": 362,
     "volume": "--"
   },
   "StatTrak™ Nova | Ocular (Well-Worn)": {
@@ -608,7 +602,7 @@
   "AUG | Trigger Discipline (Factory New)": {
     "success": true,
     "price": "$0.97",
-    "listings": 634,
+    "listings": 637,
     "volume": "--"
   },
   "StatTrak™ AUG | Trigger Discipline (Factory New)": {
@@ -626,13 +620,13 @@
   "StatTrak™ AUG | Trigger Discipline (Minimal Wear)": {
     "success": true,
     "price": "$0.74",
-    "listings": 134,
+    "listings": 135,
     "volume": "--"
   },
   "AUG | Trigger Discipline (Field-Tested)": {
     "success": true,
     "price": "$0.15",
-    "listings": 1224,
+    "listings": 1228,
     "volume": "--"
   },
   "StatTrak™ AUG | Trigger Discipline (Field-Tested)": {
@@ -661,8 +655,8 @@
   },
   "StatTrak™ AUG | Trigger Discipline (Battle-Scarred)": {
     "success": true,
-    "price": "$0.20",
-    "listings": 152,
+    "price": "$0.19",
+    "listings": 153,
     "volume": "--"
   },
   "P2000 | Red Wing (Factory New)": {
@@ -680,7 +674,7 @@
   "P2000 | Red Wing (Minimal Wear)": {
     "success": true,
     "price": "$0.26",
-    "listings": 669,
+    "listings": 671,
     "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Minimal Wear)": {
@@ -692,7 +686,7 @@
   "P2000 | Red Wing (Field-Tested)": {
     "success": true,
     "price": "$0.15",
-    "listings": 1726,
+    "listings": 1652,
     "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Field-Tested)": {
@@ -704,7 +698,7 @@
   "P2000 | Red Wing (Well-Worn)": {
     "success": true,
     "price": "$0.11",
-    "listings": 471,
+    "listings": 472,
     "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Well-Worn)": {
@@ -715,14 +709,14 @@
   },
   "P2000 | Red Wing (Battle-Scarred)": {
     "success": true,
-    "price": "$0.14",
-    "listings": 272,
+    "price": "$0.12",
+    "listings": 274,
     "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Battle-Scarred)": {
     "success": true,
     "price": "$0.19",
-    "listings": 119,
+    "listings": 120,
     "volume": "--"
   },
   "MP5-SD | Focus (Factory New)": {
@@ -752,7 +746,7 @@
   "MP5-SD | Focus (Field-Tested)": {
     "success": true,
     "price": "$0.14",
-    "listings": 1047,
+    "listings": 1020,
     "volume": "--"
   },
   "StatTrak™ MP5-SD | Focus (Field-Tested)": {
@@ -763,20 +757,20 @@
   },
   "MP5-SD | Focus (Well-Worn)": {
     "success": true,
-    "price": "$0.10",
-    "listings": 522,
+    "price": "$0.11",
+    "listings": 521,
     "volume": "--"
   },
   "StatTrak™ MP5-SD | Focus (Well-Worn)": {
     "success": true,
     "price": "$0.25",
-    "listings": 121,
+    "listings": 122,
     "volume": "--"
   },
   "MP5-SD | Focus (Battle-Scarred)": {
     "success": true,
     "price": "$0.10",
-    "listings": 413,
+    "listings": 412,
     "volume": "--"
   },
   "StatTrak™ MP5-SD | Focus (Battle-Scarred)": {
@@ -800,7 +794,7 @@
   "MP9 | Broken Record (Minimal Wear)": {
     "success": true,
     "price": "$0.29",
-    "listings": 597,
+    "listings": 596,
     "volume": "--"
   },
   "StatTrak™ MP9 | Broken Record (Minimal Wear)": {
@@ -812,7 +806,7 @@
   "MP9 | Broken Record (Field-Tested)": {
     "success": true,
     "price": "$0.15",
-    "listings": 1067,
+    "listings": 1041,
     "volume": "--"
   },
   "StatTrak™ MP9 | Broken Record (Field-Tested)": {
@@ -842,7 +836,7 @@
   "StatTrak™ MP9 | Broken Record (Battle-Scarred)": {
     "success": true,
     "price": "$0.20",
-    "listings": 99,
+    "listings": 101,
     "volume": "--"
   },
   "MAG-7 | MAGnitude (Factory New)": {
@@ -872,7 +866,7 @@
   "MAG-7 | MAGnitude (Field-Tested)": {
     "success": true,
     "price": "$0.14",
-    "listings": 899,
+    "listings": 860,
     "volume": "--"
   },
   "StatTrak™ MAG-7 | MAGnitude (Field-Tested)": {
@@ -884,14 +878,20 @@
   "MAG-7 | MAGnitude (Well-Worn)": {
     "success": true,
     "price": "$0.10",
-    "listings": 478,
+    "listings": 477,
     "volume": "--"
   },
   "StatTrak™ MAG-7 | MAGnitude (Well-Worn)": {
-    "success": false
+    "success": true,
+    "price": "$0.24",
+    "listings": 56,
+    "volume": "--"
   },
   "MAG-7 | MAGnitude (Battle-Scarred)": {
-    "success": false
+    "success": true,
+    "price": "$0.11",
+    "listings": 398,
+    "volume": "--"
   },
   "StatTrak™ MAG-7 | MAGnitude (Battle-Scarred)": {
     "success": true,
@@ -902,7 +902,7 @@
   "P250 | Bullfrog (Factory New)": {
     "success": true,
     "price": "$0.94",
-    "listings": 644,
+    "listings": 646,
     "volume": "--"
   },
   "StatTrak™ P250 | Bullfrog (Factory New)": {
@@ -914,7 +914,7 @@
   "P250 | Bullfrog (Minimal Wear)": {
     "success": true,
     "price": "$0.28",
-    "listings": 464,
+    "listings": 463,
     "volume": "--"
   },
   "StatTrak™ P250 | Bullfrog (Minimal Wear)": {
@@ -926,7 +926,7 @@
   "P250 | Bullfrog (Field-Tested)": {
     "success": true,
     "price": "$0.12",
-    "listings": 917,
+    "listings": 904,
     "volume": "--"
   },
   "StatTrak™ P250 | Bullfrog (Field-Tested)": {
@@ -937,8 +937,8 @@
   },
   "P250 | Bullfrog (Well-Worn)": {
     "success": true,
-    "price": "$0.10",
-    "listings": 567,
+    "price": "$0.11",
+    "listings": 566,
     "volume": "--"
   },
   "StatTrak™ P250 | Bullfrog (Well-Worn)": {
@@ -986,19 +986,19 @@
   "SCAR-20 | Caged (Field-Tested)": {
     "success": true,
     "price": "$0.14",
-    "listings": 829,
+    "listings": 815,
     "volume": "--"
   },
   "StatTrak™ SCAR-20 | Caged (Field-Tested)": {
     "success": true,
-    "price": "$0.29",
-    "listings": 78,
+    "price": "$0.30",
+    "listings": 77,
     "volume": "--"
   },
   "SCAR-20 | Caged (Well-Worn)": {
     "success": true,
     "price": "$0.10",
-    "listings": 482,
+    "listings": 483,
     "volume": "--"
   },
   "StatTrak™ SCAR-20 | Caged (Well-Worn)": {
@@ -1009,8 +1009,8 @@
   },
   "SCAR-20 | Caged (Battle-Scarred)": {
     "success": true,
-    "price": "$0.10",
-    "listings": 571,
+    "price": "$0.13",
+    "listings": 561,
     "volume": "--"
   },
   "StatTrak™ SCAR-20 | Caged (Battle-Scarred)": {
@@ -1021,7 +1021,7 @@
   },
   "_meta": {
     "source": "Steam Community Market (browser scrape)",
-    "generatedAt": "2026-09-23T11:57:57.532Z",
+    "generatedAt": "2026-09-23T12:12:38.899Z",
     "note": "Prices extracted from Steam listing pages via Playwright"
   }
 }
