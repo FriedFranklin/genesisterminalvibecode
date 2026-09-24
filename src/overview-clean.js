@@ -142,11 +142,12 @@ function beginRefreshLoop(callback) {
 }
 
 /**
- * Gets price data for a market hash name from the shared snapshot
+ * Gets price data for a market hash name, first from snapshot then from live API
  * @param {string} name - Steam market hash name
  * @returns {Promise<Object>} Price data object with success flag
  */
 async function getPrice(name) {
+  // First try to get data from the shared snapshot (fast, offline-capable)
   staticPricesPromise ||= fetch(`${import.meta.env.BASE_URL}prices.json`, { cache: 'no-store' })
     .then((response) => (response.ok ? response.json() : {}))
     .catch(() => ({}))
@@ -157,7 +158,16 @@ async function getPrice(name) {
     return snapshotValue
   }
 
-  return { success: false }
+  // If snapshot data is not successful, try to fetch live data from the API
+  try {
+    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(name)}`)
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    const data = await response.json()
+    return data
+  } catch (error) {
+    // If live fetch also fails, return failure
+    return { success: false, error: error.message }
+  }
 }
 
 
