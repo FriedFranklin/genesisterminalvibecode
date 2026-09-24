@@ -1,2990 +1,919 @@
 {
   "Sealed Genesis Terminal": {
     "success": true,
-    "price": "$0.10",
-    "listings": 406470,
-    "volume": "49,788",
-    "history": [
-      {
-        "price": "$0.09",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$0.09",
+    "listings": 406404,
+    "volume": "--"
   },
   "AK-47 | The Oligarch (Factory New)": {
     "success": true,
     "price": "$360.64",
     "listings": 36,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$361.46",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$360.64",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Factory New)": {
     "success": true,
     "price": "$661.42",
     "listings": 6,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$691.00",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$668.61",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$661.42",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AK-47 | The Oligarch (Minimal Wear)": {
     "success": true,
-    "price": "$134.98",
+    "price": "$132.36",
     "listings": 199,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$135.60",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$130.00",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$134.98",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Minimal Wear)": {
     "success": true,
     "price": "$247.45",
     "listings": 28,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$253.49",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$247.45",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "AK-47 | The Oligarch (Field-Tested)": {
     "success": true,
     "price": "$61.02",
     "listings": 343,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$57.44",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$61.01",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$61.02",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Field-Tested)": {
     "success": true,
     "price": "$113.93",
     "listings": 31,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$111.43",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$120.52",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$113.93",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AK-47 | The Oligarch (Well-Worn)": {
     "success": true,
     "price": "$41.47",
     "listings": 141,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$44.76",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$44.39",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$41.47",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Well-Worn)": {
     "success": true,
     "price": "$90.09",
     "listings": 18,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$93.84",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$90.09",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AK-47 | The Oligarch (Battle-Scarred)": {
     "success": true,
-    "price": "$31.90",
-    "listings": 116,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$33.23",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$30.95",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$31.90",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$31.80",
+    "listings": 118,
+    "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Battle-Scarred)": {
     "success": true,
     "price": "$64.99",
     "listings": 21,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$68.88",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$65.73",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$64.99",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A4 | Full Throttle (Factory New)": {
     "success": true,
     "price": "$269.00",
     "listings": 33,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$269.00",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ M4A4 | Full Throttle (Factory New)": {
     "success": true,
     "price": "$851.65",
     "listings": 3,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$851.41",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$851.65",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A4 | Full Throttle (Minimal Wear)": {
     "success": true,
     "price": "$108.13",
     "listings": 145,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$105.00",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$108.13",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ M4A4 | Full Throttle (Minimal Wear)": {
     "success": true,
     "price": "$239.48",
     "listings": 15,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$241.00",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$239.48",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A4 | Full Throttle (Field-Tested)": {
     "success": true,
     "price": "$54.12",
-    "listings": 225,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$49.35",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$54.12",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 226,
+    "volume": "--"
   },
   "StatTrak™ M4A4 | Full Throttle (Field-Tested)": {
     "success": true,
     "price": "$110.00",
     "listings": 24,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$111.90",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$110.00",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A4 | Full Throttle (Well-Worn)": {
     "success": true,
     "price": "$39.10",
     "listings": 114,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$35.65",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$39.28",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$39.10",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ M4A4 | Full Throttle (Well-Worn)": {
     "success": true,
     "price": "$78.16",
     "listings": 15,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$80.69",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$78.16",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A4 | Full Throttle (Battle-Scarred)": {
     "success": true,
     "price": "$29.16",
-    "listings": 111,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$29.78",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$28.47",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$29.16",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 112,
+    "volume": "--"
   },
   "StatTrak™ M4A4 | Full Throttle (Battle-Scarred)": {
     "success": true,
     "price": "$56.72",
     "listings": 19,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$56.64",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$56.72",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AWP | Ice Coaled (Factory New)": {
     "success": true,
-    "price": "$40.25",
-    "listings": 95,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$37.15",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$38.49",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$40.25",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$40.22",
+    "listings": 96,
+    "volume": "--"
   },
   "StatTrak™ AWP | Ice Coaled (Factory New)": {
     "success": true,
     "price": "$91.24",
     "listings": 34,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$91.83",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$91.24",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AWP | Ice Coaled (Minimal Wear)": {
     "success": true,
     "price": "$17.44",
     "listings": 419,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$17.15",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$16.48",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$17.44",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ AWP | Ice Coaled (Minimal Wear)": {
     "success": true,
     "price": "$37.17",
     "listings": 71,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$41.67",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$37.17",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AWP | Ice Coaled (Field-Tested)": {
     "success": true,
-    "price": "$8.69",
+    "price": "$8.75",
     "listings": 509,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$8.57",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$7.91",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$8.69",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ AWP | Ice Coaled (Field-Tested)": {
     "success": true,
     "price": "$18.31",
     "listings": 84,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$19.12",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$18.57",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$18.31",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AWP | Ice Coaled (Well-Worn)": {
     "success": true,
     "price": "$6.00",
-    "listings": 325,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$5.95",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$6.21",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$6.00",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 324,
+    "volume": "--"
   },
   "StatTrak™ AWP | Ice Coaled (Well-Worn)": {
     "success": true,
     "price": "$12.20",
     "listings": 71,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$12.50",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$12.20",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AWP | Ice Coaled (Battle-Scarred)": {
     "success": true,
-    "price": "$4.54",
+    "price": "$4.52",
     "listings": 257,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$4.45",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$4.52",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$4.54",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ AWP | Ice Coaled (Battle-Scarred)": {
     "success": true,
-    "price": "$11.22",
+    "price": "$11.21",
     "listings": 77,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$11.55",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$11.22",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Factory New)": {
     "success": true,
     "price": "$33.06",
     "listings": 119,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$32.14",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$33.06",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Factory New)": {
     "success": true,
     "price": "$80.11",
     "listings": 14,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$80.09",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$80.11",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Minimal Wear)": {
     "success": true,
     "price": "$12.78",
-    "listings": 271,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$14.21",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$13.11",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$12.78",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 270,
+    "volume": "--"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Minimal Wear)": {
     "success": true,
     "price": "$32.78",
     "listings": 53,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$33.00",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$32.55",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$32.78",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Field-Tested)": {
     "success": true,
     "price": "$7.20",
     "listings": 300,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$7.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$7.24",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$7.20",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Field-Tested)": {
     "success": true,
     "price": "$15.70",
     "listings": 71,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$14.50",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$15.70",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Well-Worn)": {
     "success": true,
     "price": "$5.20",
-    "listings": 264,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$5.36",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$5.13",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$5.20",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 263,
+    "volume": "--"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Well-Worn)": {
     "success": true,
     "price": "$11.85",
     "listings": 32,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$12.28",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$11.85",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Battle-Scarred)": {
     "success": true,
-    "price": "$4.67",
-    "listings": 178,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$3.83",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$3.93",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$4.67",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$4.65",
+    "listings": 180,
+    "volume": "--"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Battle-Scarred)": {
     "success": true,
     "price": "$8.51",
     "listings": 31,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$8.23",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$8.57",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$8.51",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MP7 | Smoking Kills (Factory New)": {
     "success": true,
     "price": "$35.33",
     "listings": 95,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$35.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$35.33",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ MP7 | Smoking Kills (Factory New)": {
     "success": true,
     "price": "$109.25",
     "listings": 11,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$109.25",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MP7 | Smoking Kills (Minimal Wear)": {
     "success": true,
-    "price": "$14.00",
-    "listings": 309,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$14.21",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$14.00",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$15.99",
+    "listings": 308,
+    "volume": "--"
   },
   "StatTrak™ MP7 | Smoking Kills (Minimal Wear)": {
     "success": true,
     "price": "$39.92",
     "listings": 50,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$39.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$39.92",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MP7 | Smoking Kills (Field-Tested)": {
     "success": true,
     "price": "$8.51",
-    "listings": 389,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$8.24",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$8.51",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "listings": 390,
+    "volume": "--"
   },
   "StatTrak™ MP7 | Smoking Kills (Field-Tested)": {
     "success": true,
     "price": "$19.15",
     "listings": 48,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$18.46",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$19.15",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "MP7 | Smoking Kills (Well-Worn)": {
     "success": true,
     "price": "$6.23",
     "listings": 265,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$5.36",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$6.23",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "StatTrak™ MP7 | Smoking Kills (Well-Worn)": {
     "success": true,
-    "price": "$13.15",
-    "listings": 29,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$12.65",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$13.15",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "price": "$13.34",
+    "listings": 28,
+    "volume": "--"
   },
   "MP7 | Smoking Kills (Battle-Scarred)": {
     "success": true,
     "price": "$4.49",
     "listings": 162,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$4.48",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$4.49",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "StatTrak™ MP7 | Smoking Kills (Battle-Scarred)": {
     "success": true,
     "price": "$8.44",
     "listings": 43,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$8.62",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$8.44",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A1-S | Liquidation (Factory New)": {
     "success": true,
     "price": "$11.78",
-    "listings": 313,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$11.53",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$11.78",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 314,
+    "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Factory New)": {
     "success": true,
     "price": "$36.65",
     "listings": 55,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$36.88",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$36.65",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A1-S | Liquidation (Minimal Wear)": {
     "success": true,
     "price": "$5.94",
-    "listings": 799,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$5.34",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$5.79",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$5.94",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 800,
+    "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Minimal Wear)": {
     "success": true,
     "price": "$14.86",
     "listings": 166,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$16.62",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$14.86",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A1-S | Liquidation (Field-Tested)": {
     "success": true,
-    "price": "$2.50",
-    "listings": 1116,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$2.64",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$2.61",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$2.50",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$2.61",
+    "listings": 1114,
+    "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Field-Tested)": {
     "success": true,
     "price": "$7.85",
     "listings": 173,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$7.03",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$7.13",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$7.85",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A1-S | Liquidation (Well-Worn)": {
     "success": true,
     "price": "$1.53",
-    "listings": 649,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.81",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.53",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 647,
+    "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Well-Worn)": {
     "success": true,
     "price": "$4.97",
     "listings": 99,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$5.17",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$4.97",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "M4A1-S | Liquidation (Battle-Scarred)": {
     "success": true,
     "price": "$1.00",
-    "listings": 638,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.04",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.03",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$1.00",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 639,
+    "volume": "--"
   },
   "StatTrak™ M4A1-S | Liquidation (Battle-Scarred)": {
     "success": true,
     "price": "$4.52",
     "listings": 53,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$4.51",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$4.52",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Factory New)": {
     "success": true,
     "price": "$4.88",
-    "listings": 167,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$4.72",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$4.88",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 169,
+    "volume": "--"
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Factory New)": {
     "success": true,
     "price": "$8.88",
     "listings": 40,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$8.71",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$8.88",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Minimal Wear)": {
     "success": true,
     "price": "$2.09",
     "listings": 285,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$2.00",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.98",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$2.09",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Minimal Wear)": {
     "success": true,
     "price": "$3.64",
     "listings": 85,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$4.00",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$3.64",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Field-Tested)": {
     "success": true,
     "price": "$0.78",
     "listings": 354,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.83",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.93",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.78",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Field-Tested)": {
     "success": true,
     "price": "$1.72",
     "listings": 99,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.73",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.72",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Well-Worn)": {
     "success": true,
-    "price": "$0.66",
-    "listings": 405,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.65",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.62",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.66",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$0.65",
+    "listings": 406,
+    "volume": "--"
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Well-Worn)": {
     "success": true,
     "price": "$1.54",
     "listings": 43,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.55",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.54",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Battle-Scarred)": {
     "success": true,
-    "price": "$0.58",
-    "listings": 377,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.54",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.57",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.58",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$0.57",
+    "listings": 378,
+    "volume": "--"
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Battle-Scarred)": {
     "success": true,
     "price": "$1.53",
     "listings": 65,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.49",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.53",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "UMP-45 | Continuum (Factory New)": {
     "success": true,
     "price": "$4.37",
     "listings": 236,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$4.37",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Factory New)": {
     "success": true,
     "price": "$8.92",
     "listings": 23,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$8.90",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$8.92",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "UMP-45 | Continuum (Minimal Wear)": {
     "success": true,
     "price": "$1.69",
     "listings": 318,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.75",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.69",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Minimal Wear)": {
     "success": true,
     "price": "$3.91",
     "listings": 76,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$3.93",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$3.91",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "UMP-45 | Continuum (Field-Tested)": {
     "success": true,
     "price": "$0.78",
-    "listings": 465,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.80",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.78",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 464,
+    "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Field-Tested)": {
     "success": true,
     "price": "$1.77",
     "listings": 63,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.77",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "UMP-45 | Continuum (Well-Worn)": {
     "success": true,
     "price": "$0.64",
-    "listings": 346,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.63",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.65",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.64",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 348,
+    "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Well-Worn)": {
     "success": true,
     "price": "$1.63",
     "listings": 39,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.63",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "UMP-45 | Continuum (Battle-Scarred)": {
     "success": true,
     "price": "$0.52",
     "listings": 422,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.53",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.51",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.52",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Battle-Scarred)": {
     "success": true,
-    "price": "$1.18",
-    "listings": 77,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.20",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.18",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$1.32",
+    "listings": 73,
+    "volume": "--"
   },
   "MAC-10 | Cat Fight (Factory New)": {
     "success": true,
-    "price": "$4.28",
-    "listings": 205,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$4.41",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$4.28",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$4.33",
+    "listings": 204,
+    "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Factory New)": {
     "success": true,
     "price": "$9.68",
     "listings": 36,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$9.69",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$9.68",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MAC-10 | Cat Fight (Minimal Wear)": {
     "success": true,
     "price": "$1.77",
     "listings": 302,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.81",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.89",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$1.77",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Minimal Wear)": {
     "success": true,
     "price": "$3.88",
     "listings": 73,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$3.70",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$3.88",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MAC-10 | Cat Fight (Field-Tested)": {
     "success": true,
     "price": "$0.80",
-    "listings": 296,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.82",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.86",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.80",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 297,
+    "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Field-Tested)": {
     "success": true,
     "price": "$2.09",
     "listings": 74,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$2.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$2.09",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MAC-10 | Cat Fight (Well-Worn)": {
     "success": true,
-    "price": "$0.66",
-    "listings": 277,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.66",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "price": "$0.69",
+    "listings": 276,
+    "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Well-Worn)": {
     "success": true,
     "price": "$1.65",
     "listings": 54,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.58",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.65",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MAC-10 | Cat Fight (Battle-Scarred)": {
     "success": true,
     "price": "$0.55",
     "listings": 244,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.55",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Battle-Scarred)": {
     "success": true,
     "price": "$1.34",
     "listings": 67,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.24",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.34",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Nova | Ocular (Factory New)": {
     "success": true,
     "price": "$4.39",
     "listings": 232,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$4.38",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$4.23",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$4.39",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ Nova | Ocular (Factory New)": {
     "success": true,
     "price": "$8.28",
     "listings": 38,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$8.37",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$8.28",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "Nova | Ocular (Minimal Wear)": {
     "success": true,
     "price": "$1.76",
     "listings": 342,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.78",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.76",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ Nova | Ocular (Minimal Wear)": {
     "success": true,
     "price": "$3.87",
-    "listings": 77,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$3.93",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$3.87",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "listings": 78,
+    "volume": "--"
   },
   "Nova | Ocular (Field-Tested)": {
     "success": true,
     "price": "$0.75",
     "listings": 507,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.84",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.75",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "StatTrak™ Nova | Ocular (Field-Tested)": {
     "success": true,
     "price": "$1.80",
     "listings": 91,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.81",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$1.80",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "Nova | Ocular (Well-Worn)": {
     "success": true,
     "price": "$0.64",
     "listings": 362,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.65",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.64",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "StatTrak™ Nova | Ocular (Well-Worn)": {
     "success": true,
     "price": "$1.47",
     "listings": 54,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.46",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$1.47",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "Nova | Ocular (Battle-Scarred)": {
     "success": true,
     "price": "$0.55",
     "listings": 245,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.58",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.55",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "StatTrak™ Nova | Ocular (Battle-Scarred)": {
     "success": true,
     "price": "$1.33",
     "listings": 34,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.32",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$1.33",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "AUG | Trigger Discipline (Factory New)": {
     "success": true,
     "price": "$0.97",
     "listings": 627,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.95",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.97",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "StatTrak™ AUG | Trigger Discipline (Factory New)": {
     "success": true,
     "price": "$2.36",
     "listings": 86,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$2.24",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$2.36",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "AUG | Trigger Discipline (Minimal Wear)": {
     "success": true,
-    "price": "$0.31",
+    "price": "$0.30",
     "listings": 787,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.30",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.31",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T17:48:23.986Z"
+    "volume": "--"
   },
   "StatTrak™ AUG | Trigger Discipline (Minimal Wear)": {
     "success": true,
     "price": "$0.70",
     "listings": 137,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.74",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.70",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "AUG | Trigger Discipline (Field-Tested)": {
     "success": true,
     "price": "$0.15",
-    "listings": 1259,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.15",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 1272,
+    "volume": "--"
   },
   "StatTrak™ AUG | Trigger Discipline (Field-Tested)": {
     "success": true,
     "price": "$0.34",
-    "listings": 119,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.35",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.34",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 118,
+    "volume": "--"
   },
   "AUG | Trigger Discipline (Well-Worn)": {
     "success": true,
     "price": "$0.12",
     "listings": 620,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.12",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ AUG | Trigger Discipline (Well-Worn)": {
     "success": true,
     "price": "$0.24",
-    "listings": 147,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.23",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.24",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 146,
+    "volume": "--"
   },
   "AUG | Trigger Discipline (Battle-Scarred)": {
     "success": true,
     "price": "$0.11",
-    "listings": 475,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.12",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 474,
+    "volume": "--"
   },
   "StatTrak™ AUG | Trigger Discipline (Battle-Scarred)": {
     "success": true,
     "price": "$0.19",
     "listings": 155,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.19",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "P2000 | Red Wing (Factory New)": {
     "success": true,
     "price": "$0.93",
-    "listings": 650,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.97",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.96",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.93",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 651,
+    "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Factory New)": {
     "success": true,
     "price": "$2.12",
     "listings": 72,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$2.13",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$2.12",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "P2000 | Red Wing (Minimal Wear)": {
     "success": true,
     "price": "$0.27",
-    "listings": 659,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.26",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.29",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.27",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 660,
+    "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Minimal Wear)": {
     "success": true,
     "price": "$0.63",
     "listings": 184,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.69",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.66",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.63",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "P2000 | Red Wing (Field-Tested)": {
     "success": true,
     "price": "$0.13",
-    "listings": 1775,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.14",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.13",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 1772,
+    "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Field-Tested)": {
     "success": true,
     "price": "$0.31",
     "listings": 133,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.34",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.31",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "P2000 | Red Wing (Well-Worn)": {
     "success": true,
     "price": "$0.11",
-    "listings": 442,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 441,
+    "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Well-Worn)": {
     "success": true,
     "price": "$0.25",
     "listings": 174,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.26",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.25",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "P2000 | Red Wing (Battle-Scarred)": {
     "success": true,
     "price": "$0.13",
     "listings": 277,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.13",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ P2000 | Red Wing (Battle-Scarred)": {
     "success": true,
     "price": "$0.20",
     "listings": 124,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.19",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.20",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MP5-SD | Focus (Factory New)": {
     "success": true,
     "price": "$0.96",
     "listings": 579,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.98",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.96",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ MP5-SD | Focus (Factory New)": {
     "success": true,
     "price": "$2.99",
     "listings": 55,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$2.50",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$2.95",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$2.99",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MP5-SD | Focus (Minimal Wear)": {
     "success": true,
     "price": "$0.29",
     "listings": 643,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.29",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ MP5-SD | Focus (Minimal Wear)": {
     "success": true,
     "price": "$0.66",
     "listings": 102,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.75",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.66",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "MP5-SD | Focus (Field-Tested)": {
-    "success": true,
-    "price": "$0.15",
-    "listings": 1031,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.14",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.13",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.15",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MP5-SD | Focus (Field-Tested)": {
-    "success": true,
-    "price": "$0.32",
-    "listings": 118,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.35",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.36",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.32",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MP5-SD | Focus (Well-Worn)": {
-    "success": true,
-    "price": "$0.10",
-    "listings": 457,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.09",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MP5-SD | Focus (Well-Worn)": {
-    "success": true,
-    "price": "$0.25",
-    "listings": 123,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.25",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MP5-SD | Focus (Battle-Scarred)": {
-    "success": true,
-    "price": "$0.11",
-    "listings": 402,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.09",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MP5-SD | Focus (Battle-Scarred)": {
-    "success": true,
-    "price": "$0.20",
-    "listings": 99,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.20",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MP9 | Broken Record (Factory New)": {
-    "success": true,
-    "price": "$0.97",
-    "listings": 547,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.93",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.97",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MP9 | Broken Record (Factory New)": {
-    "success": true,
-    "price": "$2.13",
-    "listings": 100,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$2.21",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$2.13",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MP9 | Broken Record (Minimal Wear)": {
-    "success": true,
-    "price": "$0.28",
-    "listings": 571,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.29",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.28",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MP9 | Broken Record (Minimal Wear)": {
-    "success": true,
-    "price": "$0.69",
-    "listings": 108,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.69",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MP9 | Broken Record (Field-Tested)": {
-    "success": true,
-    "price": "$0.13",
-    "listings": 1051,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.14",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.13",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MP9 | Broken Record (Field-Tested)": {
-    "success": true,
-    "price": "$0.31",
-    "listings": 102,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.31",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MP9 | Broken Record (Well-Worn)": {
-    "success": true,
-    "price": "$0.10",
-    "listings": 566,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.09",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MP9 | Broken Record (Well-Worn)": {
-    "success": true,
-    "price": "$0.23",
-    "listings": 85,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.23",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MP9 | Broken Record (Battle-Scarred)": {
-    "success": true,
-    "price": "$0.10",
-    "listings": 306,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MP9 | Broken Record (Battle-Scarred)": {
-    "success": true,
-    "price": "$0.19",
-    "listings": 104,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.19",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MAG-7 | MAGnitude (Factory New)": {
-    "success": true,
-    "price": "$0.88",
-    "listings": 528,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.88",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MAG-7 | MAGnitude (Factory New)": {
-    "success": true,
-    "price": "$1.72",
-    "listings": 60,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.73",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$1.72",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MAG-7 | MAGnitude (Minimal Wear)": {
-    "success": true,
-    "price": "$0.30",
-    "listings": 789,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.30",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MAG-7 | MAGnitude (Minimal Wear)": {
-    "success": true,
-    "price": "$0.64",
-    "listings": 140,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.65",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.64",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MAG-7 | MAGnitude (Field-Tested)": {
-    "success": true,
-    "price": "$0.13",
-    "listings": 867,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.14",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.13",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MAG-7 | MAGnitude (Field-Tested)": {
-    "success": true,
-    "price": "$0.29",
-    "listings": 88,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.31",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.30",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.29",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MAG-7 | MAGnitude (Well-Worn)": {
-    "success": true,
-    "price": "$0.10",
-    "listings": 469,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MAG-7 | MAGnitude (Well-Worn)": {
-    "success": true,
-    "price": "$0.24",
-    "listings": 53,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.21",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.24",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "MAG-7 | MAGnitude (Battle-Scarred)": {
-    "success": true,
-    "price": "$0.10",
-    "listings": 390,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ MAG-7 | MAGnitude (Battle-Scarred)": {
-    "success": true,
-    "price": "$0.19",
-    "listings": 91,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.19",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "P250 | Bullfrog (Factory New)": {
-    "success": true,
-    "price": "$0.92",
-    "listings": 654,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.93",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.92",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ P250 | Bullfrog (Factory New)": {
-    "success": true,
-    "price": "$2.11",
-    "listings": 58,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$2.12",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$2.11",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "P250 | Bullfrog (Minimal Wear)": {
-    "success": true,
-    "price": "$0.27",
-    "listings": 480,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.28",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.27",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ P250 | Bullfrog (Minimal Wear)": {
-    "success": true,
-    "price": "$0.66",
-    "listings": 118,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.69",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.66",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "P250 | Bullfrog (Field-Tested)": {
-    "success": true,
-    "price": "$0.13",
-    "listings": 823,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.15",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.14",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.13",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ P250 | Bullfrog (Field-Tested)": {
-    "success": true,
-    "price": "$0.28",
-    "listings": 118,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.28",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "P250 | Bullfrog (Well-Worn)": {
-    "success": true,
-    "price": "$0.11",
-    "listings": 573,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ P250 | Bullfrog (Well-Worn)": {
-    "success": true,
-    "price": "$0.24",
-    "listings": 99,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.23",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.24",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "P250 | Bullfrog (Battle-Scarred)": {
-    "success": true,
-    "price": "$0.10",
-    "listings": 448,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ P250 | Bullfrog (Battle-Scarred)": {
-    "success": true,
-    "price": "$0.19",
-    "listings": 115,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.19",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "SCAR-20 | Caged (Factory New)": {
-    "success": true,
-    "price": "$0.87",
-    "listings": 735,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.92",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.87",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "StatTrak™ SCAR-20 | Caged (Factory New)": {
-    "success": true,
-    "price": "$1.72",
-    "listings": 61,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$1.72",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "success": false
   },
   "SCAR-20 | Caged (Minimal Wear)": {
     "success": true,
     "price": "$0.28",
     "listings": 786,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.28",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ SCAR-20 | Caged (Minimal Wear)": {
     "success": true,
     "price": "$0.63",
     "listings": 175,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.64",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.63",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "SCAR-20 | Caged (Field-Tested)": {
     "success": true,
     "price": "$0.14",
     "listings": 815,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.14",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "StatTrak™ SCAR-20 | Caged (Field-Tested)": {
     "success": true,
     "price": "$0.30",
-    "listings": 78,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.29",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.28",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      },
-      {
-        "price": "$0.30",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 79,
+    "volume": "--"
   },
   "SCAR-20 | Caged (Well-Worn)": {
     "success": true,
     "price": "$0.10",
-    "listings": 500,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 501,
+    "volume": "--"
   },
   "StatTrak™ SCAR-20 | Caged (Well-Worn)": {
     "success": true,
     "price": "$0.26",
     "listings": 89,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.25",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.26",
-        "timestamp": "2026-09-23T17:48:23.986Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "SCAR-20 | Caged (Battle-Scarred)": {
     "success": true,
     "price": "$0.11",
-    "listings": 571,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.10",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      },
-      {
-        "price": "$0.11",
-        "timestamp": "2026-09-24T08:59:52.774Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "listings": 570,
+    "volume": "--"
   },
   "StatTrak™ SCAR-20 | Caged (Battle-Scarred)": {
     "success": true,
     "price": "$0.20",
     "listings": 108,
-    "volume": "--",
-    "history": [
-      {
-        "price": "$0.20",
-        "timestamp": "2026-09-23T15:56:36.436Z"
-      }
-    ],
-    "firstSeen": "2026-09-23T15:56:36.436Z"
+    "volume": "--"
   },
   "_meta": {
-    "source": "Steam Community Market (browser scrape)",
-    "generatedAt": "2026-09-24T08:59:52.774Z",
-    "note": "Prices extracted from Steam listing pages via Playwright"
+    "source": "Steam Community Market search/render",
+    "generatedAt": "2026-09-24T09:28:40.510Z",
+    "note": "Prices are exact buyer-facing sell_price_text values returned by Steam."
   }
 }
