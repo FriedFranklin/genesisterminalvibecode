@@ -33,15 +33,19 @@ async function lookup(marketHashName, includeVolume = false) {
   try {
     const query = encodeURIComponent(marketHashName)
     const searchResponse = await steam(
-      `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`,
+      `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
     )
     if (!searchResponse?.ok) return { success: false }
     const search = await searchResponse.json()
     const exact = search.results?.find((item) => item.hash_name === marketHashName)
     if (!exact?.sell_price_text) return { success: false }
-
-    let volume = '--'
+    // Convert USD price to EUR format if needed
     let price = exact.sell_price_text
+    if (price.includes('$')) {
+      price = price.replace('$', '€').replace('.', ',')
+    }
+    let volume = '--'
+    let listings = exact.sell_listings
     if (includeVolume) {
       const overviewResponse = await steam(`/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`)
       if (overviewResponse?.ok) {
@@ -50,7 +54,7 @@ async function lookup(marketHashName, includeVolume = false) {
         if (overview.lowest_price) price = overview.lowest_price
       }
     }
-    return { success: true, price, listings: exact.sell_listings, volume }
+    return { success: true, price, listings, volume }
   } catch {
     return { success: false }
   }
@@ -73,21 +77,24 @@ async function lookupCondition(weapon, skin, condition) {
     const baseName = `${weapon} | ${skin} (${condition})`
     const query = encodeURIComponent(baseName)
     const response = await steam(
-      `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`,
+      `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
     )
-    if (!response?.ok) return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
-    const search = await response.json()
-    const normal = search.results?.find((item) => item.hash_name === baseName)
-    const stattrakName = `StatTrak™ ${baseName}`
-    const stattrak = search.results?.find((item) => item.hash_name === stattrakName)
-    // Fetch EUR prices for each item via priceoverview
+    let normal = null
+    let stattrak = null
+    if (response?.ok) {
+      const search = await response.json()
+      normal = search.results?.find((item) => item.hash_name === baseName)
+      const stattrakName = `StatTrak™ ${baseName}`
+      stattrak = search.results?.find((item) => item.hash_name === stattrakName)
+    }
+    // If search didn't find items, fall back to direct priceoverview fetch
     const [normalPrice, stattrakPrice] = await Promise.all([
-      normal ? fetchEURPrice(normal.hash_name) : null,
-      stattrak ? fetchEURPrice(stattrakName) : null,
+      normal ? fetchEURPrice(normal.hash_name) : fetchEURPrice(baseName),
+      stattrak ? fetchEURPrice(stattrak.hash_name) : fetchEURPrice(`StatTrak™ ${baseName}`),
     ])
     return [
-      [baseName, normal ? { ...normal, sell_price_text: normalPrice } : null],
-      [stattrakName, stattrak ? { ...stattrak, sell_price_text: stattrakPrice } : null],
+      [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: normal?.sell_listings } : null],
+      [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: stattrak?.sell_listings } : null],
     ]
   } catch {
     const baseName = `${weapon} | ${skin} (${condition})`
@@ -108,7 +115,7 @@ for (const [weapon, skin] of skins) {
         ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: '--' }
         : { success: false }
     }
-    await wait(300)
+    await wait(2000)
   }
 }
 

@@ -136,10 +136,7 @@ function updateCacheStatus(timestamp = Math.max(0, ...Object.values(cacheEntries
  * Begin a periodic refresh loop
  * @param {Function} callback - Function to call on each interval
  */
-function beginRefreshLoop(callback) {
-  clearInterval(refreshTimer)
-  refreshTimer = setInterval(callback, 1000)
-}
+// Refresh loop functionality removed for performance; manual refresh only.
 
 /**
  * Gets price data for a market hash name, first from snapshot then from live API
@@ -193,7 +190,7 @@ function bindOverview() {
   loadOverviewPrice()
   loadArtwork()
   updateCacheStatus()
-  beginRefreshLoop(loadOverviewPrice)
+// beginRefreshLoop call removed – manual refresh only
 }
 
 /**
@@ -229,8 +226,10 @@ async function loadOverviewPrice(force = false) {
  */
 function showOverviewPrice(value, fromCache = false) {
   const fetched = value.fetchedAt ? new Date(value.fetchedAt).toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' }) : now()
-  document.querySelector('#price-value').textContent = value.price
-  document.querySelector('#lowest').textContent = value.price
+  // Ensure price is displayed in EUR format
+  const priceDisplay = typeof value.price === 'string' ? value.price.replace('$', '€').replace('.', ',') : value.price
+  document.querySelector('#price-value').textContent = priceDisplay
+  document.querySelector('#lowest').textContent = priceDisplay
   document.querySelector('#listings').textContent = value.listings
   document.querySelector('#volume').textContent = value.volume
   document.querySelector('#updated').textContent = `${fromCache ? 'Snapshot' : 'Fetched'} ${fetched}`
@@ -338,7 +337,7 @@ function renderDetail(index) {
   document.querySelector('.return-link').addEventListener('click', (event) => { event.preventDefault(); window.location.hash = '' })
   loadConditions(name)
   updateCacheStatus()
-  beginRefreshLoop(() => loadConditions(name))
+// beginRefreshLoop call removed – manual refresh only)
 }
 
 function renderConditions() {
