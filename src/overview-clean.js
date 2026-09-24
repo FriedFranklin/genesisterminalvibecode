@@ -359,11 +359,19 @@ async function loadConditions(displayName, force = false) {
     const values = [await loadConditionPrice(normal, force), await loadConditionPrice(stattrak, force)]
     column.querySelector('.normal-price').textContent = values[0]
     column.querySelector('.stattrak-price').textContent = values[1]
-    prices.push(...values.map((value) => Number.parseFloat(value.replace('$', ''))).filter(Number.isFinite))
+    // Convert price strings (e.g., "€0,09" or "$0.09") to numbers for comparison
+    prices.push(...values
+      .map((value) => {
+        if (typeof value !== 'string') return NaN;
+        // Remove currency symbols and normalize decimal separator
+        const normalized = value.replace('€', '').replace('$', '').replace(',', '.');
+        return Number.parseFloat(normalized);
+      })
+      .filter(Number.isFinite))
   }
 
   const fetched = now()
-  document.querySelector('#detail-lowest').textContent = prices.length ? `€${Math.min(...prices).toFixed(2)}` : 'Unavailable'
+  document.querySelector('#detail-lowest').textContent = prices.length ? `€${Math.min(...prices).toFixed(2).replace('.', ',')}` : 'Unavailable'
   document.querySelector('#detail-status').textContent = `Fetched ${fetched}`
   document.querySelector('#detail-source').textContent = `Source: Steam Community Market · buyer-facing sell price · ${fetched}`
   updateCacheStatus()
