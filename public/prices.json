@@ -517,7 +517,11 @@
   },
   "_meta": {
     "source": "Steam Community Market search/render",
+<<<<<<< HEAD
     "generatedAt": "2026-09-24T20:24:17.935Z",
+=======
+    "generatedAt": "2026-09-24T20:36:56.639Z",
+>>>>>>> a2de78e237685672df02300368c326e538d7a5a8
     "note": "Prices are exact buyer-facing sell_price_text values returned by Steam."
   }
 }
