@@ -23,7 +23,6 @@ let conditionRequestActive = false
 /**
  * Application entry point - reads hash route and renders appropriate view
  */
-function route() {
 
 /**
  * Renders a price history sparkline on a canvas element.
