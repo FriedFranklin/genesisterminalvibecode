@@ -41,17 +41,31 @@ async function lookup(marketHashName, includeVolume = false) {
     if (!exact?.sell_price_text) return { success: false }
 
     let volume = '--'
+    let price = exact.sell_price_text
     if (includeVolume) {
-      const overviewResponse = await steam(`/market/priceoverview/?appid=730&currency=1&market_hash_name=${query}`)
+      const overviewResponse = await steam(`/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`)
       if (overviewResponse?.ok) {
         const overview = await overviewResponse.json()
         volume = overview.volume || '--'
+        if (overview.lowest_price) price = overview.lowest_price
       }
     }
-    return { success: true, price: exact.sell_price_text, listings: exact.sell_listings, volume }
+    return { success: true, price, listings: exact.sell_listings, volume }
   } catch {
     return { success: false }
   }
+}
+
+async function fetchEURPrice(marketHashName) {
+  try {
+    const query = encodeURIComponent(marketHashName)
+    const response = await steam(`/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`)
+    if (response?.ok) {
+      const data = await response.json()
+      return data.lowest_price || null
+    }
+  } catch {}
+  return null
 }
 
 async function lookupCondition(weapon, skin, condition) {
@@ -66,7 +80,15 @@ async function lookupCondition(weapon, skin, condition) {
     const normal = search.results?.find((item) => item.hash_name === baseName)
     const stattrakName = `StatTrak™ ${baseName}`
     const stattrak = search.results?.find((item) => item.hash_name === stattrakName)
-    return [[baseName, normal], [stattrakName, stattrak]]
+    // Fetch EUR prices for each item via priceoverview
+    const [normalPrice, stattrakPrice] = await Promise.all([
+      normal ? fetchEURPrice(normal.hash_name) : null,
+      stattrak ? fetchEURPrice(stattrakName) : null,
+    ])
+    return [
+      [baseName, normal ? { ...normal, sell_price_text: normalPrice } : null],
+      [stattrakName, stattrak ? { ...stattrak, sell_price_text: stattrakPrice } : null],
+    ]
   } catch {
     const baseName = `${weapon} | ${skin} (${condition})`
     return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
