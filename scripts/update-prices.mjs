@@ -16,7 +16,7 @@ const skins = [
 const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
 async function steam(path) {
-  for (let attempt = 0; attempt < 2; attempt += 1) {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
       const response = await fetch(`https://steamcommunity.com${path}`, { signal: AbortSignal.timeout(15000) })
       if (response.status !== 429) return response
@@ -60,6 +60,17 @@ async function lookup(marketHashName, includeVolume = false) {
   }
 }
 
+async function fetchVolume(marketHashName) {
+  try {
+    const query = encodeURIComponent(marketHashName)
+    const response = await steam(`/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`)
+    if (response?.ok) {
+      const data = await response.json()
+      return data.volume || '--'
+    }
+  } catch {}
+  return '--'
+}
 async function fetchEURPrice(marketHashName) {
   try {
     const query = encodeURIComponent(marketHashName)
@@ -93,8 +104,8 @@ async function lookupCondition(weapon, skin, condition) {
       stattrak ? fetchEURPrice(stattrak.hash_name) : fetchEURPrice(`StatTrak™ ${baseName}`),
     ])
     return [
-      [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: normal?.sell_listings } : null],
-      [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: stattrak?.sell_listings } : null],
+      [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: normal?.sell_listings, volume: await fetchVolume(baseName) } : null],
+      [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: stattrak?.sell_listings, volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
     ]
   } catch {
     const baseName = `${weapon} | ${skin} (${condition})`
@@ -112,11 +123,11 @@ for (const [weapon, skin] of skins) {
     console.log(`Fetching ${weapon} | ${skin} (${condition})`)
     for (const [marketHashName, result] of await lookupCondition(weapon, skin, condition)) {
       prices[marketHashName] = result?.sell_price_text
-        ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: '--' }
+        ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: result.volume || '--' }
         : { success: false }
       console.log(`Fetched price for ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
     }
-    await wait(2000)
+    await wait(6000)
   }
 }
 
