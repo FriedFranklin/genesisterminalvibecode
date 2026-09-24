@@ -16,7 +16,7 @@ const skins = [
 const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
 async function steam(path) {
-  for (let attempt = 0; attempt < 3; attempt += 1) {
+  for (let attempt = 0; attempt < 5; attempt += 1) {
     try {
       const response = await fetch(`https://steamcommunity.com${path}`, { signal: AbortSignal.timeout(15000) })
       if (response.status !== 429) return response
@@ -77,7 +77,11 @@ async function fetchEURPrice(marketHashName) {
     const response = await steam(`/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`)
     if (response?.ok) {
       const data = await response.json()
-      return data.lowest_price || null
+      let price = data.lowest_price || null
+      if (price && price.includes('$')) {
+        price = price.replace('$', '€').replace('.', ',')
+      }
+      return price
     }
   } catch {}
   return null
@@ -127,7 +131,7 @@ for (const [weapon, skin] of skins) {
         : { success: false }
       console.log(`Fetched price for ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
     }
-    await wait(6000)
+    await wait(8000)
   }
 }
 
