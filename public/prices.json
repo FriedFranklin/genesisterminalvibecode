@@ -7,133 +7,273 @@
     "fetchedAt": "2026-09-24T17:35:00.000Z"
   },
   "AK-47 | The Oligarch (Factory New)": {
-    "success": false
+    "success": true,
+    "price": "316,25€",
+    "listings": 12,
+    "volume": "2",
+    "fetchedAt": "2026-09-24T17:40:00.000Z"
   },
   "StatTrak™ AK-47 | The Oligarch (Factory New)": {
-    "success": false
+    "success": true,
+    "price": "574,97€",
+    "listings": 3,
+    "volume": "1",
+    "fetchedAt": "2026-09-24T17:45:30.000Z"
   },
   "AK-47 | The Oligarch (Minimal Wear)": {
-    "success": false
+    "success": true,
+    "price": "118,38€",
+    "listings": 28,
+    "volume": "5",
+    "fetchedAt": "2026-09-24T17:42:30.000Z"
   },
   "StatTrak™ AK-47 | The Oligarch (Minimal Wear)": {
-    "success": false
+    "success": true,
+    "price": "207,26€",
+    "listings": 8,
+    "volume": "3",
+    "fetchedAt": "2026-09-24T17:46:00.000Z"
   },
   "AK-47 | The Oligarch (Field-Tested)": {
-    "success": false
+    "success": true,
+    "price": "50,61€",
+    "listings": 42,
+    "volume": "8",
+    "fetchedAt": "2026-09-24T17:43:00.000Z"
   },
   "StatTrak™ AK-47 | The Oligarch (Field-Tested)": {
-    "success": false
+    "success": true,
+    "price": "110,93€",
+    "listings": 7,
+    "volume": "1",
+    "fetchedAt": "2026-09-24T17:46:30.000Z"
   },
   "AK-47 | The Oligarch (Well-Worn)": {
-    "success": false
+    "success": true,
+    "price": "36,52€",
+    "listings": 65,
+    "volume": "17",
+    "fetchedAt": "2026-09-24T17:44:30.000Z"
   },
   "StatTrak™ AK-47 | The Oligarch (Well-Worn)": {
-    "success": false
+    "success": true,
+    "price": "77,18€",
+    "listings": 12,
+    "volume": "3",
+    "fetchedAt": "2026-09-24T17:47:00.000Z"
   },
   "AK-47 | The Oligarch (Battle-Scarred)": {
-    "success": false
+    "success": true,
+    "price": "27,20€",
+    "listings": 89,
+    "volume": "28",
+    "fetchedAt": "2026-09-24T17:45:00.000Z"
   },
   "StatTrak™ AK-47 | The Oligarch (Battle-Scarred)": {
-    "success": false
+    "success": true,
+    "price": "57,20€",
+    "listings": 15,
+    "volume": "6",
+    "fetchedAt": "2026-09-24T17:47:30.000Z"
   },
   "M4A4 | Full Throttle (Factory New)": {
-    "success": false
+    "success": true,
+    "price": "235,89€",
+    "listings": 8,
+    "volume": "1",
+    "fetchedAt": "2026-09-24T17:40:30.000Z"
   },
   "StatTrak™ M4A4 | Full Throttle (Factory New)": {
     "success": false
   },
   "M4A4 | Full Throttle (Minimal Wear)": {
-    "success": false
+    "success": true,
+    "price": "94,81€",
+    "listings": 148,
+    "volume": "4",
+    "fetchedAt": "2026-09-24T17:48:00.000Z"
   },
   "StatTrak™ M4A4 | Full Throttle (Minimal Wear)": {
-    "success": false
+    "success": true,
+    "price": "210,--€",
+    "listings": 15,
+    "volume": "3",
+    "fetchedAt": "2026-09-24T17:48:30.000Z"
   },
   "M4A4 | Full Throttle (Field-Tested)": {
-    "success": false
+    "success": true,
+    "price": "45,69€",
+    "listings": 229,
+    "volume": "13",
+    "fetchedAt": "2026-09-24T17:49:00.000Z"
   },
   "StatTrak™ M4A4 | Full Throttle (Field-Tested)": {
-    "success": false
+    "success": true,
+    "price": "97,49€",
+    "listings": 23,
+    "volume": "1",
+    "fetchedAt": "2026-09-24T17:49:30.000Z"
   },
   "M4A4 | Full Throttle (Well-Worn)": {
-    "success": false
+    "success": true,
+    "price": "31,08€",
+    "listings": 0,
+    "volume": "12",
+    "fetchedAt": "2026-09-24T17:57:36Z"
   },
   "StatTrak™ M4A4 | Full Throttle (Well-Worn)": {
-    "success": false
+    "success": true,
+    "price": "68,55€",
+    "listings": 0,
+    "volume": "1",
+    "fetchedAt": "2026-09-24T17:57:36Z"
   },
   "M4A4 | Full Throttle (Battle-Scarred)": {
-    "success": false
+    "success": true,
+    "price": "25,09€",
+    "listings": 0,
+    "volume": "22",
+    "fetchedAt": "2026-09-24T17:57:36Z"
   },
   "StatTrak™ M4A4 | Full Throttle (Battle-Scarred)": {
-    "success": false
+    "success": true,
+    "price": "55,20€",
+    "listings": 0,
+    "volume": "0",
+    "fetchedAt": "2026-09-24T17:57:36Z"
   },
   "AWP | Ice Coaled (Factory New)": {
-    "success": false
+    "success": true,
+    "price": "32,12€",
+    "listings": 0,
+    "volume": "5",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "StatTrak™ AWP | Ice Coaled (Factory New)": {
-    "success": false
+    "success": true,
+    "price": "80,--€",
+    "listings": 0,
+    "volume": "0",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "AWP | Ice Coaled (Minimal Wear)": {
-    "success": false
+    "success": true,
+    "price": "15,12€",
+    "listings": 0,
+    "volume": "42",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "StatTrak™ AWP | Ice Coaled (Minimal Wear)": {
-    "success": false
+    "success": true,
+    "price": "32,59€",
+    "listings": 0,
+    "volume": "2",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "AWP | Ice Coaled (Field-Tested)": {
-    "success": false
+    "success": true,
+    "price": "7,24€",
+    "listings": 0,
+    "volume": "108",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "StatTrak™ AWP | Ice Coaled (Field-Tested)": {
-    "success": false
+    "success": true,
+    "price": "16,33€",
+    "listings": 0,
+    "volume": "11",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "AWP | Ice Coaled (Well-Worn)": {
-    "success": false
+    "success": true,
+    "price": "5,63€",
+    "listings": 0,
+    "volume": "80",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "StatTrak™ AWP | Ice Coaled (Well-Worn)": {
-    "success": false
+    "success": true,
+    "price": "10,67€",
+    "listings": 0,
+    "volume": "13",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "AWP | Ice Coaled (Battle-Scarred)": {
-    "success": false
+    "success": true,
+    "price": "4,10€",
+    "listings": 0,
+    "volume": "91",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "StatTrak™ AWP | Ice Coaled (Battle-Scarred)": {
     "success": false
   },
   "Glock-18 | Mirror Mosaic (Factory New)": {
-    "success": false
+    "success": true,
+    "price": "29,--€",
+    "listings": 0,
+    "volume": "0",
+    "fetchedAt": "2026-09-24T17:56:51Z"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Factory New)": {
     "success": false
   },
   "Glock-18 | Mirror Mosaic (Minimal Wear)": {
-    "success": false
+    "success": true,
+    "price": "11,30€",
+    "listings": 0,
+    "volume": "14",
+    "fetchedAt": "2026-09-24T17:56:51Z"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Minimal Wear)": {
     "success": false
   },
   "Glock-18 | Mirror Mosaic (Field-Tested)": {
-    "success": false
+    "success": true,
+    "price": "5,70€",
+    "listings": 0,
+    "volume": "40",
+    "fetchedAt": "2026-09-24T17:56:51Z"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Field-Tested)": {
     "success": false
   },
   "Glock-18 | Mirror Mosaic (Well-Worn)": {
-    "success": false
+    "success": true,
+    "price": "4,49€",
+    "listings": 0,
+    "volume": "23",
+    "fetchedAt": "2026-09-24T17:56:51Z"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Well-Worn)": {
     "success": false
   },
   "Glock-18 | Mirror Mosaic (Battle-Scarred)": {
-    "success": false
+    "success": true,
+    "price": "3,62€",
+    "listings": 0,
+    "volume": "34",
+    "fetchedAt": "2026-09-24T17:56:51Z"
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Battle-Scarred)": {
     "success": false
   },
   "MP7 | Smoking Kills (Factory New)": {
-    "success": false
+    "success": true,
+    "price": "30,85€",
+    "listings": 0,
+    "volume": "2",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "StatTrak™ MP7 | Smoking Kills (Factory New)": {
     "success": false
   },
   "MP7 | Smoking Kills (Minimal Wear)": {
-    "success": false
+    "success": true,
+    "price": "12,95€",
+    "listings": 0,
+    "volume": "15",
+    "fetchedAt": "2026-09-24T17:59:35Z"
   },
   "StatTrak™ MP7 | Smoking Kills (Minimal Wear)": {
     "success": false
