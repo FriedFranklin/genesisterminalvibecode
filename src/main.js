@@ -45,7 +45,7 @@ async function loadMarketPrice() {
   updated.textContent = 'Fetching current listing...'
   message.textContent = 'Requesting the latest market snapshot.'
   try {
-    const response = await fetch(`/steam/market/priceoverview/?appid=730&currency=1&market_hash_name=${encodeURIComponent(marketHashName)}`)
+    const response = await fetch(`/steam/market/priceoverview/?appid=730&currency=3&market_hash_name=${encodeURIComponent(marketHashName)}`)
     if (!response.ok) throw new Error(`Steam returned ${response.status}`)
     const data = await response.json()
     if (!data.success) throw new Error('Item was not found in the Steam Market')
@@ -79,7 +79,7 @@ const prices = [
   { name: 'Battle-Scarred', short: 'BS', price: 1.98, change: -3.2, color: '#8e7f89', note: 'Heavy wear' },
 ]
 
-const money = (value) => `$${value.toFixed(2)}`
+const money = (value) => `€${value.toFixed(2)}`
 
 document.querySelector('#app').innerHTML = `
   <header class="topbar">
@@ -103,7 +103,7 @@ document.querySelector('#app').innerHTML = `
       </article>
 
       <article class="prices-panel">
-        <div class="panel-heading"><div><p class="eyebrow">MARKET SNAPSHOT</p><h2>Price by wear</h2></div><button class="currency">USD <span>⌄</span></button></div>
+        <div class="panel-heading"><div><p class="eyebrow">MARKET SNAPSHOT</p><h2>Price by wear</h2></div><button class="currency">EUR <span>⌄</span></button></div>
         <div class="price-tabs" role="tablist" aria-label="Wear grade filters">${prices.map((item, index) => `<button class="price-tab ${index === 0 ? 'selected' : ''}" data-index="${index}" role="tab" aria-selected="${index === 0}"><span>${item.short}</span><small>${item.name.split(' ')[0]}</small></button>`).join('')}</div>
         <div class="price-list">${prices.map((item, index) => `<button class="price-row ${index === 0 ? 'highlighted' : ''}" data-index="${index}"><span class="wear-icon" style="--wear:${item.color}">${item.short}</span><span class="wear-name"><strong>${item.name}</strong><small>${item.note}</small></span><span class="sparkline"><i style="height:${38 + index * 7}%"></i><i style="height:${55 - index * 4}%"></i><i style="height:${46 + index * 3}%"></i><i style="height:${72 - index * 5}%"></i><i style="height:${64 - index * 2}%"></i><i style="height:${82 - index * 7}%"></i></span><span class="wear-price"><strong>${money(item.price)}</strong><small class="${item.change < 0 ? 'negative' : ''}">${item.change > 0 ? '↑' : '↓'} ${Math.abs(item.change)}%</small></span></button>`).join('')}</div>
         <p class="disclaimer">Prices are aggregated from active Steam Community Market listings.</p>

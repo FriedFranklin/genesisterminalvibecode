@@ -42,8 +42,9 @@ function marketCachePlugin() {
             if (cached && Date.now() - cached.fetchedAt < cacheTtl) return { ...cached.value, cached: true, fetchedAt: cached.fetchedAt }
 
             const encodedName = encodeURIComponent(marketHashName)
+            const currencyParam = requestUrl.searchParams.get('currency') || '1';
             const [overviewResponse, searchResponse] = await Promise.all([
-              fetchSteam(`/market/priceoverview/?appid=730&currency=1&market_hash_name=${encodedName}`),
+              fetchSteam(`/market/priceoverview/?appid=730&currency=${currencyParam}&market_hash_name=${encodedName}`),
               fetchSteam(`/market/search/render/?query=${encodedName}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1`),
             ])
             const overview = await overviewResponse.json()

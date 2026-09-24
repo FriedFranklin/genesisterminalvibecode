@@ -68,7 +68,7 @@ function startAutoRefresh(callback) {
 
 async function getMarketPrice(marketName) {
   try {
-    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(marketName)}`)
+    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(marketName)}&currency=3`)
     if (response.ok) {
       const value = await response.json()
       if (value.success) return value
@@ -87,7 +87,7 @@ app.innerHTML = `
   <main class="overview">
     <header class="header"><a class="brand" href="/">DROP<span>WATCH</span></a><nav><a href="#price">Market</a><a href="#weapons">Weapon pool</a><a href="https://steamcommunity.com/market/listings/730/Sealed%20Genesis%20Terminal" target="_blank" rel="noreferrer">Steam ↗</a></nav></header>
     <section class="hero"><div><p class="eyebrow">COUNTER-STRIKE 2 &gt; CONTAINER</p><h1>Genesis Terminal</h1><p class="lede">Steam Community Market overview</p></div><div class="online"><i></i><span id="connection-label">Connecting to Steam Market</span></div></section>
-    <section class="market-card" id="price" aria-live="polite"><div class="card-top"><span>GENESIS TERMINAL / CURRENT MARKET PRICE</span><span id="updated">Fetching...</span></div><div class="price-block"><span class="currency">USD</span><strong id="price-value">--</strong><span>lowest current listing</span></div><div class="metrics"><div><span>Active listings</span><strong id="listings">--</strong></div><div><span>24h sales</span><strong id="volume">--</strong></div><div><span>Lowest price</span><strong id="lowest">--</strong></div></div><div class="card-footer"><span id="message">Prices load directly from Steam when available.</span><button id="refresh" type="button">Refresh price</button></div></section>
+    <section class="market-card" id="price" aria-live="polite"><div class="card-top"><span>GENESIS TERMINAL / CURRENT MARKET PRICE</span><span id="updated">Fetching...</span></div><div class="price-block"><span class="currency">EUR</span><strong id="price-value">--</strong><span>lowest current listing</span></div><div class="metrics"><div><span>Active listings</span><strong id="listings">--</strong></div><div><span>24h sales</span><strong id="volume">--</strong></div><div><span>Lowest price</span><strong id="lowest">--</strong></div></div><div class="card-footer"><span id="message">Prices load directly from Steam when available.</span><button id="refresh" type="button">Refresh price</button></div></section>
     <section class="weapons" id="weapons"><div class="section-title"><h2>Weapons you can get</h2><span>17 skins in the Genesis Terminal</span></div><div class="weapon-row">${weapons.map(([weapon, skin, rarity], index) => `<a class="weapon" href="#skin=${index}"><span class="weapon-image weapon-${index}"><img data-skin="${index}" alt="${weapon} | ${skin}" loading="lazy"><b>${weapon.slice(0, 2)}</b></span><strong>${weapon}</strong><small>${skin}</small><em>${rarity}</em></a>`).join('')}</div><p class="note">Weapon pool from the Genesis Terminal. Click a skin to view live prices by condition.</p></section>
     <footer>Dropwatch 2004-style market board <span>Last request: <b id="footer-time">--</b></span></footer>
   </main>
@@ -200,7 +200,7 @@ function renderSkinDetail(index) {
         <div class="item-art-panel"><div class="item-art-large weapon-image"><img src="${skinArtwork[index] || ''}" alt="${displayName}"><b>${weapon.slice(0, 2)}</b></div><span class="art-caption">Counter-Strike 2</span></div>
         <div class="item-summary"><p class="eyebrow">GENESIS TERMINAL / ${rarity.toUpperCase()}</p><h1>${displayName}</h1><p class="item-description">A weapon skin from the Genesis Terminal collection.</p><div class="detail-lowest"><span>Lowest listing across all conditions</span><strong id="detail-lowest">Loading...</strong></div><div class="item-tags"><span>Normal quality</span><span>CS2</span><span>${rarity}</span></div><div class="item-actions"><a class="steam-button" href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">View on Steam Market ↗</a><a href="#" class="return-link">← Back to collection</a></div></div>
       </section>
-      <section class="condition-card"><div class="card-top"><span>LISTINGS FOR ${displayName.toUpperCase()}</span><span id="detail-status">Fetching...</span></div><div class="condition-intro"><strong>Price by condition</strong><span>Lowest listing / USD</span></div><div class="condition-grid">${conditions.map((condition, row) => `<article class="condition-column" data-condition="${row}"><header><strong>${condition}</strong><small>${row === 0 ? 'Cleanest finish' : row === 4 ? 'Heavy wear' : 'Wear condition'}</small></header><div class="condition-offer"><span>Normal</span><strong class="normal-price">Loading...</strong><a class="normal-link" target="_blank" rel="noreferrer">Steam ↗</a></div><div class="condition-offer stattrak-offer"><span>StatTrak™</span><strong class="stattrak-price">Loading...</strong><a class="stattrak-link" target="_blank" rel="noreferrer">Steam ↗</a></div></article>`).join('')}</div><div class="card-footer"><span id="detail-source">Source: Steam Community Market · buyer-facing sell price</span><a href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">View all listings</a></div></section>
+      <section class="condition-card"><div class="card-top"><span>LISTINGS FOR ${displayName.toUpperCase()}</span><span id="detail-status">Fetching...</span></div><div class="condition-intro"><strong>Price by condition</strong><span>Lowest listing / EUR</span></div><div class="condition-grid">${conditions.map((condition, row) => `<article class="condition-column" data-condition="${row}"><header><strong>${condition}</strong><small>${row === 0 ? 'Cleanest finish' : row === 4 ? 'Heavy wear' : 'Wear condition'}</small></header><div class="condition-offer"><span>Normal</span><strong class="normal-price">Loading...</strong><a class="normal-link" target="_blank" rel="noreferrer">Steam ↗</a></div><div class="condition-offer stattrak-offer"><span>StatTrak™</span><strong class="stattrak-price">Loading...</strong><a class="stattrak-link" target="_blank" rel="noreferrer">Steam ↗</a></div></article>`).join('')}</div><div class="card-footer"><span id="detail-source">Source: Steam Community Market · buyer-facing sell price</span><a href="https://steamcommunity.com/market/search?q=${encodeURIComponent(displayName)}&appid=730" target="_blank" rel="noreferrer">View all listings</a></div></section>
       <footer>Dropwatch 2004-style market board <span>${displayName}</span></footer>
     </main>`
   document.querySelector('.return-link').addEventListener('click', (event) => { event.preventDefault(); window.location.hash = '' })
@@ -239,11 +239,11 @@ async function loadConditionPrices(displayName, force = false) {
     column.querySelector('.normal-price').textContent = normalPrice
     column.querySelector('.stattrak-price').textContent = stattrakPrice
     ;[normalPrice, stattrakPrice].forEach((value) => {
-      const numeric = Number.parseFloat(value.replace('$', ''))
+      const numeric = Number.parseFloat(value.replace(/[€$]/, '').replace(',', '.'))
       if (Number.isFinite(numeric)) prices.push(numeric)
     })
   }
-  document.querySelector('#detail-lowest').textContent = prices.length ? `$${Math.min(...prices).toFixed(2)}` : 'Unavailable'
+  document.querySelector('#detail-lowest').textContent = prices.length ? `€${Math.min(...prices).toFixed(2)}` : 'Unavailable'
   const fetchedAt = new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'medium' })
   document.querySelector('#detail-status').textContent = `Fetched ${fetchedAt}`
   document.querySelector('#detail-source').textContent = `Source: Steam Community Market · buyer-facing sell price · ${fetchedAt}`

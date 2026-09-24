@@ -41,9 +41,9 @@ function renderSparkline(canvas, history, color = '#1c3956') {
 
   if (!history || history.length === 0) return
 
-  // Parse prices from history
+  // Parse prices from history (handle both $ and € symbols, and . and , decimal separators)
   const prices = history
-    .map(h => parseFloat(h.price.replace('$', '')))
+    .map(h => parseFloat(h.price.replace(/[€$]/, '').replace(',', '.')))
     .filter(p => !isNaN(p))
 
   if (prices.length === 0) return
@@ -160,7 +160,7 @@ async function getPrice(name) {
 
   // If snapshot data is not successful, try to fetch live data from the API
   try {
-    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(name)}`)
+    const response = await fetch(`/api/market-price?market_hash_name=${encodeURIComponent(name)}&currency=3`)
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const data = await response.json()
     return data
@@ -176,7 +176,7 @@ function renderOverview() {
   app.innerHTML = `<main class="overview">
     <header class="header"><a class="brand" href="/">DROP<span>WATCH</span></a><nav><a href="#price">Market</a><a href="#weapons">Weapon pool</a><a href="${steamUrl(MARKET_HASH_NAME)}" target="_blank" rel="noreferrer">Steam ↗</a></nav></header>
     <section class="hero"><div><p class="eyebrow">COUNTER-STRIKE 2 &gt; CONTAINER</p><h1>Genesis Terminal</h1><p class="lede">Steam Community Market overview</p></div><div class="online"><i></i><span id="connection-label">Connecting to Steam Market</span></div></section>
-    <section class="market-card" id="price" aria-live="polite"><div class="card-top"><span>GENESIS TERMINAL / CURRENT MARKET PRICE</span><span id="updated">Fetching...</span></div><div class="price-block"><span class="currency">USD</span><strong id="price-value">--</strong><span>lowest current listing</span></div><div class="metrics"><div><span>Active listings</span><strong id="listings">--</strong></div><div><span>24h sales</span><strong id="volume">--</strong></div><div><span>Lowest price</span><strong id="lowest">--</strong></div></div><div class="card-footer"><span id="message">Prices load from the shared Steam snapshot when available.</span><button id="refresh" type="button">Refresh price</button></div></section>
+    <section class="market-card" id="price" aria-live="polite"><div class="card-top"><span>GENESIS TERMINAL / CURRENT MARKET PRICE</span><span id="updated">Fetching...</span></div><div class="price-block"><span class="currency">EUR</span><strong id="price-value">--</strong><span>lowest current listing</span></div><div class="metrics"><div><span>Active listings</span><strong id="listings">--</strong></div><div><span>24h sales</span><strong id="volume">--</strong></div><div><span>Lowest price</span><strong id="lowest">--</strong></div></div><div class="card-footer"><span id="message">Prices load from the shared Steam snapshot when available.</span><button id="refresh" type="button">Refresh price</button></div></section>
     <section class="weapons" id="weapons"><div class="section-title"><h2>Weapons you can get</h2><span>17 skins in the Genesis Terminal</span></div><div class="weapon-row">${WEAPONS.map(([weapon, skin, rarity], index) => `<a class="weapon" href="#skin=${index}"><span class="weapon-image weapon-${index}"><img data-skin="${index}" alt="${weapon} | ${skin}" loading="lazy"><b>${weapon.slice(0, 2)}</b></span><strong>${weapon}</strong><small>${skin}</small><em>${rarity}</em><canvas class="history-graph" data-skin-index="${index}" width="142" height="36"></canvas></a>`).join('')}</div><p class="note">Click a skin to view live prices by condition.</p></section>
     <footer>Dropwatch 2004-style market board <span>Last request: <b id="footer-time">--</b></span></footer>
   </main>`
@@ -334,7 +334,7 @@ function renderOverviewSparklines() {
 function renderDetail(index) {
   const [weapon, skin, rarity] = WEAPONS[index]
   const name = `${weapon} | ${skin}`
-  app.innerHTML = `<main class="overview detail-page"><header class="header"><a class="brand" href="#">DROP<span>WATCH</span></a><nav><a href="#">Market</a><a href="#">Weapon pool</a><a href="${steamUrl(name)}" target="_blank" rel="noreferrer">Steam ↗</a></nav></header><div class="market-crumb"><a href="#">Community Market</a> &gt; Genesis Terminal &gt; ${name}</div><section class="item-overview"><div class="item-art-panel"><div class="item-art-large weapon-image"><img src="${artwork[index] || ''}" alt="${name}"><b>${weapon.slice(0, 2)}</b></div><span class="art-caption">Counter-Strike 2</span></div><div class="item-summary"><p class="eyebrow">GENESIS TERMINAL / ${rarity.toUpperCase()}</p><h1>${name}</h1><p class="item-description">A weapon skin from the Genesis Terminal collection.</p><div class="detail-lowest"><span>Lowest listing across all conditions</span><strong id="detail-lowest">Loading...</strong></div><div class="item-tags"><span>Normal quality</span><span>CS2</span><span>${rarity}</span></div><div class="item-actions"><a class="steam-button" href="https://steamcommunity.com/market/search?q=${encodeURIComponent(name)}&appid=730" target="_blank" rel="noreferrer">View on Steam Market ↗</a><a href="#" class="return-link">← Back to collection</a></div></div></section><section class="condition-card"><div class="card-top"><span>LISTINGS FOR ${name.toUpperCase()}</span><span id="detail-status">Fetching...</span></div><div class="condition-intro"><strong>Price by condition</strong><span>Lowest listing / USD</span></div><div class="condition-grid">${renderConditions()}</div><div class="card-footer"><span id="detail-source">Source: Steam Community Market · buyer-facing sell price</span><a href="${steamUrl(name)}" target="_blank" rel="noreferrer">View all listings</a></div></section><footer>Dropwatch 2004-style market board <span>${name}</span></footer></main>`
+  app.innerHTML = `<main class="overview detail-page"><header class="header"><a class="brand" href="#">DROP<span>WATCH</span></a><nav><a href="#">Market</a><a href="#">Weapon pool</a><a href="${steamUrl(name)}" target="_blank" rel="noreferrer">Steam ↗</a></nav></header><div class="market-crumb"><a href="#">Community Market</a> &gt; Genesis Terminal &gt; ${name}</div><section class="item-overview"><div class="item-art-panel"><div class="item-art-large weapon-image"><img src="${artwork[index] || ''}" alt="${name}"><b>${weapon.slice(0, 2)}</b></div><span class="art-caption">Counter-Strike 2</span></div><div class="item-summary"><p class="eyebrow">GENESIS TERMINAL / ${rarity.toUpperCase()}</p><h1>${name}</h1><p class="item-description">A weapon skin from the Genesis Terminal collection.</p><div class="detail-lowest"><span>Lowest listing across all conditions</span><strong id="detail-lowest">Loading...</strong></div><div class="item-tags"><span>Normal quality</span><span>CS2</span><span>${rarity}</span></div><div class="item-actions"><a class="steam-button" href="https://steamcommunity.com/market/search?q=${encodeURIComponent(name)}&appid=730" target="_blank" rel="noreferrer">View on Steam Market ↗</a><a href="#" class="return-link">← Back to collection</a></div></div></section><section class="condition-card"><div class="card-top"><span>LISTINGS FOR ${name.toUpperCase()}</span><span id="detail-status">Fetching...</span></div><div class="condition-intro"><strong>Price by condition</strong><span>Lowest listing / EUR</span></div><div class="condition-grid">${renderConditions()}</div><div class="card-footer"><span id="detail-source">Source: Steam Community Market · buyer-facing sell price</span><a href="${steamUrl(name)}" target="_blank" rel="noreferrer">View all listings</a></div></section><footer>Dropwatch 2004-style market board <span>${name}</span></footer></main>`
   document.querySelector('.return-link').addEventListener('click', (event) => { event.preventDefault(); window.location.hash = '' })
   loadConditions(name)
   updateCacheStatus()
@@ -364,7 +364,7 @@ async function loadConditions(displayName, force = false) {
   }
 
   const fetched = now()
-  document.querySelector('#detail-lowest').textContent = prices.length ? `$${Math.min(...prices).toFixed(2)}` : 'Unavailable'
+  document.querySelector('#detail-lowest').textContent = prices.length ? `€${Math.min(...prices).toFixed(2)}` : 'Unavailable'
   document.querySelector('#detail-status').textContent = `Fetched ${fetched}`
   document.querySelector('#detail-source').textContent = `Source: Steam Community Market · buyer-facing sell price · ${fetched}`
   updateCacheStatus()
