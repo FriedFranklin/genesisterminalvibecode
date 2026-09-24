@@ -1,6 +1,10 @@
 {
   "Sealed Genesis Terminal": {
-    "success": false
+    "success": true,
+    "price": "0,09€",
+    "listings": 409273,
+    "volume": "43,314",
+    "fetchedAt": "2026-09-24T17:35:00.000Z"
   },
   "AK-47 | The Oligarch (Factory New)": {
     "success": false
