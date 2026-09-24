@@ -114,6 +114,7 @@ for (const [weapon, skin] of skins) {
       prices[marketHashName] = result?.sell_price_text
         ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: '--' }
         : { success: false }
+      console.log(`Fetched price for ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
     }
     await wait(2000)
   }
