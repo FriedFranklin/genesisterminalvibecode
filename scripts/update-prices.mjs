@@ -147,16 +147,20 @@ const generatedAt = new Date().toISOString()
 const container = 'Sealed Genesis Terminal'
 prices[container] = await lookup(container, true)
 for (const [weapon, skin] of skins) {
-  for (const condition of conditions) {
+  // Process all conditions in parallel for this weapon/skin
+  const conditionPromises = conditions.map(async (condition) => {
     console.log(`Fetching ${weapon} | ${skin} (${condition})`)
-    for (const [marketHashName, result] of await lookupCondition(weapon, skin, condition)) {
+    const entries = await lookupCondition(weapon, skin, condition)
+    for (const [marketHashName, result] of entries) {
       prices[marketHashName] = result?.sell_price_text
         ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: result.volume || '--' }
         : { success: false }
       console.log(`Fetched price for ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
     }
-    await wait(2000)
-  }
+  })
+  await Promise.all(conditionPromises)
+  // Small pause between weapons to be gentle on the API
+  await wait(2000)
 }
 
 try {
