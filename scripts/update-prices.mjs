@@ -42,9 +42,23 @@ const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, mill
 // Default headers with rotating user agent
 const defaultHeaders = {
   'User-Agent': getRandomUserAgent(),
-  'Accept-Language': 'en-US,en;q=0.9',
+  'Accept-Language': getRandomAcceptLanguage(),
   'Referer': 'https://steamcommunity.com/market/',
+  'Accept': '*/*',
+  'X-Requested-With': 'XMLHttpRequest',
 };
+
+// Randomly select an Accept-Language header to vary requests
+function getRandomAcceptLanguage() {
+  const langs = [
+    'en-US,en;q=0.9',
+    'en-GB,en;q=0.8',
+    'de-DE,de;q=0.7',
+    'fr-FR,fr;q=0.7',
+    'es-ES,es;q=0.7',
+  ];
+  return langs[Math.floor(Math.random() * langs.length)];
+}
 
 async function steam(path, extraHeaders = {}) {
   const headers = { ...defaultHeaders, ...extraHeaders };
@@ -137,7 +151,8 @@ async function lookup(marketHashName, includeVolume = false) {
 
 async function fetchVolume(marketHashName) {
   const query = encodeURIComponent(marketHashName);
-  const currencyOptions = ['1', '3', '6'];
+  // Re‑use the expanded currency list for volume lookup
+  const currencyOptions = ['1', '3', '6', '2', '5', '7', '8'];
   for (const cur of currencyOptions) {
     try {
       const response = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
@@ -146,7 +161,7 @@ async function fetchVolume(marketHashName) {
       if (data.volume) return data.volume;
     } catch {}
   }
-  // Fallback: try to scrape price page HTML for volume (very basic)
+  // Fallback: scrape the HTML listing page for volume information
   try {
     const htmlResponse = await steam(`/market/listings/730/${query}`);
     if (htmlResponse?.ok) {
@@ -158,33 +173,54 @@ async function fetchVolume(marketHashName) {
   return '--';
 }
 
-async function fetchEURPrice(marketHashName) {
+async function fetchPrice(marketHashName) {
   const query = encodeURIComponent(marketHashName);
-  const currencyOptions = ['1', '3', '6'];
+  // Expanded list of currency IDs to increase chance of success
+  const currencyOptions = ['1', '3', '6', '2', '5', '7', '8']; // 1=USD, 3=EUR, 6=GBP, others are additional currencies supported by Steam
+  // Try each currency with a few retries and exponential back‑off
   for (const cur of currencyOptions) {
-    try {
-      const response = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
-      if (!response?.ok) continue;
-      const data = await response.json();
-      let price = data.lowest_price || data.price || null;
-      if (price && cur === '1' && price.includes('$')) {
-        price = price.replace('$', '€').replace('.', ',');
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        const response = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
+        if (!response?.ok) {
+          // If rate‑limited, wait a bit before retrying
+          await wait(1000 * Math.pow(2, attempt));
+          continue;
+        }
+        const data = await response.json();
+        let price = data.lowest_price || data.price || null;
+        if (price && cur === '1' && price.includes('$')) {
+          // Convert USD to Euro‑style formatting
+          price = price.replace('$', '€').replace('.', ',');
+        }
+        if (price) return price;
+      } catch {
+        // Network hiccup – wait before next attempt
+        await wait(500 * Math.pow(2, attempt));
       }
-      if (price) return price;
-    } catch {}
+    }
   }
-  // Fallback: scrape HTML for price
+  // Fallback 1: use the search/render endpoint (already tried in lookupCondition) – try direct HTML scrape of the listing page
   try {
     const htmlResponse = await steam(`/market/listings/730/${query}`);
     if (htmlResponse?.ok) {
       const html = await htmlResponse.text();
-      const priceMatch = html.match(/"sell_price_text"\s*:\s*"([^"]+)"/i);
+      const priceMatch = html.match(/"sell_price_text"\s*:\s*"([^\"]+)"/i);
       if (priceMatch) {
         let price = priceMatch[1];
-        // Assume USD if $ present, convert to EUR format
         if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
         return price;
       }
+    }
+  } catch {}
+  // Fallback 2: try the older priceoverview endpoint without currency (defaults to user locale)
+  try {
+    const response = await steam(`/market/priceoverview/?appid=730&market_hash_name=${query}`);
+    if (response?.ok) {
+      const data = await response.json();
+      let price = data.lowest_price || data.price || null;
+      if (price && price.includes('$')) price = price.replace('$', '€').replace('.', ',');
+      if (price) return price;
     }
   } catch {}
   return null;
@@ -207,8 +243,8 @@ async function lookupCondition(weapon, skin, condition) {
     }
     // If search didn't find items, fall back to direct priceoverview fetch
     const [normalPrice, stattrakPrice] = await Promise.all([
-      normal ? fetchEURPrice(normal.hash_name) : fetchEURPrice(baseName),
-      stattrak ? fetchEURPrice(stattrak.hash_name) : fetchEURPrice(`StatTrak™ ${baseName}`),
+      normal ? fetchPrice(normal.hash_name) : fetchPrice(baseName),
+      stattrak ? fetchPrice(stattrak.hash_name) : fetchPrice(`StatTrak™ ${baseName}`),
     ])
     return [
       [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: normal?.sell_listings, volume: await fetchVolume(baseName) } : null],

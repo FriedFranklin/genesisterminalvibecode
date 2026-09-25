@@ -5,6 +5,7 @@ on:
     paths:
       - 'WIKI.md'
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   push-wiki:
