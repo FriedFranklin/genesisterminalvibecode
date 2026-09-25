@@ -39,18 +39,37 @@ const skins = [
 ]
 const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
-async function steam(path) {
+// Default headers with rotating user agent
+const defaultHeaders = {
+  'User-Agent': getRandomUserAgent(),
+  'Accept-Language': 'en-US,en;q=0.9',
+  'Referer': 'https://steamcommunity.com/market/',
+};
+
+async function steam(path, extraHeaders = {}) {
+  const headers = { ...defaultHeaders, ...extraHeaders };
   for (let attempt = 0; attempt < 5; attempt += 1) {
     try {
-      const response = await fetch(`https://steamcommunity.com${path}`, { signal: AbortSignal.timeout(15000) })
-      if (response.status !== 429) return response
-      const retryAfter = Number(response.headers.get('retry-after'))
-      await wait(Math.min(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1), 5000))
+      const response = await fetch(`https://steamcommunity.com${path}`, { ...headers, signal: AbortSignal.timeout(15000) });
+      if (response.status !== 429) return response;
+      const retryAfter = Number(response.headers.get('retry-after'));
+      await wait(Math.min(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1), 5000));
     } catch {
-      if (attempt === 0) await wait(2000)
+      if (attempt === 0) await wait(2000);
     }
   }
-  return null
+  return null;
+}
+
+// Generate a random User-Agent string from a pool
+function getRandomUserAgent() {
+  const uas = [
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15',
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0',
+  ];
+  return uas[Math.floor(Math.random() * uas.length)];
 }
 
 async function lookup(marketHashName, includeVolume = false) {
@@ -117,30 +136,58 @@ async function lookup(marketHashName, includeVolume = false) {
 }
 
 async function fetchVolume(marketHashName) {
+  const query = encodeURIComponent(marketHashName);
+  const currencyOptions = ['1', '3', '6'];
+  for (const cur of currencyOptions) {
+    try {
+      const response = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
+      if (!response?.ok) continue;
+      const data = await response.json();
+      if (data.volume) return data.volume;
+    } catch {}
+  }
+  // Fallback: try to scrape price page HTML for volume (very basic)
   try {
-    const query = encodeURIComponent(marketHashName)
-    const response = await steam(`/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`)
-    if (response?.ok) {
-      const data = await response.json()
-      return data.volume || '--'
+    const htmlResponse = await steam(`/market/listings/730/${query}`);
+    if (htmlResponse?.ok) {
+      const html = await htmlResponse.text();
+      const match = html.match(/"volume"\s*:\s*"?(\d+)"?/i);
+      if (match) return match[1];
     }
   } catch {}
-  return '--'
+  return '--';
 }
+
 async function fetchEURPrice(marketHashName) {
-  try {
-    const query = encodeURIComponent(marketHashName)
-    const response = await steam(`/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`)
-    if (response?.ok) {
-      const data = await response.json()
-      let price = data.lowest_price || null
-      if (price && price.includes('$')) {
-        price = price.replace('$', '€').replace('.', ',')
+  const query = encodeURIComponent(marketHashName);
+  const currencyOptions = ['1', '3', '6'];
+  for (const cur of currencyOptions) {
+    try {
+      const response = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
+      if (!response?.ok) continue;
+      const data = await response.json();
+      let price = data.lowest_price || data.price || null;
+      if (price && cur === '1' && price.includes('$')) {
+        price = price.replace('$', '€').replace('.', ',');
       }
-      return price
+      if (price) return price;
+    } catch {}
+  }
+  // Fallback: scrape HTML for price
+  try {
+    const htmlResponse = await steam(`/market/listings/730/${query}`);
+    if (htmlResponse?.ok) {
+      const html = await htmlResponse.text();
+      const priceMatch = html.match(/"sell_price_text"\s*:\s*"([^"]+)"/i);
+      if (priceMatch) {
+        let price = priceMatch[1];
+        // Assume USD if $ present, convert to EUR format
+        if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
+        return price;
+      }
     }
   } catch {}
-  return null
+  return null;
 }
 
 async function lookupCondition(weapon, skin, condition) {
