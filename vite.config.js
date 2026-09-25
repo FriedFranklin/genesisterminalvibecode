@@ -11,7 +11,7 @@ function marketCachePlugin() {
   const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
 
   async function fetchSteam(path) {
-    for (let attempt = 0; attempt < 3; attempt += 1) {
+    for (let attempt = 0; attempt < 5; attempt += 1) {
       const response = await fetch(`https://steamcommunity.com${path}`)
       if (response.status !== 429) return response
       const retryAfter = Number(response.headers.get('retry-after'))

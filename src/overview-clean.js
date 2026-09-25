@@ -363,8 +363,16 @@ async function loadConditions(displayName, force = false) {
     prices.push(...values
       .map((value) => {
         if (typeof value !== 'string') return NaN;
-        // Remove currency symbols and normalize decimal separator
-        const normalized = value.replace('€', '').replace('$', '').replace(',', '.');
+        // Extract numeric characters, handling both European and US formats
+        const numeric = value.replace(/[^0-9.,]/g, '');
+        let normalized;
+        if (numeric.includes(',')) {
+          // Assume European format: remove thousand separators (dots) and replace decimal comma with dot
+          normalized = numeric.replace(/\./g, '').replace(',', '.');
+        } else {
+          // Assume US format: remove thousand separators (commas)
+          normalized = numeric.replace(/,/g, '');
+        }
         return Number.parseFloat(normalized);
       })
       .filter(Number.isFinite))

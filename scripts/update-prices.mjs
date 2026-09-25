@@ -1,4 +1,28 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, writeFile, access, constants, unlink } from 'node:fs/promises'
+
+// Lock file to prevent concurrent executions
+const lockPath = 'public/.prices.lock'
+try {
+  // If lock file exists, another instance is running
+  await access(lockPath, constants.F_OK)
+  console.log('Another instance is already running. Exiting.')
+  process.exit(0)
+} catch {
+  // No lock file, create one
+  await writeFile(lockPath, String(Date.now()));
+// Ensure lock file is removed on process exit or termination
+process.on('exit', async () => {
+  await unlink(lockPath).catch(() => {});
+});
+process.on('SIGINT', async () => {
+  await unlink(lockPath).catch(() => {});
+  process.exit(1);
+});
+process.on('SIGTERM', async () => {
+  await unlink(lockPath).catch(() => {});
+  process.exit(1);
+});
+}
 
 const conditions = [
   'Factory New',
@@ -157,3 +181,5 @@ prices._meta = {
 await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
 await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
 console.log(`Wrote ${Object.keys(prices).length} Steam prices to public/prices.json`)
+// Remove lock file after successful run
+await unlink(lockPath).catch(() => {})
