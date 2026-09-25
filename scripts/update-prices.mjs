@@ -54,33 +54,65 @@ async function steam(path) {
 }
 
 async function lookup(marketHashName, includeVolume = false) {
+  const query = encodeURIComponent(marketHashName);
+  // Try a few currency options to avoid rate limiting / unavailable
+  const currencyOptions = ['1', '3', '6']; // 1=USD, 3=EUR, 6=GBP (if supported)
+  for (const cur of currencyOptions) {
+    try {
+      const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
+      const response = await steam(path);
+      if (!response?.ok) continue;
+      const data = await response.json();
+      const price = data.lowest_price || data.price || '--';
+      // Convert price if needed (e.g., if it's in USD)
+      let formattedPrice = price;
+      if (cur === '1' && formattedPrice.includes('$')) {
+        formattedPrice = formattedPrice.replace('$', '€').replace('.', ',');
+      }
+      const volume = data.volume || '--';
+      return {
+        success: true,
+        price: formattedPrice,
+        listings: '--',
+        volume,
+      };
+    } catch {
+      continue;
+    }
+  }
+  // Fallback: original search‑render method
   try {
-    const query = encodeURIComponent(marketHashName)
     const searchResponse = await steam(
       `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
-    )
-    if (!searchResponse?.ok) return { success: false }
-    const search = await searchResponse.json()
-    const exact = search.results?.find((item) => item.hash_name === marketHashName)
-    if (!exact?.sell_price_text) return { success: false }
-    // Convert USD price to EUR format if needed
-    let price = exact.sell_price_text
+    );
+    if (!searchResponse?.ok) return { success: false };
+    const search = await searchResponse.json();
+    const exact = search.results?.find((item) => item.hash_name === marketHashName);
+    if (!exact?.sell_price_text) return { success: false };
+    let price = exact.sell_price_text;
     if (price.includes('$')) {
-      price = price.replace('$', '€').replace('.', ',')
+      price = price.replace('$', '€').replace('.', ',');
     }
-    let volume = '--'
-    let listings = exact.sell_listings
+    let volume = '--';
+    let listings = exact.sell_listings;
     if (includeVolume) {
-      const overviewResponse = await steam(`/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`)
+      const overviewResponse = await steam(
+        `/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`
+      );
       if (overviewResponse?.ok) {
-        const overview = await overviewResponse.json()
-        volume = overview.volume || '--'
-        if (overview.lowest_price) price = overview.lowest_price
+        const overview = await overviewResponse.json();
+        volume = overview.volume || '--';
+        if (overview.lowest_price) price = overview.lowest_price;
       }
     }
-    return { success: true, price, listings, volume }
+    return {
+      success: true,
+      price,
+      listings,
+      volume,
+    };
   } catch {
-    return { success: false }
+    return { success: false };
   }
 }
 
