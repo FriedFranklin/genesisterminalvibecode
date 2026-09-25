@@ -239,6 +239,8 @@ async function fetchPrice(marketHashName) {
 
 // Playwright fallback implementation – launches a headless browser only when needed
 let _browserPromise = null;
+let _pagePromise = null; // holds { context, page }
+
 async function getBrowser() {
   if (!_browserPromise) {
     _browserPromise = chromium.launch({ headless: true });
@@ -246,15 +248,23 @@ async function getBrowser() {
   return _browserPromise;
 }
 
+async function getPage() {
+  if (!_pagePromise) {
+    const browser = await getBrowser();
+    const context = await browser.newContext({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+      viewport: { width: 1280, height: 720 },
+      locale: 'en-US',
+      timezoneId: 'America/New_York',
+    });
+    const page = await context.newPage();
+    _pagePromise = { context, page };
+  }
+  return _pagePromise.page;
+}
+
 async function playwrightFallback(marketHashName) {
-  const browser = await getBrowser();
-  const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
-    viewport: { width: 1280, height: 720 },
-    locale: 'en-US',
-    timezoneId: 'America/New_York',
-  });
-  const page = await context.newPage();
+  const page = await getPage();
   const encoded = encodeURIComponent(marketHashName);
   const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
   try {
@@ -290,9 +300,8 @@ async function playwrightFallback(marketHashName) {
       const match = scriptContent.match(/"price"\s*:\s*"([^\"]+)"/);
       if (match) return match[1];
     }
-  } finally {
-    await page.close();
-    await context.close();
+  } catch (e) {
+    console.error('Playwright fallback error:', e);
   }
   return null;
 }
