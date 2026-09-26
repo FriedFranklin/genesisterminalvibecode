@@ -496,8 +496,22 @@ async function playwrightFallback(marketHashName) {
 
 async function lookupCondition(weapon, skin, condition) {
   try {
+    const baseName = `${weapon} | ${skin} (${condition})`
+    const query = encodeURIComponent(baseName)
+
+    // If we're rate limited, skip search/render and go straight to fetchPrice (which will use Playwright)
+    if (shouldUsePlaywright()) {
+      console.log(`[LOOKUP] Rate limited detected, skipping search/render for: ${baseName}`);
+      const [normalPrice, stattrakPrice] = await Promise.all([
+        fetchPrice(baseName),
+        fetchPrice(`StatTrak™ ${baseName}`),
+      ])
+      return [
+        [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: '--', volume: await fetchVolume(baseName) } : null],
+        [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: '--', volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
+      ]
     }
-    
+
     console.log(`[LOOKUP] Searching for: ${baseName}`);
     const response = await steam(
       `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
@@ -515,13 +529,13 @@ async function lookupCondition(weapon, skin, condition) {
       console.log(`[LOOKUP] search/render failed, will use direct price fetch`);
     }
     // If search didn't find items, fall back to direct priceoverview fetch
-    const [normalPrice, stattrakPrice] = await Promise.all([
+    const [normalPrice2, stattrakPrice2] = await Promise.all([
       normal ? fetchPrice(normal.hash_name) : fetchPrice(baseName),
       stattrak ? fetchPrice(stattrak.hash_name) : fetchPrice(`StatTrak™ ${baseName}`),
     ])
     return [
-      [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: normal?.sell_listings, volume: await fetchVolume(baseName) } : null],
-      [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: stattrak?.sell_listings, volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
+      [baseName, normalPrice2 ? { sell_price_text: normalPrice2, sell_listings: normal?.sell_listings, volume: await fetchVolume(baseName) } : null],
+      [`StatTrak™ ${baseName}`, stattrakPrice2 ? { sell_price_text: stattrakPrice2, sell_listings: stattrak?.sell_listings, volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
     ]
   } catch (err) {
     console.log(`[LOOKUP] ✗ Error for ${weapon} | ${skin} (${condition}): ${err.message}`);
