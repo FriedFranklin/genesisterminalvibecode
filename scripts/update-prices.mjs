@@ -358,60 +358,104 @@ async function playwrightFallback(marketHashName) {
   console.log(`[PLAYWRIGHT] Attempting browser scrape for: ${marketHashName}`);
   
   let page = null;
+  let context = null;
   try {
     const browser = await getBrowser();
     // Create a NEW page for each request to avoid navigation conflicts
-    const context = await browser.newContext({
+    context = await browser.newContext({
       userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
       viewport: { width: 1280, height: 720 },
       locale: 'en-US',
       timezoneId: 'America/New_York',
     });
     page = await context.newPage();
-    
+
     const encoded = encodeURIComponent(marketHashName);
     const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
-    
+
     // Use domcontentloaded instead of networkidle - more reliable for Steam's dynamic content
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await wait(3000); // Give JS time to render prices
+    await wait(5000); // Give JS more time to render prices
     
+    // Debug: log page title and URL to verify we're on the right page
+    const title = await page.title();
+    console.log(`[PLAYWRIGHT] Page title: ${title}`);
+    console.log(`[PLAYWRIGHT] Current URL: ${page.url()}`);
+
+    // Try multiple selector strategies
     const priceSelectors = [
+      // Buy order price (most common for commodities)
       '#market_commodity_buyrequests .market_listing_price.market_listing_price_with_fee',
+      '#market_commodity_buyrequests .market_listing_price',
+      '.market_commodity_buyrequests .market_listing_price',
+      // Sell listing prices
       '.market_listing_price.market_listing_price_with_fee',
       '#market_commodity_buyrequests span.market_listing_price',
       '.market_table_value .market_listing_price',
       '[id^="buyOrder"] .market_listing_price',
+      // Generic price elements
+      '.market_listing_price',
+      '[data-price]',
+      '.price',
     ];
-    
+
     for (const sel of priceSelectors) {
-      const el = await page.$(sel);
-      if (el) {
+      try {
+        const el = await page.$(sel);
+        if (el) {
+          const txt = await el.textContent();
+          if (txt && txt.trim() && (txt.includes('$') || txt.includes('€') || txt.includes('£') || /^\d+[.,]\d+$/.test(txt.trim()))) {
+            console.log(`[PLAYWRIGHT] ✓ Found price via selector: ${sel} -> ${txt.trim()}`);
+            return txt.trim();
+          }
+        }
+      } catch (selErr) {
+        // Selector error, continue to next
+      }
+    }
+
+    // Try waiting for specific elements to appear
+    try {
+      await page.waitForSelector('.market_listing_price', { timeout: 5000 });
+      console.log('[PLAYWRIGHT] Price element appeared after wait');
+      const elements = await page.$$('.market_listing_price');
+      for (const el of elements) {
         const txt = await el.textContent();
-        if (txt && txt.trim()) {
-          console.log(`[PLAYWRIGHT] ✓ Found price via selector: ${sel}`);
+        if (txt && txt.trim() && (txt.includes('$') || txt.includes('€') || txt.includes('£') || /^\d+[.,]\d+$/.test(txt.trim()))) {
+          console.log(`[PLAYWRIGHT] ✓ Found price after wait: ${txt.trim()}`);
           return txt.trim();
         }
       }
+    } catch (waitErr) {
+      console.log('[PLAYWRIGHT] No price elements found after wait');
     }
-    
+
     // As a last resort, try extracting from page script variables
     const scriptContent = await page.evaluate(() => {
       const scripts = Array.from(document.querySelectorAll('script'));
       for (const s of scripts) {
-        if (s.textContent && (s.textContent.includes('market_commodity_buyrequests') || s.textContent.includes('g_rgAssets'))) {
+        if (s.textContent && (s.textContent.includes('market_commodity_buyrequests') || s.textContent.includes('g_rgAssets') || s.textContent.includes('sell_price_text') || s.textContent.includes('buy_price_text'))) {
           return s.textContent;
         }
       }
       return null;
     });
     if (scriptContent) {
-      const match = scriptContent.match(/"price"\s*:\s*"([^\"]+)"/);
+      const match = scriptContent.match(/"(?:sell_price_text|buy_price_text|price)"\s*:\s*"([^\"]+)"/);
       if (match) {
         console.log(`[PLAYWRIGHT] ✓ Found price via script extraction`);
         return match[1];
       }
     }
+    
+    // Final fallback: get all text content and search for price patterns
+    const bodyText = await page.evaluate(() => document.body.innerText);
+    const priceMatches = bodyText.match(/[\$€£]\s*\d+[.,]\d{2}/g);
+    if (priceMatches && priceMatches.length > 0) {
+      console.log(`[PLAYWRIGHT] ✓ Found price via text search: ${priceMatches[0]}`);
+      return priceMatches[0];
+    }
+    
   } catch (e) {
     if (e.message.includes('Executable doesn') || e.message.includes('browserType.launch')) {
       console.log('[PLAYWRIGHT] Browser not installed, disabling Playwright fallback');
@@ -420,17 +464,12 @@ async function playwrightFallback(marketHashName) {
       console.error('[PLAYWRIGHT] Error:', e.message);
     }
   } finally {
-    // Always close the page to avoid memory leaks
+    // Always close the page and context to avoid memory leaks
     if (page) {
       try { await page.close(); } catch {}
     }
-  }
-  console.log(`[PLAYWRIGHT] ✗ Failed to find price for: ${marketHashName}`);
-  return null;
-}
-
-async function lookupCondition(weapon, skin, condition) {
-  try {
+    if (context) {
+      try { await context.close(); } catch {}
     const baseName = `${weapon} | ${skin} (${condition})`
     const query = encodeURIComponent(baseName)
     
