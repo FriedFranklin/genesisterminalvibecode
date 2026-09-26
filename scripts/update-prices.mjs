@@ -650,3 +650,14 @@ console.log(`[SUMMARY] Success rate: ${((successful / totalEntries) * 100).toFix
 console.log(`[SUMMARY] Total runtime: ${runtime}s`);
 console.log(`[SUMMARY] Written to: public/prices.json, public/skins.json`);
 console.log(`[SUMMARY] ========================================`);
+
+// Close Playwright browser if it was launched to ensure the script exits cleanly
+if (!_browserLaunchFailed) {
+  try {
+    const browser = await getBrowser();
+    await browser.close();
+    console.log('[PLAYWRIGHT] Browser closed');
+  } catch (e) {
+    console.error('[PLAYWRIGHT] Error closing browser:', e);
+  }
+}
