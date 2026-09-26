@@ -77,6 +77,12 @@ function getRandomAcceptLanguage() {
 }
 
 async function steam(path, extraHeaders = {}) {
+  // If we're rate limited, skip API entirely and return null immediately
+  if (shouldUsePlaywright()) {
+    console.log(`[API] Skipping (rate limited): ${path}`);
+    return null;
+  }
+  
   const headers = { ...defaultHeaders, ...extraHeaders };
   console.log(`[API] Fetching: ${path}`);
   for (let attempt = 0; attempt < 5; attempt += 1) {
@@ -193,6 +199,13 @@ async function lookup(marketHashName, includeVolume = false) {
 async function fetchVolume(marketHashName) {
   const query = encodeURIComponent(marketHashName);
   console.log(`[VOLUME] Fetching volume for: ${marketHashName}`);
+  
+  // If we're rate limited, skip API entirely
+  if (shouldUsePlaywright()) {
+    console.log(`[VOLUME] Skipping API (rate limited)`);
+    return '--';
+  }
+  
   // Re‑use the expanded currency list for volume lookup
   const currencyOptions = ['1', '3', '6', '2', '5', '7', '8'];
   for (const cur of currencyOptions) {
@@ -415,6 +428,20 @@ async function lookupCondition(weapon, skin, condition) {
   try {
     const baseName = `${weapon} | ${skin} (${condition})`
     const query = encodeURIComponent(baseName)
+    
+    // If we're rate limited, skip search/render and go straight to fetchPrice (which will use Playwright)
+    if (shouldUsePlaywright()) {
+      console.log(`[LOOKUP] Rate limited detected, skipping search/render for: ${baseName}`);
+      const [normalPrice, stattrakPrice] = await Promise.all([
+        fetchPrice(baseName),
+        fetchPrice(`StatTrak™ ${baseName}`),
+      ])
+      return [
+        [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: '--', volume: await fetchVolume(baseName) } : null],
+        [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: '--', volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
+      ]
+    }
+    
     console.log(`[LOOKUP] Searching for: ${baseName}`);
     const response = await steam(
       `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
@@ -474,7 +501,15 @@ function logProgress(label) {
 
 console.log(`[MAIN] Starting price fetch for container: ${container}`);
 console.log(renderProgressBar('Initializing', 0, totalItems));
-prices[container] = await lookup(container, true)
+
+// Check rate limit before container lookup
+if (shouldUsePlaywright()) {
+  console.log(`[MAIN] Rate limited detected, using Playwright for container`);
+  const pwPrice = await playwrightFallback(container);
+  prices[container] = pwPrice ? { success: true, price: pwPrice, listings: '--', volume: '--' } : { success: false };
+} else {
+  prices[container] = await lookup(container, true)
+}
 console.log(`[MAIN] Container price: ${prices[container]?.price || 'unavailable'}`);
 logProgress('Container');
 
