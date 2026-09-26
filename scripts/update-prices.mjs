@@ -14,22 +14,17 @@ let usePlaywrightFallback = false;
 function recordRateLimit(hit) {
   if (hit) {
     consecutive429s++;
-    if (consecutive429s >= RATE_LIMIT_THRESHOLD && !usePlaywrightFallback) {
-      console.log(`[RATE LIMIT] Detected ${consecutive429s} consecutive 429s - switching to Playwright fallback`);
-      usePlaywrightFallback = true;
-    }
+    // Do NOT switch to global Playwright fallback here – we will handle per‑request fallback later
   } else {
     consecutive429s = 0;
-    // If we were using Playwright fallback and now getting successful responses, switch back
-    if (usePlaywrightFallback && consecutive429s === 0) {
-      console.log(`[RATE LIMIT] Rate limit recovered - switching back to API`);
-      usePlaywrightFallback = false;
-    }
+    // Reset any global fallback flag
+    usePlaywrightFallback = false;
   }
 }
 
 function shouldUsePlaywright() {
-  return usePlaywrightFallback;
+  // Use Playwright fallback when recent consecutive 429 responses exceed threshold
+  return consecutive429s >= RATE_LIMIT_THRESHOLD;
 }
 
 function resetRateLimit() {
@@ -261,9 +256,22 @@ async function fetchVolume(marketHashName) {
 
 async function fetchPrice(marketHashName) {
   const query = encodeURIComponent(marketHashName);
-  // Expanded list of currency IDs to increase chance of success
-  const currencyOptions = ['1', '3', '6', '2', '5', '7', '8']; // 1=USD, 3=EUR, 6=GBP, others are additional currencies supported by Steam
   console.log(`[PRICE] Fetching price for: ${marketHashName}`);
+
+  // If Playwright fallback is active, try to get price from cached condition map first
+  if (shouldUsePlaywright()) {
+    // Extract base name and condition
+    const condMatch = marketHashName.match(/\(([^)]+)\)$/);
+    const condition = condMatch ? condMatch[1] : null;
+    const baseName = marketHashName.replace(/ \([^)]*\)$/, ''); // remove condition part
+    if (condition) {
+      const conditionMap = await getConditionPrices(baseName);
+      if (conditionMap && conditionMap[condition]) {
+        console.log(`[PRICE] ✓ Found via Playwright cache for ${marketHashName}: ${conditionMap[condition]}`);
+        return conditionMap[condition];
+      }
+    }
+  }
 
   // HTML scrape fallback - this often works even when API is rate limited and gives condition‑specific price
   console.log(`[PRICE] Trying HTML scrape fallback...`);
@@ -283,21 +291,19 @@ async function fetchPrice(marketHashName) {
 
   // Try API endpoints next (unless rate limited)
   if (!shouldUsePlaywright()) {
-    // Try each currency with a few retries and exponential back‑off
+    const currencyOptions = ['1', '3', '6', '2', '5', '7', '8']; // expanded list
     for (const cur of currencyOptions) {
       for (let attempt = 0; attempt < 3; attempt++) {
         try {
           const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
           const response = await steam(path);
           if (!response?.ok) {
-            // If rate‑limited, wait a bit before retrying
             await wait(1000 * Math.pow(2, attempt));
             continue;
           }
           const data = await response.json();
           let price = data.lowest_price || data.price || null;
           if (price && cur === '1' && price.includes('$')) {
-            // Convert USD to Euro‑style formatting
             price = price.replace('$', '€').replace('.', ',');
           }
           if (price) {
@@ -305,7 +311,6 @@ async function fetchPrice(marketHashName) {
             return price;
           }
         } catch {
-          // Network hiccup – wait before next attempt
           await wait(500 * Math.pow(2, attempt));
         }
       }
@@ -314,7 +319,7 @@ async function fetchPrice(marketHashName) {
     console.log(`[PRICE] Rate limited - skipping priceoverview API`);
   }
 
-  // Fallback 2: try the older priceoverview endpoint without currency (defaults to user locale)
+  // Fallback 2: older priceoverview without currency
   if (!shouldUsePlaywright()) {
     try {
       const response = await steam(`/market/priceoverview/?appid=730&market_hash_name=${query}`);
@@ -330,7 +335,7 @@ async function fetchPrice(marketHashName) {
     } catch {}
   }
 
-  // Final fallback: Playwright browser scrape
+  // Final fallback: Playwright browser scrape (full page)
   console.log(`[PRICE] All API/HTML methods failed, trying Playwright browser fallback...`);
   try {
     const pwPrice = await playwrightFallback(marketHashName);
@@ -478,7 +483,7 @@ async function playwrightFallback(marketHashName, condition = null) {
 
 // Helper to extract all condition prices for a weapon/skin in one Playwright page load
 async function getConditionPrices(weaponSkin) {
-  // If cached, return
+  // Return cached map if available
   if (weaponPageCache.has(weaponSkin)) return weaponPageCache.get(weaponSkin);
 
   if (_browserLaunchFailed) {
@@ -496,26 +501,48 @@ async function getConditionPrices(weaponSkin) {
   const encoded = encodeURIComponent(weaponSkin);
   const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  await wait(5000);
 
-  // Extract condition-price pairs from the page
-  const conditionMap = await page.evaluate(() => {
+  // Try to extract condition-price pairs from g_rgListingInfo if present
+  let conditionMap = await page.evaluate(() => {
     const map = {};
-    const rows = Array.from(document.querySelectorAll('tr'));
-    const conditions = ['Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred'];
-    for (const row of rows) {
-      const text = row.innerText;
-      for (const cond of conditions) {
-        if (text.includes(cond)) {
-          const priceEl = row.querySelector('.market_commodity_order_price, .market_listing_price, .market_commodity_buyrequests .market_listing_price, .market_commodity_buyrequests .market_listing_price_with_fee');
-          if (priceEl && priceEl.innerText) {
-            map[cond] = priceEl.innerText.trim();
-          }
+    if (window.g_rgListingInfo) {
+      for (const key in window.g_rgListingInfo) {
+        const info = window.g_rgListingInfo[key];
+        const name = info.market_name || '';
+        const price = info.sell_price_text || '';
+        const match = name.match(/\\(([^)]+)\\)$/);
+        if (match && price) {
+          const cond = match[1];
+          if (!map[cond]) map[cond] = price;
         }
       }
     }
     return map;
   });
+
+  // If g_rgListingInfo was empty, fall back to parsing the Market_LoadOrderSpread script
+  if (Object.keys(conditionMap).length === 0) {
+    const scriptContent = await page.$$eval('script', scripts => scripts.map(s => s.textContent).join('\n'));
+    const match = scriptContent.match(/Market_LoadOrderSpread\((\{.*?\})\);/s);
+    if (match) {
+      try {
+        const data = JSON.parse(match[1]);
+        if (data && data.sell_order) {
+          data.sell_order.forEach(order => {
+            const name = order.market_name || '';
+            const price = order.sell_price_text || '';
+            const condMatch = name.match(/\\(([^)]+)\\)$/);
+            if (condMatch && price) {
+              const cond = condMatch[1];
+              if (!conditionMap[cond]) conditionMap[cond] = price;
+            }
+          });
+        }
+      } catch (e) {
+        console.error('[PLAYWRIGHT] Failed to parse Market_LoadOrderSpread JSON:', e.message);
+      }
+    }
+  }
 
   // Cache the result for future lookups of the same weapon/skin
   weaponPageCache.set(weaponSkin, conditionMap);
@@ -528,8 +555,11 @@ async function getConditionPrices(weaponSkin) {
 
 async function lookupCondition(weapon, skin, condition) {
   try {
-    const baseName = `${weapon} | ${skin} (${condition})`;
-    const query = encodeURIComponent(baseName);
+    const baseName = `${weapon} | ${skin}`; // without condition
+    const conditionName = condition; // e.g. "Factory New"
+    const fullName = `${weapon} | ${skin} (${condition})`;
+    const query = encodeURIComponent(fullName);
+;
 
     // If rate limited, use Playwright to fetch all condition prices in a single page load
     if (shouldUsePlaywright()) {
