@@ -2,571 +2,379 @@
   "Sealed Genesis Terminal": {
     "success": true,
     "price": "€0,09",
-    "listings": "--",
-    "volume": "42,466"
-  },
-  "AK-47 | The Oligarch (Well-Worn)": {
-    "success": true,
-    "price": "€39,24",
-    "listings": 144,
-    "volume": "30"
-  },
-  "StatTrak™ AK-47 | The Oligarch (Well-Worn)": {
-    "success": true,
-    "price": "€87,77",
-    "listings": 19,
-    "volume": "1"
-  },
-  "AK-47 | The Oligarch (Minimal Wear)": {
-    "success": true,
-    "price": "€137,93",
-    "listings": 197,
-    "volume": "5"
-  },
-  "StatTrak™ AK-47 | The Oligarch (Minimal Wear)": {
-    "success": true,
-    "price": "€259,99",
-    "listings": 26,
-    "volume": "2"
+    "listings": 407889,
+    "volume": "--"
   },
   "AK-47 | The Oligarch (Battle-Scarred)": {
     "success": true,
-    "price": "€32,35",
-    "listings": 105,
-    "volume": "31"
+    "price": "€310,50",
+    "listings": "--",
+    "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Battle-Scarred)": {
     "success": true,
-    "price": "€68,20",
-    "listings": 18,
+    "price": "€310,50",
+    "listings": "--",
     "volume": "--"
   },
-  "AK-47 | The Oligarch (Field-Tested)": {
+  "AK-47 | The Oligarch (Minimal Wear)": {
     "success": true,
-    "price": "€54,05",
-    "listings": 347,
-    "volume": "20"
+    "price": "€310,50",
+    "listings": "--",
+    "volume": "--"
   },
-  "StatTrak™ AK-47 | The Oligarch (Field-Tested)": {
+  "StatTrak™ AK-47 | The Oligarch (Minimal Wear)": {
     "success": true,
-    "price": "€113,98",
-    "listings": 31,
+    "price": "€310,50",
+    "listings": "--",
     "volume": "--"
   },
   "AK-47 | The Oligarch (Factory New)": {
     "success": true,
-    "price": "€353,86",
-    "listings": 37,
+    "price": "€310,50",
+    "listings": "--",
     "volume": "--"
   },
   "StatTrak™ AK-47 | The Oligarch (Factory New)": {
     "success": true,
-    "price": "€649,61",
-    "listings": 5,
+    "price": "€310,50",
+    "listings": "--",
     "volume": "--"
   },
-  "M4A4 | Full Throttle (Field-Tested)": {
+  "AK-47 | The Oligarch (Well-Worn)": {
     "success": true,
-    "price": "€50,25",
-    "listings": 229,
-    "volume": "16"
+    "price": "€310,50",
+    "listings": "--",
+    "volume": "--"
   },
-  "StatTrak™ M4A4 | Full Throttle (Field-Tested)": {
+  "StatTrak™ AK-47 | The Oligarch (Well-Worn)": {
     "success": true,
-    "price": "€111,13",
-    "listings": 21,
-    "volume": "3"
+    "price": "€310,50",
+    "listings": "--",
+    "volume": "--"
   },
-  "M4A4 | Full Throttle (Battle-Scarred)": {
+  "AK-47 | The Oligarch (Field-Tested)": {
     "success": true,
-    "price": "€29,01",
-    "listings": 108,
-    "volume": "28"
+    "price": "€310,50",
+    "listings": "--",
+    "volume": "--"
   },
-  "StatTrak™ M4A4 | Full Throttle (Battle-Scarred)": {
+  "StatTrak™ AK-47 | The Oligarch (Field-Tested)": {
     "success": true,
-    "price": "€55,04",
-    "listings": 20,
-    "volume": "3"
-  },
-  "M4A4 | Full Throttle (Well-Worn)": {
-    "success": true,
-    "price": "€35,46",
-    "listings": 114,
-    "volume": "17"
-  },
-  "StatTrak™ M4A4 | Full Throttle (Well-Worn)": {
-    "success": true,
-    "price": "€78,12",
-    "listings": 17,
-    "volume": "3"
+    "price": "€310,50",
+    "listings": "--",
+    "volume": "--"
   },
   "M4A4 | Full Throttle (Minimal Wear)": {
     "success": true,
-    "price": "€101,00",
-    "listings": 147,
-    "volume": "5"
+    "price": "€240,00",
+    "listings": "--",
+    "volume": "--"
   },
   "StatTrak™ M4A4 | Full Throttle (Minimal Wear)": {
     "success": true,
-    "price": "€234,62",
-    "listings": 17,
+    "price": "€240,00",
+    "listings": "--",
     "volume": "--"
   },
   "M4A4 | Full Throttle (Factory New)": {
     "success": true,
-    "price": "€273,52",
-    "listings": 29,
-    "volume": "1"
+    "price": "€240,00",
+    "listings": "--",
+    "volume": "--"
   },
   "StatTrak™ M4A4 | Full Throttle (Factory New)": {
     "success": true,
-    "price": "€851,39",
-    "listings": 3,
+    "price": "€240,00",
+    "listings": "--",
     "volume": "--"
   },
-  "AWP | Ice Coaled (Well-Worn)": {
+  "M4A4 | Full Throttle (Battle-Scarred)": {
     "success": true,
-    "price": "€5,90",
-    "listings": 314,
-    "volume": "87"
+    "price": "€240,00",
+    "listings": "--",
+    "volume": "--"
   },
-  "StatTrak™ AWP | Ice Coaled (Well-Worn)": {
+  "StatTrak™ M4A4 | Full Throttle (Battle-Scarred)": {
     "success": true,
-    "price": "€11,74",
-    "listings": 69,
-    "volume": "12"
+    "price": "€240,00",
+    "listings": "--",
+    "volume": "--"
   },
-  "AWP | Ice Coaled (Field-Tested)": {
+  "M4A4 | Full Throttle (Well-Worn)": {
     "success": true,
-    "price": "€8,33",
-    "listings": 508,
-    "volume": "108"
+    "price": "€240,00",
+    "listings": "--",
+    "volume": "--"
   },
-  "StatTrak™ AWP | Ice Coaled (Field-Tested)": {
+  "StatTrak™ M4A4 | Full Throttle (Well-Worn)": {
     "success": true,
-    "price": "€20,16",
-    "listings": 78,
-    "volume": "12"
+    "price": "€240,00",
+    "listings": "--",
+    "volume": "--"
   },
-  "AWP | Ice Coaled (Battle-Scarred)": {
+  "M4A4 | Full Throttle (Field-Tested)": {
     "success": true,
-    "price": "€4,64",
-    "listings": 244,
-    "volume": "100"
+    "price": "€240,00",
+    "listings": "--",
+    "volume": "--"
   },
-  "StatTrak™ AWP | Ice Coaled (Battle-Scarred)": {
+  "StatTrak™ M4A4 | Full Throttle (Field-Tested)": {
     "success": true,
-    "price": "€11,23",
-    "listings": 76,
-    "volume": "36"
-  },
-  "AWP | Ice Coaled (Minimal Wear)": {
-    "success": true,
-    "price": "€16,86",
-    "listings": 413,
-    "volume": "55"
-  },
-  "StatTrak™ AWP | Ice Coaled (Minimal Wear)": {
-    "success": true,
-    "price": "€35,07",
-    "listings": 69,
-    "volume": "4"
+    "price": "€240,00",
+    "listings": "--",
+    "volume": "--"
   },
   "AWP | Ice Coaled (Factory New)": {
-    "success": true,
-    "price": "€35,54",
-    "listings": 94,
-    "volume": "5"
+    "success": false
   },
   "StatTrak™ AWP | Ice Coaled (Factory New)": {
-    "success": true,
-    "price": "€89,99",
-    "listings": 36,
-    "volume": "--"
+    "success": false
+  },
+  "AWP | Ice Coaled (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Field-Tested)": {
+    "success": false
+  },
+  "AWP | Ice Coaled (Well-Worn)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Well-Worn)": {
+    "success": false
+  },
+  "AWP | Ice Coaled (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Battle-Scarred)": {
+    "success": false
+  },
+  "AWP | Ice Coaled (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ AWP | Ice Coaled (Minimal Wear)": {
+    "success": false
   },
   "Glock-18 | Mirror Mosaic (Factory New)": {
-    "success": true,
-    "price": "€33,05",
-    "listings": 119,
-    "volume": "2"
+    "success": false
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Factory New)": {
-    "success": true,
-    "price": "€80,09",
-    "listings": 15,
-    "volume": "1"
+    "success": false
   },
   "Glock-18 | Mirror Mosaic (Field-Tested)": {
-    "success": true,
-    "price": "€6,99",
-    "listings": 297,
-    "volume": "55"
+    "success": false
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Field-Tested)": {
-    "success": true,
-    "price": "€15,68",
-    "listings": 71,
-    "volume": "7"
-  },
-  "Glock-18 | Mirror Mosaic (Minimal Wear)": {
-    "success": true,
-    "price": "€14,07",
-    "listings": 267,
-    "volume": "22"
-  },
-  "StatTrak™ Glock-18 | Mirror Mosaic (Minimal Wear)": {
-    "success": true,
-    "price": "€32,77",
-    "listings": 53,
-    "volume": "3"
+    "success": false
   },
   "Glock-18 | Mirror Mosaic (Well-Worn)": {
-    "success": true,
-    "price": "€5,10",
-    "listings": 266,
-    "volume": "31"
+    "success": false
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Well-Worn)": {
-    "success": true,
-    "price": "€11,52",
-    "listings": 35,
-    "volume": "6"
+    "success": false
+  },
+  "Glock-18 | Mirror Mosaic (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ Glock-18 | Mirror Mosaic (Minimal Wear)": {
+    "success": false
   },
   "Glock-18 | Mirror Mosaic (Battle-Scarred)": {
-    "success": true,
-    "price": "€3,79",
-    "listings": 187,
-    "volume": "19"
+    "success": false
   },
   "StatTrak™ Glock-18 | Mirror Mosaic (Battle-Scarred)": {
-    "success": true,
-    "price": "€9,02",
-    "listings": 27,
-    "volume": "13"
-  },
-  "MP7 | Smoking Kills (Battle-Scarred)": {
-    "success": true,
-    "price": "€3,83",
-    "listings": 179,
-    "volume": "15"
-  },
-  "StatTrak™ MP7 | Smoking Kills (Battle-Scarred)": {
-    "success": true,
-    "price": "€8,54",
-    "listings": 43,
-    "volume": "10"
-  },
-  "MP7 | Smoking Kills (Well-Worn)": {
-    "success": true,
-    "price": "€5,57",
-    "listings": 280,
-    "volume": "39"
-  },
-  "StatTrak™ MP7 | Smoking Kills (Well-Worn)": {
-    "success": true,
-    "price": "€12,04",
-    "listings": 35,
-    "volume": "2"
+    "success": false
   },
   "MP7 | Smoking Kills (Field-Tested)": {
-    "success": true,
-    "price": "€8,17",
-    "listings": 384,
-    "volume": "53"
+    "success": false
   },
   "StatTrak™ MP7 | Smoking Kills (Field-Tested)": {
-    "success": true,
-    "price": "€16,29",
-    "listings": 55,
-    "volume": "4"
+    "success": false
   },
   "MP7 | Smoking Kills (Minimal Wear)": {
-    "success": true,
-    "price": "€15,30",
-    "listings": 314,
-    "volume": "15"
+    "success": false
   },
   "StatTrak™ MP7 | Smoking Kills (Minimal Wear)": {
-    "success": true,
-    "price": "€39,53",
-    "listings": 51,
-    "volume": "2"
+    "success": false
   },
   "MP7 | Smoking Kills (Factory New)": {
-    "success": true,
-    "price": "€35,00",
-    "listings": 96,
-    "volume": "3"
+    "success": false
   },
   "StatTrak™ MP7 | Smoking Kills (Factory New)": {
-    "success": true,
-    "price": "€109,25",
-    "listings": 12,
-    "volume": "1"
+    "success": false
   },
-  "M4A1-S | Liquidation (Minimal Wear)": {
-    "success": true,
-    "price": "€5,92",
-    "listings": 794,
-    "volume": "150"
+  "MP7 | Smoking Kills (Well-Worn)": {
+    "success": false
   },
-  "StatTrak™ M4A1-S | Liquidation (Minimal Wear)": {
-    "success": true,
-    "price": "€14,91",
-    "listings": 161,
-    "volume": "8"
+  "StatTrak™ MP7 | Smoking Kills (Well-Worn)": {
+    "success": false
   },
-  "M4A1-S | Liquidation (Battle-Scarred)": {
-    "success": true,
-    "price": "€0,98",
-    "listings": 609,
-    "volume": "107"
+  "MP7 | Smoking Kills (Battle-Scarred)": {
+    "success": false
   },
-  "StatTrak™ M4A1-S | Liquidation (Battle-Scarred)": {
-    "success": true,
-    "price": "€4,50",
-    "listings": 61,
-    "volume": "22"
+  "StatTrak™ MP7 | Smoking Kills (Battle-Scarred)": {
+    "success": false
   },
   "M4A1-S | Liquidation (Well-Worn)": {
-    "success": true,
-    "price": "€1,65",
-    "listings": 668,
-    "volume": "187"
+    "success": false
   },
   "StatTrak™ M4A1-S | Liquidation (Well-Worn)": {
-    "success": true,
-    "price": "€5,46",
-    "listings": 91,
-    "volume": "20"
+    "success": false
   },
-  "M4A1-S | Liquidation (Field-Tested)": {
-    "success": true,
-    "price": "€2,72",
-    "listings": 1168,
-    "volume": "275"
+  "M4A1-S | Liquidation (Battle-Scarred)": {
+    "success": false
   },
-  "StatTrak™ M4A1-S | Liquidation (Field-Tested)": {
-    "success": true,
-    "price": "€7,82",
-    "listings": 169,
-    "volume": "27"
+  "StatTrak™ M4A1-S | Liquidation (Battle-Scarred)": {
+    "success": false
+  },
+  "M4A1-S | Liquidation (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ M4A1-S | Liquidation (Minimal Wear)": {
+    "success": false
   },
   "M4A1-S | Liquidation (Factory New)": {
-    "success": true,
-    "price": "€13,04",
-    "listings": 303,
-    "volume": "20"
+    "success": false
   },
   "StatTrak™ M4A1-S | Liquidation (Factory New)": {
-    "success": true,
-    "price": "€36,47",
-    "listings": 57,
-    "volume": "--"
+    "success": false
   },
-  "Dual Berettas | Angel Eyes (Factory New)": {
-    "success": true,
-    "price": "€4,74",
-    "listings": 173,
-    "volume": "8"
+  "M4A1-S | Liquidation (Field-Tested)": {
+    "success": false
   },
-  "StatTrak™ Dual Berettas | Angel Eyes (Factory New)": {
-    "success": true,
-    "price": "€8,64",
-    "listings": 41,
-    "volume": "2"
+  "StatTrak™ M4A1-S | Liquidation (Field-Tested)": {
+    "success": false
   },
   "Dual Berettas | Angel Eyes (Well-Worn)": {
-    "success": true,
-    "price": "€0,64",
-    "listings": 396,
-    "volume": "54"
+    "success": false
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Well-Worn)": {
-    "success": true,
-    "price": "€1,56",
-    "listings": 44,
-    "volume": "6"
-  },
-  "Dual Berettas | Angel Eyes (Minimal Wear)": {
-    "success": true,
-    "price": "€2,02",
-    "listings": 292,
-    "volume": "42"
-  },
-  "StatTrak™ Dual Berettas | Angel Eyes (Minimal Wear)": {
-    "success": true,
-    "price": "€3,80",
-    "listings": 85,
-    "volume": "10"
+    "success": false
   },
   "Dual Berettas | Angel Eyes (Field-Tested)": {
-    "success": true,
-    "price": "€0,84",
-    "listings": 351,
-    "volume": "77"
+    "success": false
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Field-Tested)": {
-    "success": true,
-    "price": "€1,74",
-    "listings": 94,
-    "volume": "12"
+    "success": false
+  },
+  "Dual Berettas | Angel Eyes (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ Dual Berettas | Angel Eyes (Factory New)": {
+    "success": false
+  },
+  "Dual Berettas | Angel Eyes (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ Dual Berettas | Angel Eyes (Minimal Wear)": {
+    "success": false
   },
   "Dual Berettas | Angel Eyes (Battle-Scarred)": {
-    "success": true,
-    "price": "€0,57",
-    "listings": 372,
-    "volume": "55"
+    "success": false
   },
   "StatTrak™ Dual Berettas | Angel Eyes (Battle-Scarred)": {
-    "success": true,
-    "price": "€1,54",
-    "listings": 64,
-    "volume": "8"
-  },
-  "UMP-45 | Continuum (Well-Worn)": {
-    "success": true,
-    "price": "€0,64",
-    "listings": 345,
-    "volume": "56"
-  },
-  "StatTrak™ UMP-45 | Continuum (Well-Worn)": {
-    "success": true,
-    "price": "€1,62",
-    "listings": 39,
-    "volume": "7"
-  },
-  "UMP-45 | Continuum (Field-Tested)": {
-    "success": true,
-    "price": "€0,80",
-    "listings": 444,
-    "volume": "70"
-  },
-  "StatTrak™ UMP-45 | Continuum (Field-Tested)": {
-    "success": true,
-    "price": "€1,78",
-    "listings": 69,
-    "volume": "4"
+    "success": false
   },
   "UMP-45 | Continuum (Factory New)": {
     "success": true,
-    "price": "€4,09",
-    "listings": 244,
-    "volume": "2"
+    "price": "€3,61",
+    "listings": "--",
+    "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Factory New)": {
     "success": true,
-    "price": "€8,86",
-    "listings": 30,
+    "price": "€3,61",
+    "listings": "--",
     "volume": "--"
   },
   "UMP-45 | Continuum (Battle-Scarred)": {
     "success": true,
-    "price": "€0,57",
-    "listings": 404,
-    "volume": "63"
+    "price": "€3,61",
+    "listings": "--",
+    "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Battle-Scarred)": {
+    "success": false
+  },
+  "UMP-45 | Continuum (Well-Worn)": {
     "success": true,
-    "price": "€1,23",
-    "listings": 72,
+    "price": "€3,61",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ UMP-45 | Continuum (Well-Worn)": {
+    "success": false
+  },
+  "UMP-45 | Continuum (Field-Tested)": {
+    "success": true,
+    "price": "€3,61",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ UMP-45 | Continuum (Field-Tested)": {
+    "success": true,
+    "price": "€3,61",
+    "listings": "--",
     "volume": "--"
   },
   "UMP-45 | Continuum (Minimal Wear)": {
     "success": true,
-    "price": "€1,69",
-    "listings": 305,
+    "price": "€3,61",
+    "listings": "--",
     "volume": "--"
   },
   "StatTrak™ UMP-45 | Continuum (Minimal Wear)": {
     "success": true,
-    "price": "€3,56",
-    "listings": 71,
+    "price": "€3,61",
+    "listings": "--",
     "volume": "--"
-  },
-  "MAC-10 | Cat Fight (Factory New)": {
-    "success": true,
-    "price": "€4,11",
-    "listings": 219,
-    "volume": "9"
-  },
-  "StatTrak™ MAC-10 | Cat Fight (Factory New)": {
-    "success": true,
-    "price": "€9,57",
-    "listings": 36,
-    "volume": "2"
-  },
-  "MAC-10 | Cat Fight (Battle-Scarred)": {
-    "success": true,
-    "price": "€0,52",
-    "listings": 248,
-    "volume": "28"
-  },
-  "StatTrak™ MAC-10 | Cat Fight (Battle-Scarred)": {
-    "success": true,
-    "price": "€1,26",
-    "listings": 71,
-    "volume": "11"
-  },
-  "MAC-10 | Cat Fight (Minimal Wear)": {
-    "success": true,
-    "price": "€1,69",
-    "listings": 302,
-    "volume": "50"
-  },
-  "StatTrak™ MAC-10 | Cat Fight (Minimal Wear)": {
-    "success": true,
-    "price": "€3,77",
-    "listings": 66,
-    "volume": "7"
   },
   "MAC-10 | Cat Fight (Field-Tested)": {
     "success": true,
-    "price": "€0,80",
-    "listings": 284,
-    "volume": "116"
+    "price": "€3,62",
+    "listings": "--",
+    "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Field-Tested)": {
+    "success": false
+  },
+  "MAC-10 | Cat Fight (Factory New)": {
     "success": true,
-    "price": "€1,84",
-    "listings": 75,
-    "volume": "21"
+    "price": "€3,62",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ MAC-10 | Cat Fight (Factory New)": {
+    "success": false
+  },
+  "MAC-10 | Cat Fight (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ MAC-10 | Cat Fight (Battle-Scarred)": {
+    "success": false
   },
   "MAC-10 | Cat Fight (Well-Worn)": {
     "success": true,
-    "price": "€0,65",
-    "listings": 286,
-    "volume": "42"
+    "price": "€3,62",
+    "listings": "--",
+    "volume": "--"
   },
   "StatTrak™ MAC-10 | Cat Fight (Well-Worn)": {
     "success": true,
-    "price": "€1,57",
-    "listings": 58,
-    "volume": "10"
-  },
-  "Nova | Ocular (Well-Worn)": {
-    "success": false
-  },
-  "StatTrak™ Nova | Ocular (Well-Worn)": {
-    "success": false
-  },
-  "Nova | Ocular (Factory New)": {
-    "success": false
-  },
-  "StatTrak™ Nova | Ocular (Factory New)": {
-    "success": true,
-    "price": "€3,63",
-    "listings": 25,
+    "price": "€3,62",
+    "listings": "--",
     "volume": "--"
   },
-  "Nova | Ocular (Minimal Wear)": {
-    "success": false
-  },
-  "StatTrak™ Nova | Ocular (Minimal Wear)": {
+  "MAC-10 | Cat Fight (Minimal Wear)": {
     "success": true,
-    "price": "€3,63",
-    "listings": 82,
+    "price": "€3,62",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ MAC-10 | Cat Fight (Minimal Wear)": {
+    "success": true,
+    "price": "€3,62",
+    "listings": "--",
     "volume": "--"
   },
   "Nova | Ocular (Battle-Scarred)": {
@@ -575,25 +383,61 @@
   "StatTrak™ Nova | Ocular (Battle-Scarred)": {
     "success": true,
     "price": "€3,63",
-    "listings": 41,
+    "listings": "--",
+    "volume": "--"
+  },
+  "Nova | Ocular (Well-Worn)": {
+    "success": true,
+    "price": "€3,63",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ Nova | Ocular (Well-Worn)": {
+    "success": true,
+    "price": "€3,63",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Nova | Ocular (Minimal Wear)": {
+    "success": true,
+    "price": "€3,63",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ Nova | Ocular (Minimal Wear)": {
+    "success": true,
+    "price": "€3,63",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Nova | Ocular (Factory New)": {
+    "success": true,
+    "price": "€3,63",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ Nova | Ocular (Factory New)": {
+    "success": true,
+    "price": "€3,63",
+    "listings": "--",
     "volume": "--"
   },
   "Nova | Ocular (Field-Tested)": {
     "success": true,
     "price": "€3,63",
-    "listings": 468,
+    "listings": "--",
     "volume": "--"
   },
   "StatTrak™ Nova | Ocular (Field-Tested)": {
     "success": true,
     "price": "€3,63",
-    "listings": 89,
+    "listings": "--",
     "volume": "--"
   },
-  "AUG | Trigger Discipline (Field-Tested)": {
+  "AUG | Trigger Discipline (Battle-Scarred)": {
     "success": false
   },
-  "StatTrak™ AUG | Trigger Discipline (Field-Tested)": {
+  "StatTrak™ AUG | Trigger Discipline (Battle-Scarred)": {
     "success": false
   },
   "AUG | Trigger Discipline (Minimal Wear)": {
@@ -602,40 +446,28 @@
   "StatTrak™ AUG | Trigger Discipline (Minimal Wear)": {
     "success": false
   },
-  "AUG | Trigger Discipline (Well-Worn)": {
-    "success": false
-  },
-  "StatTrak™ AUG | Trigger Discipline (Well-Worn)": {
-    "success": false
-  },
-  "AUG | Trigger Discipline (Battle-Scarred)": {
-    "success": false
-  },
-  "StatTrak™ AUG | Trigger Discipline (Battle-Scarred)": {
-    "success": false
-  },
   "AUG | Trigger Discipline (Factory New)": {
     "success": false
   },
   "StatTrak™ AUG | Trigger Discipline (Factory New)": {
     "success": false
   },
-  "P2000 | Red Wing (Minimal Wear)": {
+  "AUG | Trigger Discipline (Well-Worn)": {
     "success": false
   },
-  "StatTrak™ P2000 | Red Wing (Minimal Wear)": {
+  "StatTrak™ AUG | Trigger Discipline (Well-Worn)": {
+    "success": false
+  },
+  "AUG | Trigger Discipline (Field-Tested)": {
+    "success": false
+  },
+  "StatTrak™ AUG | Trigger Discipline (Field-Tested)": {
     "success": false
   },
   "P2000 | Red Wing (Well-Worn)": {
     "success": false
   },
   "StatTrak™ P2000 | Red Wing (Well-Worn)": {
-    "success": false
-  },
-  "P2000 | Red Wing (Battle-Scarred)": {
-    "success": false
-  },
-  "StatTrak™ P2000 | Red Wing (Battle-Scarred)": {
     "success": false
   },
   "P2000 | Red Wing (Field-Tested)": {
@@ -650,22 +482,22 @@
   "StatTrak™ P2000 | Red Wing (Factory New)": {
     "success": false
   },
+  "P2000 | Red Wing (Battle-Scarred)": {
+    "success": false
+  },
+  "StatTrak™ P2000 | Red Wing (Battle-Scarred)": {
+    "success": false
+  },
+  "P2000 | Red Wing (Minimal Wear)": {
+    "success": false
+  },
+  "StatTrak™ P2000 | Red Wing (Minimal Wear)": {
+    "success": false
+  },
   "MP5-SD | Focus (Minimal Wear)": {
     "success": false
   },
   "StatTrak™ MP5-SD | Focus (Minimal Wear)": {
-    "success": false
-  },
-  "MP5-SD | Focus (Battle-Scarred)": {
-    "success": false
-  },
-  "StatTrak™ MP5-SD | Focus (Battle-Scarred)": {
-    "success": false
-  },
-  "MP5-SD | Focus (Factory New)": {
-    "success": false
-  },
-  "StatTrak™ MP5-SD | Focus (Factory New)": {
     "success": false
   },
   "MP5-SD | Focus (Field-Tested)": {
@@ -674,81 +506,54 @@
   "StatTrak™ MP5-SD | Focus (Field-Tested)": {
     "success": false
   },
+  "MP5-SD | Focus (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ MP5-SD | Focus (Factory New)": {
+    "success": false
+  },
   "MP5-SD | Focus (Well-Worn)": {
     "success": false
   },
   "StatTrak™ MP5-SD | Focus (Well-Worn)": {
     "success": false
   },
-  "MP9 | Broken Record (Battle-Scarred)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+  "MP5-SD | Focus (Battle-Scarred)": {
+    "success": false
   },
-  "StatTrak™ MP9 | Broken Record (Battle-Scarred)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+  "StatTrak™ MP5-SD | Focus (Battle-Scarred)": {
+    "success": false
   },
   "MP9 | Broken Record (Minimal Wear)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+    "success": false
   },
   "StatTrak™ MP9 | Broken Record (Minimal Wear)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+    "success": false
   },
-  "MP9 | Broken Record (Factory New)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+  "MP9 | Broken Record (Battle-Scarred)": {
+    "success": false
   },
-  "StatTrak™ MP9 | Broken Record (Factory New)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+  "StatTrak™ MP9 | Broken Record (Battle-Scarred)": {
+    "success": false
   },
   "MP9 | Broken Record (Field-Tested)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+    "success": false
   },
   "StatTrak™ MP9 | Broken Record (Field-Tested)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+    "success": false
+  },
+  "MP9 | Broken Record (Factory New)": {
+    "success": false
+  },
+  "StatTrak™ MP9 | Broken Record (Factory New)": {
+    "success": false
   },
   "MP9 | Broken Record (Well-Worn)": {
-    "success": true,
-    "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
+    "success": false
   },
   "StatTrak™ MP9 | Broken Record (Well-Worn)": {
     "success": true,
     "price": "€0,78",
-    "listings": "--",
-    "volume": "--"
-  },
-  "MAG-7 | MAGnitude (Field-Tested)": {
-    "success": true,
-    "price": "€0,74",
-    "listings": "--",
-    "volume": "--"
-  },
-  "StatTrak™ MAG-7 | MAGnitude (Field-Tested)": {
-    "success": true,
-    "price": "€0,74",
     "listings": "--",
     "volume": "--"
   },
@@ -759,18 +564,6 @@
     "volume": "--"
   },
   "StatTrak™ MAG-7 | MAGnitude (Battle-Scarred)": {
-    "success": true,
-    "price": "€0,74",
-    "listings": "--",
-    "volume": "--"
-  },
-  "MAG-7 | MAGnitude (Well-Worn)": {
-    "success": true,
-    "price": "€0,74",
-    "listings": "--",
-    "volume": "--"
-  },
-  "StatTrak™ MAG-7 | MAGnitude (Well-Worn)": {
     "success": true,
     "price": "€0,74",
     "listings": "--",
@@ -788,6 +581,30 @@
     "listings": "--",
     "volume": "--"
   },
+  "MAG-7 | MAGnitude (Field-Tested)": {
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ MAG-7 | MAGnitude (Field-Tested)": {
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAG-7 | MAGnitude (Well-Worn)": {
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ MAG-7 | MAGnitude (Well-Worn)": {
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
+  },
   "MAG-7 | MAGnitude (Factory New)": {
     "success": true,
     "price": "€0,74",
@@ -800,49 +617,73 @@
     "listings": "--",
     "volume": "--"
   },
-  "P250 | Bullfrog (Factory New)": {
-    "success": false
-  },
-  "StatTrak™ P250 | Bullfrog (Factory New)": {
+  "P250 | Bullfrog (Field-Tested)": {
     "success": true,
-    "price": "€0,78",
+    "price": "€0,80",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ P250 | Bullfrog (Field-Tested)": {
+    "success": true,
+    "price": "€0,80",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P250 | Bullfrog (Battle-Scarred)": {
+    "success": true,
+    "price": "€0,80",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ P250 | Bullfrog (Battle-Scarred)": {
+    "success": true,
+    "price": "€0,80",
     "listings": "--",
     "volume": "--"
   },
   "P250 | Bullfrog (Well-Worn)": {
     "success": true,
-    "price": "€0,78",
+    "price": "€0,80",
     "listings": "--",
     "volume": "--"
   },
   "StatTrak™ P250 | Bullfrog (Well-Worn)": {
-    "success": false
-  },
-  "P250 | Bullfrog (Battle-Scarred)": {
-    "success": false
-  },
-  "StatTrak™ P250 | Bullfrog (Battle-Scarred)": {
     "success": true,
-    "price": "€0,78",
+    "price": "€0,80",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P250 | Bullfrog (Factory New)": {
+    "success": true,
+    "price": "€0,80",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ P250 | Bullfrog (Factory New)": {
+    "success": true,
+    "price": "€0,80",
     "listings": "--",
     "volume": "--"
   },
   "P250 | Bullfrog (Minimal Wear)": {
     "success": true,
-    "price": "€0,78",
+    "price": "€0,80",
     "listings": "--",
     "volume": "--"
   },
   "StatTrak™ P250 | Bullfrog (Minimal Wear)": {
-    "success": false
-  },
-  "P250 | Bullfrog (Field-Tested)": {
     "success": true,
-    "price": "€0,78",
+    "price": "€0,80",
     "listings": "--",
     "volume": "--"
   },
-  "StatTrak™ P250 | Bullfrog (Field-Tested)": {
+  "SCAR-20 | Caged (Well-Worn)": {
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ SCAR-20 | Caged (Well-Worn)": {
     "success": false
   },
   "SCAR-20 | Caged (Battle-Scarred)": {
@@ -851,33 +692,39 @@
   "StatTrak™ SCAR-20 | Caged (Battle-Scarred)": {
     "success": false
   },
-  "SCAR-20 | Caged (Factory New)": {
-    "success": false
-  },
-  "StatTrak™ SCAR-20 | Caged (Factory New)": {
-    "success": false
-  },
-  "SCAR-20 | Caged (Minimal Wear)": {
-    "success": false
-  },
-  "StatTrak™ SCAR-20 | Caged (Minimal Wear)": {
-    "success": false
-  },
   "SCAR-20 | Caged (Field-Tested)": {
-    "success": false
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
   },
   "StatTrak™ SCAR-20 | Caged (Field-Tested)": {
     "success": false
   },
-  "SCAR-20 | Caged (Well-Worn)": {
+  "SCAR-20 | Caged (Minimal Wear)": {
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ SCAR-20 | Caged (Minimal Wear)": {
     "success": false
   },
-  "StatTrak™ SCAR-20 | Caged (Well-Worn)": {
-    "success": false
+  "SCAR-20 | Caged (Factory New)": {
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "StatTrak™ SCAR-20 | Caged (Factory New)": {
+    "success": true,
+    "price": "€0,74",
+    "listings": "--",
+    "volume": "--"
   },
   "_meta": {
     "source": "Steam Community Market search/render",
-    "generatedAt": "2026-09-26T12:59:13.358Z",
+    "generatedAt": "2026-09-26T16:52:54.513Z",
     "note": "Prices are exact buyer-facing sell_price_text values returned by Steam."
   }
 }
