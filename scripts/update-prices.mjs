@@ -329,7 +329,6 @@ async function fetchPrice(marketHashName) {
 
 // Playwright fallback implementation – launches a headless browser only when needed
 let _browserPromise = null;
-let _pagePromise = null; // holds { context, page }
 let _browserLaunchFailed = false;
 
 async function getBrowser() {
@@ -351,33 +350,32 @@ async function getBrowser() {
   return _browserPromise;
 }
 
-async function getPage() {
-  if (!_pagePromise) {
-    const browser = await getBrowser();
-    const context = await browser.newContext({
-      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
-      viewport: { width: 1280, height: 720 },
-      locale: 'en-US',
-      timezoneId: 'America/New_York',
-    });
-    const page = await context.newPage();
-    _pagePromise = { context, page };
-  }
-  return _pagePromise.page;
-}
-
 async function playwrightFallback(marketHashName) {
   if (_browserLaunchFailed) {
     console.log(`[PLAYWRIGHT] Skipping - browser not available`);
     return null;
   }
   console.log(`[PLAYWRIGHT] Attempting browser scrape for: ${marketHashName}`);
+  
+  let page = null;
   try {
-    const page = await getPage();
+    const browser = await getBrowser();
+    // Create a NEW page for each request to avoid navigation conflicts
+    const context = await browser.newContext({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+      viewport: { width: 1280, height: 720 },
+      locale: 'en-US',
+      timezoneId: 'America/New_York',
+    });
+    page = await context.newPage();
+    
     const encoded = encodeURIComponent(marketHashName);
     const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
-    await wait(2000);
+    
+    // Use domcontentloaded instead of networkidle - more reliable for Steam's dynamic content
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await wait(3000); // Give JS time to render prices
+    
     const priceSelectors = [
       '#market_commodity_buyrequests .market_listing_price.market_listing_price_with_fee',
       '.market_listing_price.market_listing_price_with_fee',
@@ -385,6 +383,7 @@ async function playwrightFallback(marketHashName) {
       '.market_table_value .market_listing_price',
       '[id^="buyOrder"] .market_listing_price',
     ];
+    
     for (const sel of priceSelectors) {
       const el = await page.$(sel);
       if (el) {
@@ -395,6 +394,7 @@ async function playwrightFallback(marketHashName) {
         }
       }
     }
+    
     // As a last resort, try extracting from page script variables
     const scriptContent = await page.evaluate(() => {
       const scripts = Array.from(document.querySelectorAll('script'));
@@ -418,6 +418,11 @@ async function playwrightFallback(marketHashName) {
       _browserLaunchFailed = true;
     } else {
       console.error('[PLAYWRIGHT] Error:', e.message);
+    }
+  } finally {
+    // Always close the page to avoid memory leaks
+    if (page) {
+      try { await page.close(); } catch {}
     }
   }
   console.log(`[PLAYWRIGHT] ✗ Failed to find price for: ${marketHashName}`);
