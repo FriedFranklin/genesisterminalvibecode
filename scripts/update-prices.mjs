@@ -23,8 +23,8 @@ function recordRateLimit(hit) {
 }
 
 function shouldUsePlaywright() {
-  // Use Playwright fallback when recent consecutive 429 responses exceed threshold
-  return consecutive429s >= RATE_LIMIT_THRESHOLD;
+  // Disabled Playwright fallback due to authentication requirements
+  return false;
 }
 
 function resetRateLimit() {

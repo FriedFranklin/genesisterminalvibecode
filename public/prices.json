@@ -1,6 +1,9 @@
 {
   "Sealed Genesis Terminal": {
-    "success": false
+    "success": true,
+    "price": "€0,09",
+    "listings": 407286,
+    "volume": "--"
   },
   "AK-47 | The Oligarch": {
     "success": false
