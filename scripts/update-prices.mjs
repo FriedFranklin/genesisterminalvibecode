@@ -245,11 +245,23 @@ async function fetchPrice(marketHashName) {
 // Playwright fallback implementation – launches a headless browser only when needed
 let _browserPromise = null;
 let _pagePromise = null; // holds { context, page }
+let _browserLaunchFailed = false;
 
 async function getBrowser() {
-  if (!_browserPromise) {
+  if (!_browserPromise && !_browserLaunchFailed) {
     console.log('[PLAYWRIGHT] Launching headless browser...');
-    _browserPromise = chromium.launch({ headless: true });
+    try {
+      _browserPromise = chromium.launch({ headless: true });
+      await _browserPromise; // Wait for launch to verify it works
+    } catch (e) {
+      console.log('[PLAYWRIGHT] Browser launch failed (not installed?):', e.message);
+      _browserLaunchFailed = true;
+      _browserPromise = null;
+      throw e;
+    }
+  }
+  if (_browserLaunchFailed) {
+    throw new Error('Playwright browser not available');
   }
   return _browserPromise;
 }
@@ -270,11 +282,15 @@ async function getPage() {
 }
 
 async function playwrightFallback(marketHashName) {
+  if (_browserLaunchFailed) {
+    console.log(`[PLAYWRIGHT] Skipping - browser not available`);
+    return null;
+  }
   console.log(`[PLAYWRIGHT] Attempting browser scrape for: ${marketHashName}`);
-  const page = await getPage();
-  const encoded = encodeURIComponent(marketHashName);
-  const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
   try {
+    const page = await getPage();
+    const encoded = encodeURIComponent(marketHashName);
+    const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
     await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
     await wait(2000);
     const priceSelectors = [
@@ -312,7 +328,12 @@ async function playwrightFallback(marketHashName) {
       }
     }
   } catch (e) {
-    console.error('[PLAYWRIGHT] Error:', e.message);
+    if (e.message.includes('Executable doesn') || e.message.includes('browserType.launch')) {
+      console.log('[PLAYWRIGHT] Browser not installed, disabling Playwright fallback');
+      _browserLaunchFailed = true;
+    } else {
+      console.error('[PLAYWRIGHT] Error:', e.message);
+    }
   }
   console.log(`[PLAYWRIGHT] ✗ Failed to find price for: ${marketHashName}`);
   return null;
