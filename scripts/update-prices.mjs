@@ -77,10 +77,10 @@ function getRandomAcceptLanguage() {
 }
 
 async function steam(path, extraHeaders = {}) {
-  // If we're rate limited, skip API entirely and return null immediately
-  if (shouldUsePlaywright()) {
-    console.log(`[API] Skipping (rate limited): ${path}`);
-    return null;
+  // Only skip API endpoints when rate limited, allow HTML scraping (market/listings)
+  const isApiEndpoint = path.includes('/market/priceoverview/') || path.includes('/market/search/render/');
+  if (shouldUsePlaywright() && isApiEndpoint) {
+    console.log(`[API] Skipping API endpoint (rate limited): ${path}`);
   }
   
   const headers = { ...defaultHeaders, ...extraHeaders };
@@ -119,65 +119,105 @@ function getRandomUserAgent() {
 
 async function lookup(marketHashName, includeVolume = false) {
   const query = encodeURIComponent(marketHashName);
-  
-  // If we're rate limited, skip straight to Playwright
-  if (shouldUsePlaywright()) {
-    console.log(`[LOOKUP] Rate limited detected, skipping to Playwright fallback...`);
-    try {
-      const pwPrice = await playwrightFallback(marketHashName);
-      if (pwPrice) {
-        console.log(`[LOOKUP] ✓ Found via Playwright browser: ${pwPrice}`);
-        return { success: true, price: pwPrice, listings: '--', volume: '--' };
+
+  // Try API endpoints first (unless rate limited)
+  if (!shouldUsePlaywright()) {
+    // Try a few currency options to avoid rate limiting / unavailable
+    const currencyOptions = ['1', '3', '6']; // 1=USD, 3=EUR, 6=GBP (if supported)
+    for (const cur of currencyOptions) {
+      try {
+        const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
+        const response = await steam(path);
+        if (!response?.ok) continue;
+        const data = await response.json();
+        const price = data.lowest_price || data.price || '--';
+        // Convert price if needed (e.g., if it's in USD)
+        let formattedPrice = price;
+        if (cur === '1' && formattedPrice.includes('$')) {
+          formattedPrice = formattedPrice.replace('$', '€').replace('.', ',');
+        }
+        const volume = data.volume || '--';
+        return {
+          success: true,
+          price: formattedPrice,
+          listings: '--',
+          volume,
+        };
+      } catch {
+        continue;
       }
-    } catch (e) {
-      console.error('[LOOKUP] Playwright fallback error:', e);
     }
-    return { success: false };
+  } else {
+    console.log(`[LOOKUP] Rate limited - skipping priceoverview API`);
   }
-  
-  // Try a few currency options to avoid rate limiting / unavailable
-  const currencyOptions = ['1', '3', '6']; // 1=USD, 3=EUR, 6=GBP (if supported)
-  for (const cur of currencyOptions) {
-    try {
-      const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
-      const response = await steam(path);
-      if (!response?.ok) continue;
-      const data = await response.json();
-      const price = data.lowest_price || data.price || '--';
-      // Convert price if needed (e.g., if it's in USD)
-      let formattedPrice = price;
-      if (cur === '1' && formattedPrice.includes('$')) {
-        formattedPrice = formattedPrice.replace('$', '€').replace('.', ',');
+
+  // HTML scrape fallback - this often works even when API is rate limited
+  console.log(`[LOOKUP] Trying HTML scrape fallback...`);
+  try {
+    const htmlResponse = await steam(`/market/listings/730/${query}`);
+    if (htmlResponse?.ok) {
+      const html = await htmlResponse.text();
+      const priceMatch = html.match(/"sell_price_text"\s*:\s*"([^\"]+)"/i);
+      if (priceMatch) {
+        let price = priceMatch[1];
+        if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
+        console.log(`[LOOKUP] ✓ Found via HTML scrape: ${price}`);
+        return { success: true, price, listings: '--', volume: '--' };
       }
-      const volume = data.volume || '--';
+    }
+  } catch {}
+
+  // Fallback: original search‑render method (unless rate limited)
+  if (!shouldUsePlaywright()) {
+    try {
+      const searchResponse = await steam(
+        `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
+      );
+      if (!searchResponse?.ok) return { success: false };
+      const search = await searchResponse.json();
+      const exact = search.results?.find((item) => item.hash_name === marketHashName);
+      if (!exact?.sell_price_text) return { success: false };
+      let price = exact.sell_price_text;
+      if (price.includes('$')) {
+        price = price.replace('$', '€').replace('.', ',');
+      }
+      let volume = '--';
+      let listings = exact.sell_listings;
+      if (includeVolume) {
+        const overviewResponse = await steam(
+          `/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`
+        );
+        if (overviewResponse?.ok) {
+          const overview = await overviewResponse.json();
+          volume = overview.volume || '--';
+          if (overview.lowest_price) price = overview.lowest_price;
+        }
+      }
       return {
         success: true,
-        price: formattedPrice,
-        listings: '--',
+        price,
+        listings,
         volume,
       };
     } catch {
-      continue;
+      return { success: false };
     }
   }
-  // Fallback: original search‑render method
+
+  // Final fallback: Playwright browser scrape
+  console.log(`[LOOKUP] All API/HTML methods failed, trying Playwright browser fallback...`);
   try {
-    const searchResponse = await steam(
-      `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
-    );
-    if (!searchResponse?.ok) return { success: false };
-    const search = await searchResponse.json();
-    const exact = search.results?.find((item) => item.hash_name === marketHashName);
-    if (!exact?.sell_price_text) return { success: false };
-    let price = exact.sell_price_text;
-    if (price.includes('$')) {
-      price = price.replace('$', '€').replace('.', ',');
+    const pwPrice = await playwrightFallback(marketHashName);
+    if (pwPrice) {
+      console.log(`[LOOKUP] ✓ Found via Playwright browser: ${pwPrice}`);
+      return { success: true, price: pwPrice, listings: '--', volume: '--' };
     }
-    let volume = '--';
-    let listings = exact.sell_listings;
-    if (includeVolume) {
-      const overviewResponse = await steam(
-        `/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`
+  } catch (e) {
+    console.error('[LOOKUP] Playwright fallback error:', e);
+  }
+  console.log(`[LOOKUP] ✗ All methods failed for: ${marketHashName}`);
+  return { success: false };
+}
       );
       if (overviewResponse?.ok) {
         const overview = await overviewResponse.json();
@@ -240,52 +280,42 @@ async function fetchPrice(marketHashName) {
   // Expanded list of currency IDs to increase chance of success
   const currencyOptions = ['1', '3', '6', '2', '5', '7', '8']; // 1=USD, 3=EUR, 6=GBP, others are additional currencies supported by Steam
   console.log(`[PRICE] Fetching price for: ${marketHashName}`);
-  
-  // If we're rate limited, skip straight to Playwright
-  if (shouldUsePlaywright()) {
-    console.log(`[PRICE] Rate limited detected, skipping to Playwright fallback...`);
-    try {
-      const pwPrice = await playwrightFallback(marketHashName);
-      if (pwPrice) {
-        console.log(`[PRICE] ✓ Found via Playwright browser: ${pwPrice}`);
-        return pwPrice;
-      }
-    } catch (e) {
-      console.error('[PRICE] Playwright fallback error:', e);
-    }
-    console.log(`[PRICE] ✗ Playwright also failed for: ${marketHashName}`);
-    return null;
-  }
-  
-  // Try each currency with a few retries and exponential back‑off
-  for (const cur of currencyOptions) {
-    for (let attempt = 0; attempt < 3; attempt++) {
-      try {
-        const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
-        const response = await steam(path);
-        if (!response?.ok) {
-          // If rate‑limited, wait a bit before retrying
-          await wait(1000 * Math.pow(2, attempt));
-          continue;
+
+  // Try API endpoints first (unless rate limited)
+  if (!shouldUsePlaywright()) {
+    // Try each currency with a few retries and exponential back‑off
+    for (const cur of currencyOptions) {
+      for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+          const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
+          const response = await steam(path);
+          if (!response?.ok) {
+            // If rate‑limited, wait a bit before retrying
+            await wait(1000 * Math.pow(2, attempt));
+            continue;
+          }
+          const data = await response.json();
+          let price = data.lowest_price || data.price || null;
+          if (price && cur === '1' && price.includes('$')) {
+            // Convert USD to Euro‑style formatting
+            price = price.replace('$', '€').replace('.', ',');
+          }
+          if (price) {
+            console.log(`[PRICE] ✓ Found via priceoverview (currency=${cur}): ${price}`);
+            return price;
+          }
+        } catch {
+          // Network hiccup – wait before next attempt
+          await wait(500 * Math.pow(2, attempt));
         }
-        const data = await response.json();
-        let price = data.lowest_price || data.price || null;
-        if (price && cur === '1' && price.includes('$')) {
-          // Convert USD to Euro‑style formatting
-          price = price.replace('$', '€').replace('.', ',');
-        }
-        if (price) {
-          console.log(`[PRICE] ✓ Found via priceoverview (currency=${cur}): ${price}`);
-          return price;
-        }
-      } catch {
-        // Network hiccup – wait before next attempt
-        await wait(500 * Math.pow(2, attempt));
       }
     }
+  } else {
+    console.log(`[PRICE] Rate limited - skipping priceoverview API`);
   }
-  console.log(`[PRICE] priceoverview failed, trying HTML scrape fallback...`);
-  // Fallback 1: use the search/render endpoint (already tried in lookupCondition) – try direct HTML scrape of the listing page
+
+  // HTML scrape fallback - this often works even when API is rate limited
+  console.log(`[PRICE] Trying HTML scrape fallback...`);
   try {
     const htmlResponse = await steam(`/market/listings/730/${query}`);
     if (htmlResponse?.ok) {
@@ -299,25 +329,37 @@ async function fetchPrice(marketHashName) {
       }
     }
   } catch {}
+
   // Fallback 2: try the older priceoverview endpoint without currency (defaults to user locale)
-  try {
-    const response = await steam(`/market/priceoverview/?appid=730&market_hash_name=${query}`);
-    if (response?.ok) {
-      const data = await response.json();
-      let price = data.lowest_price || data.price || null;
-      if (price && price.includes('$')) price = price.replace('$', '€').replace('.', ',');
-      if (price) {
-        console.log(`[PRICE] ✓ Found via priceoverview (no currency): ${price}`);
-        return price;
+  if (!shouldUsePlaywright()) {
+    try {
+      const response = await steam(`/market/priceoverview/?appid=730&market_hash_name=${query}`);
+      if (response?.ok) {
+        const data = await response.json();
+        let price = data.lowest_price || data.price || null;
+        if (price && price.includes('$')) price = price.replace('$', '€').replace('.', ',');
+        if (price) {
+          console.log(`[PRICE] ✓ Found via priceoverview (no currency): ${price}`);
+          return price;
+        }
       }
-    }
-  } catch {}
-  console.log(`[PRICE] All API methods failed, trying Playwright browser fallback...`);
+    } catch {}
+  }
+
   // Final fallback: Playwright browser scrape
+  console.log(`[PRICE] All API/HTML methods failed, trying Playwright browser fallback...`);
   try {
     const pwPrice = await playwrightFallback(marketHashName);
     if (pwPrice) {
       console.log(`[PRICE] ✓ Found via Playwright browser: ${pwPrice}`);
+      return pwPrice;
+    }
+  } catch (e) {
+    console.error('[PRICE] Playwright fallback error:', e);
+  }
+  console.log(`[PRICE] ✗ All methods failed for: ${marketHashName}`);
+  return null;
+}
       return pwPrice;
     }
   } catch (e) {
@@ -470,20 +512,14 @@ async function playwrightFallback(marketHashName) {
     }
     if (context) {
       try { await context.close(); } catch {}
-    const baseName = `${weapon} | ${skin} (${condition})`
-    const query = encodeURIComponent(baseName)
-    
-    // If we're rate limited, skip search/render and go straight to fetchPrice (which will use Playwright)
-    if (shouldUsePlaywright()) {
-      console.log(`[LOOKUP] Rate limited detected, skipping search/render for: ${baseName}`);
-      const [normalPrice, stattrakPrice] = await Promise.all([
-        fetchPrice(baseName),
-        fetchPrice(`StatTrak™ ${baseName}`),
-      ])
-      return [
-        [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: '--', volume: await fetchVolume(baseName) } : null],
-        [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: '--', volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
-      ]
+    }
+  }
+  console.log(`[PLAYWRIGHT] ✗ Failed to find price for: ${marketHashName}`);
+  return null;
+}
+
+async function lookupCondition(weapon, skin, condition) {
+  try {
     }
     
     console.log(`[LOOKUP] Searching for: ${baseName}`);
