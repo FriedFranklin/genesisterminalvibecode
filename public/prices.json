@@ -1,9 +1,6 @@
 {
   "Sealed Genesis Terminal": {
-    "success": true,
-    "price": "€0,10",
-    "listings": 406339,
-    "volume": "--"
+    "success": false
   },
   "AK-47 | The Oligarch": {
     "success": false
@@ -109,7 +106,7 @@
   },
   "_meta": {
     "source": "Steam Community Market search/render",
-    "generatedAt": "2026-09-26T19:21:02.822Z",
+    "generatedAt": "2026-09-26T20:00:28.881Z",
     "note": "Prices are exact buyer-facing sell_price_text values returned by Steam."
   }
 }
