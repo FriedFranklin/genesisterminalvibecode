@@ -44,16 +44,20 @@ function getRandomAcceptLanguage() {
 
 async function steam(path, extraHeaders = {}) {
   const headers = { ...defaultHeaders, ...extraHeaders };
+  console.log(`[API] Fetching: ${path}`);
   for (let attempt = 0; attempt < 5; attempt += 1) {
     try {
       const response = await fetch(`https://steamcommunity.com${path}`, { ...headers, signal: AbortSignal.timeout(15000) });
+      console.log(`[API] Response: ${response.status} ${response.statusText} for ${path}`);
       if (response.status !== 429) return response;
       const retryAfter = Number(response.headers.get('retry-after'));
       await wait(Math.min(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1), 5000));
-    } catch {
+    } catch (err) {
+      console.log(`[API] Error on attempt ${attempt + 1}/5 for ${path}: ${err.message}`);
       if (attempt === 0) await wait(2000);
     }
   }
+  console.log(`[API] All attempts failed for ${path}`);
   return null;
 }
 
@@ -133,6 +137,7 @@ async function lookup(marketHashName, includeVolume = false) {
 
 async function fetchVolume(marketHashName) {
   const query = encodeURIComponent(marketHashName);
+  console.log(`[VOLUME] Fetching volume for: ${marketHashName}`);
   // Re‑use the expanded currency list for volume lookup
   const currencyOptions = ['1', '3', '6', '2', '5', '7', '8'];
   for (const cur of currencyOptions) {
@@ -140,7 +145,10 @@ async function fetchVolume(marketHashName) {
       const response = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
       if (!response?.ok) continue;
       const data = await response.json();
-      if (data.volume) return data.volume;
+      if (data.volume) {
+        console.log(`[VOLUME] ✓ Found via priceoverview (currency=${cur}): ${data.volume}`);
+        return data.volume;
+      }
     } catch {}
   }
   // Fallback: scrape the HTML listing page for volume information
@@ -149,9 +157,13 @@ async function fetchVolume(marketHashName) {
     if (htmlResponse?.ok) {
       const html = await htmlResponse.text();
       const match = html.match(/"volume"\s*:\s*"?(\d+)"?/i);
-      if (match) return match[1];
+      if (match) {
+        console.log(`[VOLUME] ✓ Found via HTML scrape: ${match[1]}`);
+        return match[1];
+      }
     }
   } catch {}
+  console.log(`[VOLUME] ✗ No volume data found for: ${marketHashName}`);
   return '--';
 }
 
@@ -159,11 +171,13 @@ async function fetchPrice(marketHashName) {
   const query = encodeURIComponent(marketHashName);
   // Expanded list of currency IDs to increase chance of success
   const currencyOptions = ['1', '3', '6', '2', '5', '7', '8']; // 1=USD, 3=EUR, 6=GBP, others are additional currencies supported by Steam
+  console.log(`[PRICE] Fetching price for: ${marketHashName}`);
   // Try each currency with a few retries and exponential back‑off
   for (const cur of currencyOptions) {
     for (let attempt = 0; attempt < 3; attempt++) {
       try {
-        const response = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
+        const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
+        const response = await steam(path);
         if (!response?.ok) {
           // If rate‑limited, wait a bit before retrying
           await wait(1000 * Math.pow(2, attempt));
@@ -175,13 +189,17 @@ async function fetchPrice(marketHashName) {
           // Convert USD to Euro‑style formatting
           price = price.replace('$', '€').replace('.', ',');
         }
-        if (price) return price;
+        if (price) {
+          console.log(`[PRICE] ✓ Found via priceoverview (currency=${cur}): ${price}`);
+          return price;
+        }
       } catch {
         // Network hiccup – wait before next attempt
         await wait(500 * Math.pow(2, attempt));
       }
     }
   }
+  console.log(`[PRICE] priceoverview failed, trying HTML scrape fallback...`);
   // Fallback 1: use the search/render endpoint (already tried in lookupCondition) – try direct HTML scrape of the listing page
   try {
     const htmlResponse = await steam(`/market/listings/730/${query}`);
@@ -191,6 +209,7 @@ async function fetchPrice(marketHashName) {
       if (priceMatch) {
         let price = priceMatch[1];
         if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
+        console.log(`[PRICE] ✓ Found via HTML scrape: ${price}`);
         return price;
       }
     }
@@ -202,16 +221,24 @@ async function fetchPrice(marketHashName) {
       const data = await response.json();
       let price = data.lowest_price || data.price || null;
       if (price && price.includes('$')) price = price.replace('$', '€').replace('.', ',');
-      if (price) return price;
+      if (price) {
+        console.log(`[PRICE] ✓ Found via priceoverview (no currency): ${price}`);
+        return price;
+      }
     }
   } catch {}
+  console.log(`[PRICE] All API methods failed, trying Playwright browser fallback...`);
   // Final fallback: Playwright browser scrape
   try {
     const pwPrice = await playwrightFallback(marketHashName);
-    if (pwPrice) return pwPrice;
+    if (pwPrice) {
+      console.log(`[PRICE] ✓ Found via Playwright browser: ${pwPrice}`);
+      return pwPrice;
+    }
   } catch (e) {
-    console.error('Playwright fallback error:', e);
+    console.error('[PRICE] Playwright fallback error:', e);
   }
+  console.log(`[PRICE] ✗ All methods failed for: ${marketHashName}`);
   return null;
 }
 
@@ -221,6 +248,7 @@ let _pagePromise = null; // holds { context, page }
 
 async function getBrowser() {
   if (!_browserPromise) {
+    console.log('[PLAYWRIGHT] Launching headless browser...');
     _browserPromise = chromium.launch({ headless: true });
   }
   return _browserPromise;
@@ -242,6 +270,7 @@ async function getPage() {
 }
 
 async function playwrightFallback(marketHashName) {
+  console.log(`[PLAYWRIGHT] Attempting browser scrape for: ${marketHashName}`);
   const page = await getPage();
   const encoded = encodeURIComponent(marketHashName);
   const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
@@ -260,6 +289,7 @@ async function playwrightFallback(marketHashName) {
       if (el) {
         const txt = await el.textContent();
         if (txt && txt.trim()) {
+          console.log(`[PLAYWRIGHT] ✓ Found price via selector: ${sel}`);
           return txt.trim();
         }
       }
@@ -276,11 +306,15 @@ async function playwrightFallback(marketHashName) {
     });
     if (scriptContent) {
       const match = scriptContent.match(/"price"\s*:\s*"([^\"]+)"/);
-      if (match) return match[1];
+      if (match) {
+        console.log(`[PLAYWRIGHT] ✓ Found price via script extraction`);
+        return match[1];
+      }
     }
   } catch (e) {
-    console.error('Playwright fallback error:', e);
+    console.error('[PLAYWRIGHT] Error:', e.message);
   }
+  console.log(`[PLAYWRIGHT] ✗ Failed to find price for: ${marketHashName}`);
   return null;
 }
 
@@ -288,6 +322,7 @@ async function lookupCondition(weapon, skin, condition) {
   try {
     const baseName = `${weapon} | ${skin} (${condition})`
     const query = encodeURIComponent(baseName)
+    console.log(`[LOOKUP] Searching for: ${baseName}`);
     const response = await steam(
       `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
     )
@@ -298,6 +333,10 @@ async function lookupCondition(weapon, skin, condition) {
       normal = search.results?.find((item) => item.hash_name === baseName)
       const stattrakName = `StatTrak™ ${baseName}`
       stattrak = search.results?.find((item) => item.hash_name === stattrakName)
+      if (normal) console.log(`[LOOKUP] ✓ Found normal via search/render`);
+      if (stattrak) console.log(`[LOOKUP] ✓ Found StatTrak via search/render`);
+    } else {
+      console.log(`[LOOKUP] search/render failed, will use direct price fetch`);
     }
     // If search didn't find items, fall back to direct priceoverview fetch
     const [normalPrice, stattrakPrice] = await Promise.all([
@@ -308,7 +347,8 @@ async function lookupCondition(weapon, skin, condition) {
       [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: normal?.sell_listings, volume: await fetchVolume(baseName) } : null],
       [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: stattrak?.sell_listings, volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
     ]
-  } catch {
+  } catch (err) {
+    console.log(`[LOOKUP] ✗ Error for ${weapon} | ${skin} (${condition}): ${err.message}`);
     const baseName = `${weapon} | ${skin} (${condition})`
     return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
   }
@@ -318,17 +358,22 @@ const prices = {}
 const skinCatalog = {}
 const generatedAt = new Date().toISOString()
 const container = 'Sealed Genesis Terminal'
+console.log(`[MAIN] Starting price fetch for container: ${container}`);
 prices[container] = await lookup(container, true)
+console.log(`[MAIN] Container price: ${prices[container]?.price || 'unavailable'}`);
+
 for (const [weapon, skin] of skins) {
+  console.log(`[MAIN] Processing weapon: ${weapon} | ${skin}`);
   // Process all conditions in parallel for this weapon/skin
   const conditionPromises = conditions.map(async (condition) => {
-    console.log(`Fetching ${weapon} | ${skin} (${condition})`)
+    console.log(`[MAIN]   Fetching ${weapon} | ${skin} (${condition})`)
     const entries = await lookupCondition(weapon, skin, condition)
     for (const [marketHashName, result] of entries) {
       prices[marketHashName] = result?.sell_price_text
         ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: result.volume || '--' }
         : { success: false }
-      console.log(`Fetched price for ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
+      const status = result?.sell_price_text ? '✓' : '✗';
+      console.log(`[MAIN]   ${status} ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
     }
   })
   await Promise.all(conditionPromises)
@@ -337,16 +382,24 @@ for (const [weapon, skin] of skins) {
 }
 
 try {
+  console.log('[CATALOG] Fetching skin catalog from CSGO-API...');
   const catalogResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json', { signal: AbortSignal.timeout(15000) })
   if (catalogResponse.ok) {
     const catalog = await catalogResponse.json()
+    let found = 0;
     for (const [weapon, skin] of skins) {
       const item = catalog.find((entry) => entry.name === `${weapon} | ${skin}`)
-      if (item?.image) skinCatalog[`${weapon} | ${skin}`] = item.image
+      if (item?.image) {
+        skinCatalog[`${weapon} | ${skin}`] = item.image
+        found++;
+      }
     }
+    console.log(`[CATALOG] ✓ Found ${found}/${skins.length} skin images`);
+  } else {
+    console.log('[CATALOG] ✗ Failed to fetch catalog (non-OK response)');
   }
-} catch {
-  console.log('Skin catalog unavailable; preserving the existing static catalog.')
+} catch (err) {
+  console.log(`[CATALOG] ✗ Error fetching catalog: ${err.message}`);
 }
 
 await mkdir('public', { recursive: true })
@@ -357,9 +410,18 @@ prices._meta = {
 }
 await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
 await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
-console.log(`Wrote ${Object.keys(prices).length} Steam prices to public/prices.json`)
 
-// Diagnostics: unavailable entries and total runtime
-const unavailable = Object.values(prices).filter(v => v && v.success === false).length
-console.log('Unavailable entries:', unavailable)
-console.log('Total runtime (s):', ((Date.now() - start) / 1000).toFixed(2))
+// Summary statistics
+const totalEntries = Object.keys(prices).length - 1; // exclude _meta
+const successful = Object.values(prices).filter(v => v && v.success === true).length;
+const unavailable = Object.values(prices).filter(v => v && v.success === false).length;
+const runtime = ((Date.now() - start) / 1000).toFixed(2);
+
+console.log(`[SUMMARY] ========================================`);
+console.log(`[SUMMARY] Total entries: ${totalEntries}`);
+console.log(`[SUMMARY] Successful: ${successful}`);
+console.log(`[SUMMARY] Unavailable: ${unavailable}`);
+console.log(`[SUMMARY] Success rate: ${((successful / totalEntries) * 100).toFixed(1)}%`);
+console.log(`[SUMMARY] Total runtime: ${runtime}s`);
+console.log(`[SUMMARY] Written to: public/prices.json, public/skins.json`);
+console.log(`[SUMMARY] ========================================`);
