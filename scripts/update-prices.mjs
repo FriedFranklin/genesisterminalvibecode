@@ -379,9 +379,32 @@ const prices = {}
 const skinCatalog = {}
 const generatedAt = new Date().toISOString()
 const container = 'Sealed Genesis Terminal'
+
+// Progress tracking
+const totalWeapons = skins.length;
+const conditionsPerWeapon = conditions.length;
+const totalItems = 1 + (totalWeapons * conditionsPerWeapon * 2); // container + (weapons * conditions * normal+stattrak)
+let completedItems = 0;
+
+function renderProgressBar(label, current, total, width = 30) {
+  const percent = total > 0 ? current / total : 0;
+  const filled = Math.round(percent * width);
+  const empty = width - filled;
+  const bar = '█'.repeat(filled) + '░'.repeat(empty);
+  const pct = (percent * 100).toFixed(1).padStart(5);
+  return `[PROGRESS] ${label} [${bar}] ${pct}% (${current}/${total})`;
+}
+
+function logProgress(label) {
+  completedItems++;
+  console.log(renderProgressBar(label, completedItems, totalItems));
+}
+
 console.log(`[MAIN] Starting price fetch for container: ${container}`);
+console.log(renderProgressBar('Initializing', 0, totalItems));
 prices[container] = await lookup(container, true)
 console.log(`[MAIN] Container price: ${prices[container]?.price || 'unavailable'}`);
+logProgress('Container');
 
 for (const [weapon, skin] of skins) {
   console.log(`[MAIN] Processing weapon: ${weapon} | ${skin}`);
@@ -395,6 +418,7 @@ for (const [weapon, skin] of skins) {
         : { success: false }
       const status = result?.sell_price_text ? '✓' : '✗';
       console.log(`[MAIN]   ${status} ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
+      logProgress(marketHashName);
     }
   })
   await Promise.all(conditionPromises)
@@ -431,6 +455,9 @@ prices._meta = {
 }
 await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
 await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
+
+// Final progress bar
+console.log(renderProgressBar('Complete', totalItems, totalItems));
 
 // Summary statistics
 const totalEntries = Object.keys(prices).length - 1; // exclude _meta
