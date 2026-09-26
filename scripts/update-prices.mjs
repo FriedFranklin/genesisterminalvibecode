@@ -6,6 +6,40 @@ import { chromium } from 'playwright'
 // Start timer for runtime measurement
 const start = Date.now();
 
+// Rate limiting detection
+let consecutive429s = 0;
+const RATE_LIMIT_THRESHOLD = 3; // Switch to Playwright after this many consecutive 429s
+let usePlaywrightFallback = false;
+
+function recordRateLimit(hit) {
+  if (hit) {
+    consecutive429s++;
+    if (consecutive429s >= RATE_LIMIT_THRESHOLD && !usePlaywrightFallback) {
+      console.log(`[RATE LIMIT] Detected ${consecutive429s} consecutive 429s - switching to Playwright fallback`);
+      usePlaywrightFallback = true;
+    }
+  } else {
+    consecutive429s = 0;
+    // If we were using Playwright fallback and now getting successful responses, switch back
+    if (usePlaywrightFallback && consecutive429s === 0) {
+      console.log(`[RATE LIMIT] Rate limit recovered - switching back to API`);
+      usePlaywrightFallback = false;
+    }
+  }
+}
+
+function shouldUsePlaywright() {
+  return usePlaywrightFallback;
+}
+
+function resetRateLimit() {
+  consecutive429s = 0;
+  if (usePlaywrightFallback) {
+    console.log(`[RATE LIMIT] Successful request - switching back to API`);
+    usePlaywrightFallback = false;
+  }
+}
+
 const conditions = [
   'Factory New',
   'Minimal Wear',
@@ -49,7 +83,12 @@ async function steam(path, extraHeaders = {}) {
     try {
       const response = await fetch(`https://steamcommunity.com${path}`, { ...headers, signal: AbortSignal.timeout(15000) });
       console.log(`[API] Response: ${response.status} ${response.statusText} for ${path}`);
-      if (response.status !== 429) return response;
+      const isRateLimited = response.status === 429;
+      recordRateLimit(isRateLimited);
+      if (!isRateLimited) {
+        resetRateLimit();
+        return response;
+      }
       const retryAfter = Number(response.headers.get('retry-after'));
       await wait(Math.min(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1), 5000));
     } catch (err) {
@@ -74,6 +113,22 @@ function getRandomUserAgent() {
 
 async function lookup(marketHashName, includeVolume = false) {
   const query = encodeURIComponent(marketHashName);
+  
+  // If we're rate limited, skip straight to Playwright
+  if (shouldUsePlaywright()) {
+    console.log(`[LOOKUP] Rate limited detected, skipping to Playwright fallback...`);
+    try {
+      const pwPrice = await playwrightFallback(marketHashName);
+      if (pwPrice) {
+        console.log(`[LOOKUP] ✓ Found via Playwright browser: ${pwPrice}`);
+        return { success: true, price: pwPrice, listings: '--', volume: '--' };
+      }
+    } catch (e) {
+      console.error('[LOOKUP] Playwright fallback error:', e);
+    }
+    return { success: false };
+  }
+  
   // Try a few currency options to avoid rate limiting / unavailable
   const currencyOptions = ['1', '3', '6']; // 1=USD, 3=EUR, 6=GBP (if supported)
   for (const cur of currencyOptions) {
@@ -172,6 +227,23 @@ async function fetchPrice(marketHashName) {
   // Expanded list of currency IDs to increase chance of success
   const currencyOptions = ['1', '3', '6', '2', '5', '7', '8']; // 1=USD, 3=EUR, 6=GBP, others are additional currencies supported by Steam
   console.log(`[PRICE] Fetching price for: ${marketHashName}`);
+  
+  // If we're rate limited, skip straight to Playwright
+  if (shouldUsePlaywright()) {
+    console.log(`[PRICE] Rate limited detected, skipping to Playwright fallback...`);
+    try {
+      const pwPrice = await playwrightFallback(marketHashName);
+      if (pwPrice) {
+        console.log(`[PRICE] ✓ Found via Playwright browser: ${pwPrice}`);
+        return pwPrice;
+      }
+    } catch (e) {
+      console.error('[PRICE] Playwright fallback error:', e);
+    }
+    console.log(`[PRICE] ✗ Playwright also failed for: ${marketHashName}`);
+    return null;
+  }
+  
   // Try each currency with a few retries and exponential back‑off
   for (const cur of currencyOptions) {
     for (let attempt = 0; attempt < 3; attempt++) {
