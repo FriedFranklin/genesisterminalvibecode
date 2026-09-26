@@ -265,7 +265,23 @@ async function fetchPrice(marketHashName) {
   const currencyOptions = ['1', '3', '6', '2', '5', '7', '8']; // 1=USD, 3=EUR, 6=GBP, others are additional currencies supported by Steam
   console.log(`[PRICE] Fetching price for: ${marketHashName}`);
 
-  // Try API endpoints first (unless rate limited)
+  // HTML scrape fallback - this often works even when API is rate limited and gives condition‑specific price
+  console.log(`[PRICE] Trying HTML scrape fallback...`);
+  try {
+    const htmlResponse = await steam(`/market/listings/730/${query}`);
+    if (htmlResponse?.ok) {
+      const html = await htmlResponse.text();
+      const priceMatch = html.match(/"sell_price_text"\s*:\s*"([^\"]+)"/i);
+      if (priceMatch) {
+        let price = priceMatch[1];
+        if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
+        console.log(`[PRICE] ✓ Found via HTML scrape: ${price}`);
+        return price;
+      }
+    }
+  } catch {}
+
+  // Try API endpoints next (unless rate limited)
   if (!shouldUsePlaywright()) {
     // Try each currency with a few retries and exponential back‑off
     for (const cur of currencyOptions) {
@@ -297,22 +313,6 @@ async function fetchPrice(marketHashName) {
   } else {
     console.log(`[PRICE] Rate limited - skipping priceoverview API`);
   }
-
-  // HTML scrape fallback - this often works even when API is rate limited
-  console.log(`[PRICE] Trying HTML scrape fallback...`);
-  try {
-    const htmlResponse = await steam(`/market/listings/730/${query}`);
-    if (htmlResponse?.ok) {
-      const html = await htmlResponse.text();
-      const priceMatch = html.match(/"sell_price_text"\s*:\s*"([^\"]+)"/i);
-      if (priceMatch) {
-        let price = priceMatch[1];
-        if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
-        console.log(`[PRICE] ✓ Found via HTML scrape: ${price}`);
-        return price;
-      }
-    }
-  } catch {}
 
   // Fallback 2: try the older priceoverview endpoint without currency (defaults to user locale)
   if (!shouldUsePlaywright()) {
@@ -348,6 +348,8 @@ async function fetchPrice(marketHashName) {
 // Playwright fallback implementation – launches a headless browser only when needed
 let _browserPromise = null;
 let _browserLaunchFailed = false;
+// Cache for weapon pages to avoid reopening for each condition
+const weaponPageCache = new Map();
 
 async function getBrowser() {
   if (!_browserPromise && !_browserLaunchFailed) {
@@ -368,7 +370,10 @@ async function getBrowser() {
   return _browserPromise;
 }
 
-async function playwrightFallback(marketHashName) {
+async function playwrightFallback(marketHashName, condition = null) {
+  // If a specific condition is provided, attempt to locate the price element associated with that condition
+  // This helps avoid returning the same price for different conditions.
+
   if (_browserLaunchFailed) {
     console.log(`[PLAYWRIGHT] Skipping - browser not available`);
     return null;
@@ -400,23 +405,37 @@ async function playwrightFallback(marketHashName) {
     console.log(`[PLAYWRIGHT] Page title: ${title}`);
     console.log(`[PLAYWRIGHT] Current URL: ${page.url()}`);
 
-    // Try multiple selector strategies
+// Try extracting price directly from the page's embedded script data, which is specific to the condition page
+    const scriptContent = await page.evaluate(() => {
+      const scripts = Array.from(document.querySelectorAll('script'));
+      for (const s of scripts) {
+        if (s.textContent && s.textContent.includes('sell_price_text')) {
+          return s.textContent;
+        }
+      }
+      return null;
+    });
+    if (scriptContent) {
+      const match = scriptContent.match(/"sell_price_text"\s*:\s*"([^\"]+)"/);
+      if (match) {
+        console.log(`[PLAYWRIGHT] ✓ Found price via script extraction`);
+        return match[1];
+      }
+    }
+
+    // Fallback: generic selectors (may return same price across conditions)
     const priceSelectors = [
-      // Buy order price (most common for commodities)
       '#market_commodity_buyrequests .market_listing_price.market_listing_price_with_fee',
       '#market_commodity_buyrequests .market_listing_price',
       '.market_commodity_buyrequests .market_listing_price',
-      // Sell listing prices
       '.market_listing_price.market_listing_price_with_fee',
       '#market_commodity_buyrequests span.market_listing_price',
       '.market_table_value .market_listing_price',
       '[id^="buyOrder"] .market_listing_price',
-      // Generic price elements
       '.market_listing_price',
       '[data-price]',
       '.price',
     ];
-
     for (const sel of priceSelectors) {
       try {
         const el = await page.$(sel);
@@ -427,46 +446,9 @@ async function playwrightFallback(marketHashName) {
             return txt.trim();
           }
         }
-      } catch (selErr) {
-        // Selector error, continue to next
-      }
+      } catch {}
     }
-
-    // Try waiting for specific elements to appear
-    try {
-      await page.waitForSelector('.market_listing_price', { timeout: 5000 });
-      console.log('[PLAYWRIGHT] Price element appeared after wait');
-      const elements = await page.$$('.market_listing_price');
-      for (const el of elements) {
-        const txt = await el.textContent();
-        if (txt && txt.trim() && (txt.includes('$') || txt.includes('€') || txt.includes('£') || /^\d+[.,]\d+$/.test(txt.trim()))) {
-          console.log(`[PLAYWRIGHT] ✓ Found price after wait: ${txt.trim()}`);
-          return txt.trim();
-        }
-      }
-    } catch (waitErr) {
-      console.log('[PLAYWRIGHT] No price elements found after wait');
-    }
-
-    // As a last resort, try extracting from page script variables
-    const scriptContent = await page.evaluate(() => {
-      const scripts = Array.from(document.querySelectorAll('script'));
-      for (const s of scripts) {
-        if (s.textContent && (s.textContent.includes('market_commodity_buyrequests') || s.textContent.includes('g_rgAssets') || s.textContent.includes('sell_price_text') || s.textContent.includes('buy_price_text'))) {
-          return s.textContent;
-        }
-      }
-      return null;
-    });
-    if (scriptContent) {
-      const match = scriptContent.match(/"(?:sell_price_text|buy_price_text|price)"\s*:\s*"([^\"]+)"/);
-      if (match) {
-        console.log(`[PLAYWRIGHT] ✓ Found price via script extraction`);
-        return match[1];
-      }
-    }
-    
-    // Final fallback: get all text content and search for price patterns
+    // Final fallback: search body text for price patterns
     const bodyText = await page.evaluate(() => document.body.innerText);
     const priceMatches = bodyText.match(/[\$€£]\s*\d+[.,]\d{2}/g);
     if (priceMatches && priceMatches.length > 0) {
@@ -494,35 +476,86 @@ async function playwrightFallback(marketHashName) {
   return null;
 }
 
+// Helper to extract all condition prices for a weapon/skin in one Playwright page load
+async function getConditionPrices(weaponSkin) {
+  // If cached, return
+  if (weaponPageCache.has(weaponSkin)) return weaponPageCache.get(weaponSkin);
+
+  if (_browserLaunchFailed) {
+    console.log('[PLAYWRIGHT] Skipping - browser not available');
+    return {};
+  }
+  const browser = await getBrowser();
+  const context = await browser.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+    viewport: { width: 1280, height: 720 },
+    locale: 'en-US',
+    timezoneId: 'America/New_York',
+  });
+  const page = await context.newPage();
+  const encoded = encodeURIComponent(weaponSkin);
+  const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await wait(5000);
+
+  // Extract condition-price pairs from the page
+  const conditionMap = await page.evaluate(() => {
+    const map = {};
+    const rows = Array.from(document.querySelectorAll('tr'));
+    const conditions = ['Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred'];
+    for (const row of rows) {
+      const text = row.innerText;
+      for (const cond of conditions) {
+        if (text.includes(cond)) {
+          const priceEl = row.querySelector('.market_commodity_order_price, .market_listing_price, .market_commodity_buyrequests .market_listing_price, .market_commodity_buyrequests .market_listing_price_with_fee');
+          if (priceEl && priceEl.innerText) {
+            map[cond] = priceEl.innerText.trim();
+          }
+        }
+      }
+    }
+    return map;
+  });
+
+  // Cache the result for future lookups of the same weapon/skin
+  weaponPageCache.set(weaponSkin, conditionMap);
+
+  // Clean up
+  try { await page.close(); } catch {}
+  try { await context.close(); } catch {}
+  return conditionMap;
+}
+
 async function lookupCondition(weapon, skin, condition) {
   try {
-    const baseName = `${weapon} | ${skin} (${condition})`
-    const query = encodeURIComponent(baseName)
+    const baseName = `${weapon} | ${skin} (${condition})`;
+    const query = encodeURIComponent(baseName);
 
-    // If we're rate limited, skip search/render and go straight to fetchPrice (which will use Playwright)
+    // If rate limited, use Playwright to fetch all condition prices in a single page load
     if (shouldUsePlaywright()) {
-      console.log(`[LOOKUP] Rate limited detected, skipping search/render for: ${baseName}`);
-      const [normalPrice, stattrakPrice] = await Promise.all([
-        fetchPrice(baseName),
-        fetchPrice(`StatTrak™ ${baseName}`),
-      ])
+      console.log(`[LOOKUP] Rate limited - using Playwright cached page for: ${baseName}`);
+      // Get price map for normal and StatTrak versions
+      const normalMap = await getConditionPrices(baseName);
+      const statTrakMap = await getConditionPrices(`StatTrak™ ${baseName}`);
+      const normalPrice = normalMap[condition] || null;
+      const stattrakPrice = statTrakMap[condition] || null;
       return [
         [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: '--', volume: await fetchVolume(baseName) } : null],
         [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: '--', volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
-      ]
+      ];
     }
 
     console.log(`[LOOKUP] Searching for: ${baseName}`);
     const response = await steam(
       `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
-    )
-    let normal = null
-    let stattrak = null
+    );
+    let normal = null;
+    let stattrak = null;
     if (response?.ok) {
-      const search = await response.json()
-      normal = search.results?.find((item) => item.hash_name === baseName)
-      const stattrakName = `StatTrak™ ${baseName}`
-      stattrak = search.results?.find((item) => item.hash_name === stattrakName)
+      const search = await response.json();
+      normal = search.results?.find((item) => item.hash_name === baseName);
+      const stattrakName = `StatTrak™ ${baseName}`;
+      stattrak = search.results?.find((item) => item.hash_name === stattrakName);
       if (normal) console.log(`[LOOKUP] ✓ Found normal via search/render`);
       if (stattrak) console.log(`[LOOKUP] ✓ Found StatTrak via search/render`);
     } else {
@@ -532,15 +565,15 @@ async function lookupCondition(weapon, skin, condition) {
     const [normalPrice2, stattrakPrice2] = await Promise.all([
       normal ? fetchPrice(normal.hash_name) : fetchPrice(baseName),
       stattrak ? fetchPrice(stattrak.hash_name) : fetchPrice(`StatTrak™ ${baseName}`),
-    ])
+    ]);
     return [
       [baseName, normalPrice2 ? { sell_price_text: normalPrice2, sell_listings: normal?.sell_listings, volume: await fetchVolume(baseName) } : null],
       [`StatTrak™ ${baseName}`, stattrakPrice2 ? { sell_price_text: stattrakPrice2, sell_listings: stattrak?.sell_listings, volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
-    ]
+    ];
   } catch (err) {
     console.log(`[LOOKUP] ✗ Error for ${weapon} | ${skin} (${condition}): ${err.message}`);
-    const baseName = `${weapon} | ${skin} (${condition})`
-    return [[baseName, null], [`StatTrak™ ${baseName}`, null]]
+    const baseName = `${weapon} | ${skin} (${condition})`;
+    return [[baseName, null], [`StatTrak™ ${baseName}`, null]];
   }
 }
 
