@@ -81,8 +81,9 @@ async function steam(path, extraHeaders = {}) {
   const isApiEndpoint = path.includes('/market/priceoverview/') || path.includes('/market/search/render/');
   if (shouldUsePlaywright() && isApiEndpoint) {
     console.log(`[API] Skipping API endpoint (rate limited): ${path}`);
+    return null;
   }
-  
+
   const headers = { ...defaultHeaders, ...extraHeaders };
   console.log(`[API] Fetching: ${path}`);
   for (let attempt = 0; attempt < 5; attempt += 1) {
@@ -218,23 +219,6 @@ async function lookup(marketHashName, includeVolume = false) {
   console.log(`[LOOKUP] ✗ All methods failed for: ${marketHashName}`);
   return { success: false };
 }
-      );
-      if (overviewResponse?.ok) {
-        const overview = await overviewResponse.json();
-        volume = overview.volume || '--';
-        if (overview.lowest_price) price = overview.lowest_price;
-      }
-    }
-    return {
-      success: true,
-      price,
-      listings,
-      volume,
-    };
-  } catch {
-    return { success: false };
-  }
-}
 
 async function fetchVolume(marketHashName) {
   const query = encodeURIComponent(marketHashName);
@@ -352,14 +336,6 @@ async function fetchPrice(marketHashName) {
     const pwPrice = await playwrightFallback(marketHashName);
     if (pwPrice) {
       console.log(`[PRICE] ✓ Found via Playwright browser: ${pwPrice}`);
-      return pwPrice;
-    }
-  } catch (e) {
-    console.error('[PRICE] Playwright fallback error:', e);
-  }
-  console.log(`[PRICE] ✗ All methods failed for: ${marketHashName}`);
-  return null;
-}
       return pwPrice;
     }
   } catch (e) {
