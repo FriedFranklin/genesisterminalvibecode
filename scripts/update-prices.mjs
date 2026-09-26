@@ -1,29 +1,7 @@
-import { mkdir, writeFile, access, constants, unlink } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 
-// Lock file to prevent concurrent executions
-const lockPath = 'public/.prices.lock'
-try {
-  // If lock file exists, another instance is running
-  await access(lockPath, constants.F_OK)
-  console.log('Another instance is already running. Exiting.')
-  process.exit(0)
-} catch {
-  // No lock file, create one
-  await writeFile(lockPath, String(Date.now()));
-// Ensure lock file is removed on process exit or termination
-process.on('exit', async () => {
-  await unlink(lockPath).catch(() => {});
-});
-process.on('SIGINT', async () => {
-  await unlink(lockPath).catch(() => {});
-  process.exit(1);
-});
-process.on('SIGTERM', async () => {
-  await unlink(lockPath).catch(() => {});
-  process.exit(1);
-});
-}
+
 
 // Start timer for runtime measurement
 const start = Date.now();
@@ -336,57 +314,52 @@ async function lookupCondition(weapon, skin, condition) {
   }
 }
 
-try {
-  const prices = {}
-  const skinCatalog = {}
-  const generatedAt = new Date().toISOString()
-  const container = 'Sealed Genesis Terminal'
-  prices[container] = await lookup(container, true)
-  for (const [weapon, skin] of skins) {
-    // Process all conditions in parallel for this weapon/skin
-    const conditionPromises = conditions.map(async (condition) => {
-      console.log(`Fetching ${weapon} | ${skin} (${condition})`)
-      const entries = await lookupCondition(weapon, skin, condition)
-      for (const [marketHashName, result] of entries) {
-        prices[marketHashName] = result?.sell_price_text
-          ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: result.volume || '--' }
-          : { success: false }
-        console.log(`Fetched price for ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
-      }
-    })
-    await Promise.all(conditionPromises)
-    // Small pause between weapons to be gentle on the API
-    await wait(2000)
-  }
-
-  try {
-    const catalogResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json', { signal: AbortSignal.timeout(15000) })
-    if (catalogResponse.ok) {
-      const catalog = await catalogResponse.json()
-      for (const [weapon, skin] of skins) {
-        const item = catalog.find((entry) => entry.name === `${weapon} | ${skin}`)
-        if (item?.image) skinCatalog[`${weapon} | ${skin}`] = item.image
-      }
+const prices = {}
+const skinCatalog = {}
+const generatedAt = new Date().toISOString()
+const container = 'Sealed Genesis Terminal'
+prices[container] = await lookup(container, true)
+for (const [weapon, skin] of skins) {
+  // Process all conditions in parallel for this weapon/skin
+  const conditionPromises = conditions.map(async (condition) => {
+    console.log(`Fetching ${weapon} | ${skin} (${condition})`)
+    const entries = await lookupCondition(weapon, skin, condition)
+    for (const [marketHashName, result] of entries) {
+      prices[marketHashName] = result?.sell_price_text
+        ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: result.volume || '--' }
+        : { success: false }
+      console.log(`Fetched price for ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
     }
-  } catch {
-    console.log('Skin catalog unavailable; preserving the existing static catalog.')
-  }
-
-  await mkdir('public', { recursive: true })
-  prices._meta = {
-    source: 'Steam Community Market search/render',
-    generatedAt,
-    note: 'Prices are exact buyer-facing sell_price_text values returned by Steam.',
-  }
-  await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
-  await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
-  console.log(`Wrote ${Object.keys(prices).length} Steam prices to public/prices.json`)
-
-  // Diagnostics: unavailable entries and total runtime
-  const unavailable = Object.values(prices).filter(v => v && v.success === false).length
-  console.log('Unavailable entries:', unavailable)
-  console.log('Total runtime (s):', ((Date.now() - start) / 1000).toFixed(2))
-} finally {
-  // Robust lock cleanup on any exit (success or error)
-  await unlink(lockPath).catch(() => {})
+  })
+  await Promise.all(conditionPromises)
+  // Small pause between weapons to be gentle on the API
+  await wait(2000)
 }
+
+try {
+  const catalogResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json', { signal: AbortSignal.timeout(15000) })
+  if (catalogResponse.ok) {
+    const catalog = await catalogResponse.json()
+    for (const [weapon, skin] of skins) {
+      const item = catalog.find((entry) => entry.name === `${weapon} | ${skin}`)
+      if (item?.image) skinCatalog[`${weapon} | ${skin}`] = item.image
+    }
+  }
+} catch {
+  console.log('Skin catalog unavailable; preserving the existing static catalog.')
+}
+
+await mkdir('public', { recursive: true })
+prices._meta = {
+  source: 'Steam Community Market search/render',
+  generatedAt,
+  note: 'Prices are exact buyer-facing sell_price_text values returned by Steam.',
+}
+await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
+await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
+console.log(`Wrote ${Object.keys(prices).length} Steam prices to public/prices.json`)
+
+// Diagnostics: unavailable entries and total runtime
+const unavailable = Object.values(prices).filter(v => v && v.success === false).length
+console.log('Unavailable entries:', unavailable)
+console.log('Total runtime (s):', ((Date.now() - start) / 1000).toFixed(2))
