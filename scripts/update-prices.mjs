@@ -1,14 +1,19 @@
-import { mkdir, writeFile } from 'node:fs/promises'
-import { chromium } from 'playwright'
+// Rebuilt update‑prices script based on README-updater.md
+// -------------------------------------------------------
+// This script fetches CS:GO terminal collection skin prices from the Steam Community Market.
+// It uses three strategies:
+//   1️⃣ Fast API call (priceoverview)
+//   2️⃣ HTML scrape of the market listing page
+//   3️⃣ Playwright fallback (headless Chromium) when rate‑limited or API fails.
+// It also extracts prices for all conditions in a single Playwright page load.
 
+import { mkdir, writeFile } from 'node:fs/promises';
+import { chromium } from 'playwright';
 
-
-// Start timer for runtime measurement
+// ---------- Configuration & helpers ----------
 const start = Date.now();
-
-// Rate limiting detection
 let consecutive429s = 0;
-const RATE_LIMIT_THRESHOLD = 3; // Switch to Playwright after this many consecutive 429s
+const RATE_LIMIT_THRESHOLD = 3; // after this many 429s we switch to Playwright
 let usePlaywrightFallback = false;
 
 function recordRateLimit(hit) {
@@ -16,97 +21,19 @@ function recordRateLimit(hit) {
     consecutive429s++;
     if (consecutive429s >= RATE_LIMIT_THRESHOLD && !usePlaywrightFallback) {
       usePlaywrightFallback = true;
-      console.log(`[RATE LIMIT] ${consecutive429s} consecutive 429s - switching to Playwright fallback`);
+      console.log(`[RATE LIMIT] ${consecutive429s} consecutive 429s – switching to Playwright fallback`);
     }
   } else {
     consecutive429s = 0;
     if (usePlaywrightFallback) {
-      console.log(`[RATE LIMIT] Successful request - switching back to API`);
+      console.log('[RATE LIMIT] Successful request – switching back to API');
       usePlaywrightFallback = false;
     }
   }
 }
+function shouldUsePlaywright() { return usePlaywrightFallback; }
+function resetRateLimit() { consecutive429s = 0; usePlaywrightFallback = false; }
 
-function shouldUsePlaywright() {
-  return usePlaywrightFallback;
-}
-
-function resetRateLimit() {
-  consecutive429s = 0;
-  if (usePlaywrightFallback) {
-    console.log(`[RATE LIMIT] Successful request - switching back to API`);
-    usePlaywrightFallback = false;
-  }
-}
-
-const conditions = [
-  'Factory New',
-  'Minimal Wear',
-  'Field-Tested',
-  'Well-Worn',
-  'Battle-Scarred',
-]
-const skins = [
-  ['AK-47', 'The Oligarch'], ['M4A4', 'Full Throttle'], ['AWP', 'Ice Coaled'], ['Glock-18', 'Mirror Mosaic'], ['MP7', 'Smoking Kills'],
-  ['M4A1-S', 'Liquidation'], ['Dual Berettas', 'Angel Eyes'], ['UMP-45', 'Continuum'], ['MAC-10', 'Cat Fight'], ['Nova', 'Ocular'],
-  ['AUG', 'Trigger Discipline'], ['P2000', 'Red Wing'], ['MP5-SD', 'Focus'], ['MP9', 'Broken Record'], ['MAG-7', 'MAGnitude'],
-  ['P250', 'Bullfrog'], ['SCAR-20', 'Caged'],
-]
-const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds))
-
-// Default headers with rotating user agent
-const defaultHeaders = {
-  'User-Agent': getRandomUserAgent(),
-  'Accept-Language': getRandomAcceptLanguage(),
-  'Referer': 'https://steamcommunity.com/market/',
-  'Accept': '*/*',
-  'X-Requested-With': 'XMLHttpRequest',
-};
-
-// Randomly select an Accept-Language header to vary requests
-function getRandomAcceptLanguage() {
-  const langs = [
-    'en-US,en;q=0.9',
-    'en-GB,en;q=0.8',
-    'de-DE,de;q=0.7',
-    'fr-FR,fr;q=0.7',
-    'es-ES,es;q=0.7',
-  ];
-  return langs[Math.floor(Math.random() * langs.length)];
-}
-
-async function steam(path, extraHeaders = {}) {
-  // Only skip API endpoints when rate limited, allow HTML scraping (market/listings)
-  const isApiEndpoint = path.includes('/market/priceoverview/') || path.includes('/market/search/render/');
-  if (shouldUsePlaywright() && isApiEndpoint) {
-    console.log(`[API] Skipping API endpoint (rate limited): ${path}`);
-    return null;
-  }
-
-  const headers = { ...defaultHeaders, ...extraHeaders };
-  console.log(`[API] Fetching: ${path}`);
-  for (let attempt = 0; attempt < 5; attempt += 1) {
-    try {
-      const response = await fetch(`https://steamcommunity.com${path}`, { ...headers, signal: AbortSignal.timeout(15000) });
-      console.log(`[API] Response: ${response.status} ${response.statusText} for ${path}`);
-      const isRateLimited = response.status === 429;
-      recordRateLimit(isRateLimited);
-      if (!isRateLimited) {
-        resetRateLimit();
-        return response;
-      }
-      const retryAfter = Number(response.headers.get('retry-after'));
-      await wait(Math.min(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1), 5000));
-    } catch (err) {
-      console.log(`[API] Error on attempt ${attempt + 1}/5 for ${path}: ${err.message}`);
-      if (attempt === 0) await wait(2000);
-    }
-  }
-  console.log(`[API] All attempts failed for ${path}`);
-  return null;
-}
-
-// Generate a random User-Agent string from a pool
 function getRandomUserAgent() {
   const uas = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
@@ -116,348 +43,243 @@ function getRandomUserAgent() {
   ];
   return uas[Math.floor(Math.random() * uas.length)];
 }
+function getRandomAcceptLanguage() {
+  const langs = ['en-US,en;q=0.9', 'en-GB,en;q=0.8', 'de-DE,de;q=0.7', 'fr-FR,fr;q=0.7', 'es-ES,es;q=0.7'];
+  return langs[Math.floor(Math.random() * langs.length)];
+}
 
+const defaultHeaders = () => ({
+  'User-Agent': getRandomUserAgent(),
+  'Accept-Language': getRandomAcceptLanguage(),
+  'Referer': 'https://steamcommunity.com/market/',
+  'Accept': '*/*',
+  'X-Requested-With': 'XMLHttpRequest',
+});
+
+async function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function steam(path, extraHeaders = {}) {
+  const headers = { ...defaultHeaders(), ...extraHeaders };
+  console.log(`[API] GET ${path}`);
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      const response = await fetch(`https://steamcommunity.com${path}`, { headers, signal: AbortSignal.timeout(15000) });
+      const isRateLimited = response.status === 429;
+      recordRateLimit(isRateLimited);
+      if (!isRateLimited) {
+        resetRateLimit();
+        return response;
+      }
+      const retryAfter = Number(response.headers.get('retry-after'));
+      await wait(Math.min(isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 2000 * (attempt + 1), 5000));
+    } catch (e) {
+      console.log(`[API] Attempt ${attempt + 1} failed: ${e.message}`);
+      if (attempt === 0) await wait(2000);
+    }
+  }
+  console.log(`[API] All attempts failed for ${path}`);
+  return null;
+}
+
+// ---------- Price / volume lookup ----------
 async function lookup(marketHashName, includeVolume = false) {
   const query = encodeURIComponent(marketHashName);
-
-  // Try API endpoints first (unless rate limited)
+  // 1️⃣ API (priceoverview) – try a few currencies to improve hit‑rate
   if (!shouldUsePlaywright()) {
-    // Try a few currency options to avoid rate limiting / unavailable
-    const currencyOptions = ['1', '3', '6']; // 1=USD, 3=EUR, 6=GBP (if supported)
-    for (const cur of currencyOptions) {
+    const currencies = ['1', '3', '6']; // USD, EUR, GBP
+    for (const cur of currencies) {
       try {
-        const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
-        const response = await steam(path);
-        if (!response?.ok) continue;
-        const data = await response.json();
+        const resp = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
+        if (!resp?.ok) continue;
+        const data = await resp.json();
         const price = data.lowest_price || data.price || '--';
-        // Convert price if needed (e.g., if it's in USD)
-        let formattedPrice = price;
-        if (cur === '1' && formattedPrice.includes('$')) {
-          formattedPrice = formattedPrice.replace('$', '€').replace('.', ',');
-        }
-        const volume = data.volume || '--';
-        return {
-          success: true,
-          price: formattedPrice,
-          listings: '--',
-          volume,
-        };
-      } catch {
-        continue;
-      }
+        const volume = includeVolume ? data.volume || '--' : '--';
+        return { success: true, price, listings: '--', volume };
+      } catch {}
     }
   } else {
-    console.log(`[LOOKUP] Rate limited - skipping priceoverview API`);
+    console.log('[LOOKUP] Rate limited – skipping priceoverview API');
   }
 
-  // HTML scrape fallback - this often works even when API is rate limited
-  console.log(`[LOOKUP] Trying HTML scrape fallback...`);
+  // 2️⃣ HTML scrape of the listing page
+  console.log('[LOOKUP] Trying HTML scrape fallback');
   try {
-    const htmlResponse = await steam(`/market/listings/730/${query}`);
-    if (htmlResponse?.ok) {
-      const html = await htmlResponse.text();
-      const priceMatch = html.match(/"sell_price_text"\s*:\s*"([^\"]+)"/i);
-      if (priceMatch) {
-        let price = priceMatch[1];
+    const resp = await steam(`/market/listings/730/${query}`);
+    if (resp?.ok) {
+      const html = await resp.text();
+      const match = html.match(/"sell_price_text"\s*:\s*"([^"]+)"/i);
+      if (match) {
+        let price = match[1];
         if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
-        console.log(`[LOOKUP] ✓ Found via HTML scrape: ${price}`);
         return { success: true, price, listings: '--', volume: '--' };
       }
     }
   } catch {}
 
-  // Fallback: original search‑render method (unless rate limited)
+  // 3️⃣ search/render fallback (provides price & listings count)
   if (!shouldUsePlaywright()) {
     try {
-      const searchResponse = await steam(
-        `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
-      );
-      if (!searchResponse?.ok) return { success: false };
-      const search = await searchResponse.json();
-      const exact = search.results?.find((item) => item.hash_name === marketHashName);
-      if (!exact?.sell_price_text) return { success: false };
-      let price = exact.sell_price_text;
-      if (price.includes('$')) {
-        price = price.replace('$', '€').replace('.', ',');
+      const resp = await steam(`/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`);
+      if (!resp?.ok) return { success: false };
+      const data = await resp.json();
+      const exact = data.results?.find(i => i.hash_name === marketHashName);
+      if (exact?.sell_price_text) {
+        let price = exact.sell_price_text;
+        if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
+        return { success: true, price, listings: exact.sell_listings || '--', volume: '--' };
       }
-      let volume = '--';
-      let listings = exact.sell_listings;
-      if (includeVolume) {
-        const overviewResponse = await steam(
-          `/market/priceoverview/?appid=730&currency=3&market_hash_name=${query}`
-        );
-        if (overviewResponse?.ok) {
-          const overview = await overviewResponse.json();
-          volume = overview.volume || '--';
-          if (overview.lowest_price) price = overview.lowest_price;
-        }
-      }
-      return {
-        success: true,
-        price,
-        listings,
-        volume,
-      };
-    } catch {
-      return { success: false };
-    }
+    } catch {}
   }
 
-  // Final fallback: Playwright browser scrape
-  console.log(`[LOOKUP] All API/HTML methods failed, trying Playwright browser fallback...`);
+  // 4️⃣ Playwright fallback – full browser scrape
+  console.log('[LOOKUP] All fast methods failed – trying Playwright');
   try {
     const pwPrice = await playwrightFallback(marketHashName);
-    if (pwPrice) {
-      console.log(`[LOOKUP] ✓ Found via Playwright browser: ${pwPrice}`);
-      return { success: true, price: pwPrice, listings: '--', volume: '--' };
-    }
-  } catch (e) {
-    console.error('[LOOKUP] Playwright fallback error:', e);
-  }
-  console.log(`[LOOKUP] ✗ All methods failed for: ${marketHashName}`);
+    if (pwPrice) return { success: true, price: pwPrice, listings: '--', volume: '--' };
+  } catch (e) { console.error('[PLAYWRIGHT] fallback error', e); }
   return { success: false };
 }
 
 async function fetchVolume(marketHashName) {
   const query = encodeURIComponent(marketHashName);
-  console.log(`[VOLUME] Fetching volume for: ${marketHashName}`);
-  
-  // If we're rate limited, skip API entirely
-  if (shouldUsePlaywright()) {
-    console.log(`[VOLUME] Skipping API (rate limited)`);
-    return '--';
-  }
-  
-  // Re‑use the expanded currency list for volume lookup
-  const currencyOptions = ['1', '3', '6', '2', '5', '7', '8'];
-  for (const cur of currencyOptions) {
+  if (shouldUsePlaywright()) { console.log('[VOLUME] Rate limited – skipping API'); return '--'; }
+  const currencies = ['1', '3', '6', '2', '5', '7', '8'];
+  for (const cur of currencies) {
     try {
-      const response = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
-      if (!response?.ok) continue;
-      const data = await response.json();
-      if (data.volume) {
-        console.log(`[VOLUME] ✓ Found via priceoverview (currency=${cur}): ${data.volume}`);
-        return data.volume;
-      }
+      const resp = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
+      if (!resp?.ok) continue;
+      const data = await resp.json();
+      if (data.volume) return data.volume;
     } catch {}
   }
-  // Fallback: scrape the HTML listing page for volume information
+  // HTML fallback for volume
   try {
-    const htmlResponse = await steam(`/market/listings/730/${query}`);
-    if (htmlResponse?.ok) {
-      const html = await htmlResponse.text();
-      const match = html.match(/"volume"\s*:\s*"?(\d+)"?/i);
-      if (match) {
-        console.log(`[VOLUME] ✓ Found via HTML scrape: ${match[1]}`);
-        return match[1];
-      }
+    const resp = await steam(`/market/listings/730/${query}`);
+    if (resp?.ok) {
+      const html = await resp.text();
+      const m = html.match(/"volume"\s*:\s*"?(\d+)"?/i);
+      if (m) return m[1];
     }
   } catch {}
-  console.log(`[VOLUME] ✗ No volume data found for: ${marketHashName}`);
   return '--';
 }
 
 async function fetchPrice(marketHashName) {
   const query = encodeURIComponent(marketHashName);
-  console.log(`[PRICE] Fetching price for: ${marketHashName}`);
-
-  // If Playwright fallback is active, try to get price from cached condition map first
+  // Playwright cache path – if we already have condition map we can reuse it
   if (shouldUsePlaywright()) {
-    // Extract base name and condition
     const condMatch = marketHashName.match(/\(([^)]+)\)$/);
     const condition = condMatch ? condMatch[1] : null;
-    const baseName = marketHashName.replace(/ \([^)]*\)$/, ''); // remove condition part
+    const base = marketHashName.replace(/ \([^)]*\)$/, '');
     if (condition) {
-      const conditionMap = await getConditionPrices(baseName);
-      if (conditionMap && conditionMap[condition]) {
-        console.log(`[PRICE] ✓ Found via Playwright cache for ${marketHashName}: ${conditionMap[condition]}`);
-        return conditionMap[condition];
-      }
+      const map = await getConditionPrices(base);
+      if (map && map[condition]) return map[condition];
     }
   }
 
-  // HTML scrape fallback - this often works even when API is rate limited and gives condition‑specific price
-  console.log(`[PRICE] Trying HTML scrape fallback...`);
+  // HTML scrape first (often gives condition‑specific price)
+  console.log('[PRICE] Trying HTML scrape');
   try {
-    const htmlResponse = await steam(`/market/listings/730/${query}`);
-    if (htmlResponse?.ok) {
-      const html = await htmlResponse.text();
-      const priceMatch = html.match(/"sell_price_text"\s*:\s*"([^\"]+)"/i);
-      if (priceMatch) {
-        let price = priceMatch[1];
+    const resp = await steam(`/market/listings/730/${query}`);
+    if (resp?.ok) {
+      const html = await resp.text();
+      const m = html.match(/"sell_price_text"\s*:\s*"([^"]+)"/i);
+      if (m) {
+        let price = m[1];
         if (price.includes('$')) price = price.replace('$', '€').replace('.', ',');
-        console.log(`[PRICE] ✓ Found via HTML scrape: ${price}`);
         return price;
       }
     }
   } catch {}
 
-  // Try API endpoints next (unless rate limited)
+  // API priceoverview (multiple currencies)
   if (!shouldUsePlaywright()) {
-    const currencyOptions = ['1', '3', '6', '2', '5', '7', '8']; // expanded list
-    for (const cur of currencyOptions) {
-      for (let attempt = 0; attempt < 3; attempt++) {
-        try {
-          const path = `/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`;
-          const response = await steam(path);
-          if (!response?.ok) {
-            await wait(1000 * Math.pow(2, attempt));
-            continue;
-          }
-          const data = await response.json();
-          let price = data.lowest_price || data.price || null;
-          if (price && cur === '1' && price.includes('$')) {
-            price = price.replace('$', '€').replace('.', ',');
-          }
-          if (price) {
-            console.log(`[PRICE] ✓ Found via priceoverview (currency=${cur}): ${price}`);
-            return price;
-          }
-        } catch {
-          await wait(500 * Math.pow(2, attempt));
-        }
-      }
+    const currencies = ['1', '3', '6', '2', '5', '7', '8'];
+    for (const cur of currencies) {
+      try {
+        const resp = await steam(`/market/priceoverview/?appid=730&currency=${cur}&market_hash_name=${query}`);
+        if (!resp?.ok) continue;
+        const data = await resp.json();
+        let price = data.lowest_price || data.price;
+        if (price && cur === '1' && price.includes('$')) price = price.replace('$', '€').replace('.', ',');
+        if (price) return price;
+      } catch {}
     }
   } else {
-    console.log(`[PRICE] Rate limited - skipping priceoverview API`);
+    console.log('[PRICE] Rate limited – skipping API');
   }
 
-  // Fallback 2: older priceoverview without currency
+  // Older priceoverview without currency
   if (!shouldUsePlaywright()) {
     try {
-      const response = await steam(`/market/priceoverview/?appid=730&market_hash_name=${query}`);
-      if (response?.ok) {
-        const data = await response.json();
-        let price = data.lowest_price || data.price || null;
+      const resp = await steam(`/market/priceoverview/?appid=730&market_hash_name=${query}`);
+      if (resp?.ok) {
+        const data = await resp.json();
+        let price = data.lowest_price || data.price;
         if (price && price.includes('$')) price = price.replace('$', '€').replace('.', ',');
-        if (price) {
-          console.log(`[PRICE] ✓ Found via priceoverview (no currency): ${price}`);
-          return price;
-        }
+        if (price) return price;
       }
     } catch {}
   }
 
-  // Final fallback: Playwright browser scrape (full page)
-  console.log(`[PRICE] All API/HTML methods failed, trying Playwright browser fallback...`);
-  try {
-    const pwPrice = await playwrightFallback(marketHashName);
-    if (pwPrice) {
-      console.log(`[PRICE] ✓ Found via Playwright browser: ${pwPrice}`);
-      return pwPrice;
-    }
-  } catch (e) {
-    console.error('[PRICE] Playwright fallback error:', e);
-  }
-  console.log(`[PRICE] ✗ All methods failed for: ${marketHashName}`);
+  // Final Playwright fallback
+  console.log('[PRICE] All fast methods failed – Playwright fallback');
+  try { return await playwrightFallback(marketHashName); } catch (e) { console.error(e); }
   return null;
 }
 
-// Playwright fallback implementation – launches a headless browser only when needed
-let _browserPromise = null;
-let _browserLaunchFailed = false;
-// Cache for weapon pages to avoid reopening for each condition
-const weaponPageCache = new Map();
-
-// Updated Playwright browser handling – store instance for reuse and proper cleanup
+// ---------- Playwright helpers ----------
 let _browserInstance = null;
+let _browserLaunchFailed = false;
 async function getBrowser() {
   if (!_browserInstance && !_browserLaunchFailed) {
-    console.log('[PLAYWRIGHT] Launching headless browser...');
-    try {
-      _browserInstance = await chromium.launch({ headless: true });
-    } catch (e) {
-      console.log('[PLAYWRIGHT] Browser launch failed (not installed?):', e.message);
-      _browserLaunchFailed = true;
-      _browserInstance = null;
-      throw e;
-    }
+    console.log('[PLAYWRIGHT] Launching headless Chromium');
+    try { _browserInstance = await chromium.launch({ headless: true }); }
+    catch (e) { console.log('[PLAYWRIGHT] Launch failed:', e.message); _browserLaunchFailed = true; throw e; }
   }
-  if (_browserLaunchFailed) {
-    throw new Error('Playwright browser not available');
-  }
+  if (_browserLaunchFailed) throw new Error('Playwright not available');
   return _browserInstance;
 }
-
 async function getBrowserContext() {
-  // Create a new browser context with realistic headers to mimic a real user.
-  // Re‑use the existing browser instance for efficiency.
   const browser = await getBrowser();
   return await browser.newContext({
-    userAgent: defaultHeaders['User-Agent'],
+    userAgent: defaultHeaders()['User-Agent'],
     viewport: { width: 1280, height: 720 },
     locale: 'en-US',
     timezoneId: 'America/New_York',
     extraHTTPHeaders: {
-      'Accept-Language': defaultHeaders['Accept-Language'],
-      Accept: defaultHeaders['Accept'],
-      Referer: defaultHeaders['Referer'],
-      'X-Requested-With': defaultHeaders['X-Requested-With'],
+      'Accept-Language': defaultHeaders()['Accept-Language'],
+      Accept: '*/*',
+      Referer: 'https://steamcommunity.com/market/',
+      'X-Requested-With': 'XMLHttpRequest',
     },
   });
 }
 
-async function playwrightFallback(marketHashName, condition = null) {
-  // If a specific condition is provided, attempt to locate the price element associated with that condition
-  // This helps avoid returning the same price for different conditions.
-
-  if (_browserLaunchFailed) {
-    console.log(`[PLAYWRIGHT] Skipping - browser not available`);
-    return null;
-  }
-  console.log(`[PLAYWRIGHT] Attempting browser scrape for: ${marketHashName}`);
-  
-  let page = null;
-  let context = null;
+async function playwrightFallback(marketHashName) {
+  if (_browserLaunchFailed) return null;
+  const url = `https://steamcommunity.com/market/listings/730/${encodeURIComponent(marketHashName)}`;
+  let page, context;
   try {
     const browser = await getBrowser();
-    // Create a NEW page for each request to avoid navigation conflicts
-    context = await browser.newContext({
-      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
-      viewport: { width: 1280, height: 720 },
-      locale: 'en-US',
-      timezoneId: 'America/New_York',
-    });
+    context = await browser.newContext();
     page = await context.newPage();
-
-    const encoded = encodeURIComponent(marketHashName);
-    const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
-
-    // Use domcontentloaded instead of networkidle - more reliable for Steam's dynamic content
     await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
-  // Wait for the page's JavaScript to populate the listing info
-  try {
-    await page.waitForFunction(() => !!window.g_rgListingInfo, { timeout: 15000 });
-  } catch {
-    // If the variable never appears, fall back to a longer static wait
-    await wait(12000);
-  }
-    // Debug: log page title and URL to verify we're on the right page
-    const title = await page.title();
-    console.log(`[PLAYWRIGHT] Page title: ${title}`);
-    console.log(`[PLAYWRIGHT] Current URL: ${page.url()}`);
-
-// Try extracting price directly from the page's embedded script data, which is specific to the condition page
-    const scriptContent = await page.evaluate(() => {
+    // Try to read price from embedded script data
+    const scriptPrice = await page.evaluate(() => {
       const scripts = Array.from(document.querySelectorAll('script'));
       for (const s of scripts) {
-        if (s.textContent && s.textContent.includes('sell_price_text')) {
-          return s.textContent;
+        const txt = s.textContent;
+        if (txt && txt.includes('sell_price_text')) {
+          const m = txt.match(/"sell_price_text"\s*:\s*"([^"]+)"/);
+          if (m) return m[1];
         }
       }
       return null;
     });
-    if (scriptContent) {
-      const match = scriptContent.match(/"sell_price_text"\s*:\s*"([^\"]+)"/);
-      if (match) {
-        console.log(`[PLAYWRIGHT] ✓ Found price via script extraction`);
-        return match[1];
-      }
-    }
-
-    // Fallback: generic selectors (may return same price across conditions)
-    const priceSelectors = [
+    if (scriptPrice) return scriptPrice;
+    // Generic selectors fallback
+    const selectors = [
       '#market_commodity_buyrequests .market_listing_price.market_listing_price_with_fee',
       '#market_commodity_buyrequests .market_listing_price',
       '.market_commodity_buyrequests .market_listing_price',
@@ -469,300 +291,173 @@ async function playwrightFallback(marketHashName, condition = null) {
       '[data-price]',
       '.price',
     ];
-    for (const sel of priceSelectors) {
-      try {
-        const el = await page.$(sel);
-        if (el) {
-          const txt = await el.textContent();
-          if (txt && txt.trim() && (txt.includes('$') || txt.includes('€') || txt.includes('£') || /^\d+[.,]\d+$/.test(txt.trim()))) {
-            console.log(`[PLAYWRIGHT] ✓ Found price via selector: ${sel} -> ${txt.trim()}`);
-            return txt.trim();
-          }
-        }
-      } catch {}
+    for (const sel of selectors) {
+      const el = await page.$(sel);
+      if (el) {
+        const txt = await el.textContent();
+        if (txt && txt.trim()) return txt.trim();
+      }
     }
-    // Final fallback: search body text for price patterns
-    const bodyText = await page.evaluate(() => document.body.innerText);
-    const priceMatches = bodyText.match(/[\$€£]\s*\d+[.,]\d{2}/g);
-    if (priceMatches && priceMatches.length > 0) {
-      console.log(`[PLAYWRIGHT] ✓ Found price via text search: ${priceMatches[0]}`);
-      return priceMatches[0];
-    }
-    
+    // Final text search
+    const body = await page.evaluate(() => document.body.innerText);
+    const m = body.match(/[\$€£]\s*\d+[.,]\d{2}/);
+    return m ? m[0] : null;
   } catch (e) {
     if (e.message.includes('Executable doesn') || e.message.includes('browserType.launch')) {
-      console.log('[PLAYWRIGHT] Browser not installed, disabling Playwright fallback');
+      console.log('[PLAYWRIGHT] Browser not installed – disabling fallback');
       _browserLaunchFailed = true;
     } else {
       console.error('[PLAYWRIGHT] Error:', e.message);
     }
+    return null;
   } finally {
-    // Always close the page and context to avoid memory leaks
-    if (page) {
-      try { await page.close(); } catch {}
-    }
-    if (context) {
-      try { await context.close(); } catch {}
-    }
+    if (page) try { await page.close(); } catch {}
+    if (context) try { await context.close(); } catch {}
   }
-  console.log(`[PLAYWRIGHT] ✗ Failed to find price for: ${marketHashName}`);
-  return null;
 }
 
-// Helper to extract all condition prices for a weapon/skin in one Playwright page load
+// Cache condition maps per weapon/skin
+const weaponPageCache = new Map();
 async function getConditionPrices(weaponSkin) {
-  // Return cached map if available
   if (weaponPageCache.has(weaponSkin)) return weaponPageCache.get(weaponSkin);
-
-  if (_browserLaunchFailed) {
-    console.log('[PLAYWRIGHT] Skipping - browser not available');
-    return {};
-  }
+  if (_browserLaunchFailed) return {};
   const browser = await getBrowser();
   const context = await getBrowserContext();
   const page = await context.newPage();
-  const encoded = encodeURIComponent(weaponSkin);
-  const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
+  const url = `https://steamcommunity.com/market/listings/730/${encodeURIComponent(weaponSkin)}`;
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-
-  // Try to extract condition-price pairs from g_rgListingInfo if present
-  let conditionMap = await page.evaluate(() => {
-    const map = {};
+  // Try to read g_rgListingInfo (Steam's JS object)
+  const map = await page.evaluate(() => {
+    const out = {};
     if (window.g_rgListingInfo) {
       for (const key in window.g_rgListingInfo) {
         const info = window.g_rgListingInfo[key];
         const name = info.market_name || '';
         const price = info.sell_price_text || '';
-        const match = name.match(/\\(([^)]+)\\)$/);
-        if (match && price) {
-          const cond = match[1];
-          if (!map[cond]) map[cond] = price;
-        }
+        const m = name.match(/\(([^)]+)\)$/);
+        if (m && price) out[m[1]] = price;
       }
     }
-    return map;
+    return out;
   });
-
-  // If g_rgListingInfo was empty, fall back to parsing the Market_LoadOrderSpread script
-  if (Object.keys(conditionMap).length === 0) {
-    const scriptContent = await page.$$eval('script', scripts => scripts.map(s => s.textContent).join('\n'));
-    const match = scriptContent.match(/Market_LoadOrderSpread\((\{.*?\})\);/s);
+  // Fallback: parse Market_LoadOrderSpread script
+  if (Object.keys(map).length === 0) {
+    const script = await page.$$eval('script', ss => ss.map(s => s.textContent).join('\n'));
+    const match = script.match(/Market_LoadOrderSpread\((\{.*?\})\);/s);
     if (match) {
       try {
         const data = JSON.parse(match[1]);
-        if (data && data.sell_order) {
-          data.sell_order.forEach(order => {
-            const name = order.market_name || '';
-            const price = order.sell_price_text || '';
-            const condMatch = name.match(/\\(([^)]+)\\)$/);
-            if (condMatch && price) {
-              const cond = condMatch[1];
-              if (!conditionMap[cond]) conditionMap[cond] = price;
-            }
+        if (data.sell_order) {
+          data.sell_order.forEach(o => {
+            const name = o.market_name || '';
+            const price = o.sell_price_text || '';
+            const m = name.match(/\(([^)]+)\)$/);
+            if (m && price) map[m[1]] = price;
           });
         }
-      } catch (e) {
-        console.error('[PLAYWRIGHT] Failed to parse Market_LoadOrderSpread JSON:', e.message);
-      }
+      } catch (e) { console.error('[PLAYWRIGHT] JSON parse error', e.message); }
     }
   }
-  // Additional fallback: parse visible price rows from the market orders table
-  if (Object.keys(conditionMap).length === 0) {
-    try {
-      const rows = await page.$$eval('.market_commodity_orders_table tr', trs => trs.map(tr => {
-        const cells = tr.querySelectorAll('td');
-        const cond = cells[0]?.innerText?.trim();
-        const price = cells[1]?.querySelector('.market_commodity_orders_table_price')?.innerText?.trim();
-        return { cond, price };
-      }));
-      rows.forEach(({ cond, price }) => {
-        if (cond && price && !conditionMap[cond]) {
-          conditionMap[cond] = price;
-        }
-      });
-    } catch (e) {
-      console.error('[PLAYWRIGHT] Failed to parse market orders table:', e.message);
-    }
-  }
-  // Cache the result for future lookups of the same weapon/skin
-  weaponPageCache.set(weaponSkin, conditionMap);
-
-  // Clean up
+  weaponPageCache.set(weaponSkin, map);
   try { await page.close(); } catch {}
   try { await context.close(); } catch {}
-  return conditionMap;
+  return map;
 }
 
 async function lookupCondition(weapon, skin, condition) {
-  try {
-    const baseName = `${weapon} | ${skin}`; // without condition
-    const conditionName = condition; // e.g. "Factory New"
-    const fullName = `${weapon} | ${skin} (${condition})`;
-    const query = encodeURIComponent(fullName);
-;
-
-    // If rate limited, use Playwright to fetch all condition prices in a single page load
-    if (shouldUsePlaywright()) {
-      console.log(`[LOOKUP] Rate limited - using Playwright cached page for: ${baseName}`);
-      // Get price map for normal and StatTrak versions
-      const normalMap = await getConditionPrices(baseName);
-      const statTrakMap = await getConditionPrices(`StatTrak™ ${baseName}`);
-      const normalPrice = normalMap[condition] || null;
-      const stattrakPrice = statTrakMap[condition] || null;
-      return [
-        [baseName, normalPrice ? { sell_price_text: normalPrice, sell_listings: '--', volume: await fetchVolume(baseName) } : null],
-        [`StatTrak™ ${baseName}`, stattrakPrice ? { sell_price_text: stattrakPrice, sell_listings: '--', volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
-      ];
-    }
-
-    console.log(`[LOOKUP] Searching for: ${baseName}`);
-    const response = await steam(
-      `/market/search/render/?query=${query}&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3`,
-    );
-    let normal = null;
-    let stattrak = null;
-    if (response?.ok) {
-      const search = await response.json();
-      normal = search.results?.find((item) => item.hash_name === baseName);
-      const stattrakName = `StatTrak™ ${baseName}`;
-      stattrak = search.results?.find((item) => item.hash_name === stattrakName);
-      if (normal) console.log(`[LOOKUP] ✓ Found normal via search/render`);
-      if (stattrak) console.log(`[LOOKUP] ✓ Found StatTrak via search/render`);
-    } else {
-      console.log(`[LOOKUP] search/render failed, will use direct price fetch`);
-    }
-    // If search didn't find items, fall back to direct priceoverview fetch
-    const [normalPrice2, stattrakPrice2] = await Promise.all([
-      normal ? fetchPrice(normal.hash_name) : fetchPrice(baseName),
-      stattrak ? fetchPrice(stattrak.hash_name) : fetchPrice(`StatTrak™ ${baseName}`),
-    ]);
+  const base = `${weapon} | ${skin}`;
+  const full = `${weapon} | ${skin} (${condition})`;
+  if (shouldUsePlaywright()) {
+    const normalMap = await getConditionPrices(base);
+    const statMap = await getConditionPrices(`StatTrak™ ${base}`);
+    const normalPrice = normalMap[condition] || null;
+    const statPrice = statMap[condition] || null;
     return [
-      [baseName, normalPrice2 ? { sell_price_text: normalPrice2, sell_listings: normal?.sell_listings, volume: await fetchVolume(baseName) } : null],
-      [`StatTrak™ ${baseName}`, stattrakPrice2 ? { sell_price_text: stattrakPrice2, sell_listings: stattrak?.sell_listings, volume: await fetchVolume(`StatTrak™ ${baseName}`) } : null],
+      [base, normalPrice ? { sell_price_text: normalPrice, sell_listings: '--', volume: await fetchVolume(base) } : null],
+      [`StatTrak™ ${base}`, statPrice ? { sell_price_text: statPrice, sell_listings: '--', volume: await fetchVolume(`StatTrak™ ${base}`) } : null],
     ];
-  } catch (err) {
-    console.log(`[LOOKUP] ✗ Error for ${weapon} | ${skin} (${condition}): ${err.message}`);
-    const baseName = `${weapon} | ${skin} (${condition})`;
-    return [[baseName, null], [`StatTrak™ ${baseName}`, null]];
   }
+  // API / HTML path – reuse lookup()
+  const result = await lookup(full);
+  return [[full, result.success ? { sell_price_text: result.price, sell_listings: result.listings, volume: result.volume } : null]];
 }
 
-const prices = {}
-const skinCatalog = {}
-const generatedAt = new Date().toISOString()
-const container = 'Sealed Genesis Terminal'
+// ---------- Data definitions ----------
+const conditions = ['Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred'];
+const skins = [
+  ['AK-47', 'The Oligarch'], ['M4A4', 'Full Throttle'], ['AWP', 'Ice Coaled'], ['Glock-18', 'Mirror Mosaic'], ['MP7', 'Smoking Kills'],
+  ['M4A1-S', 'Liquidation'], ['Dual Berettas', 'Angel Eyes'], ['UMP-45', 'Continuum'], ['MAC-10', 'Cat Fight'], ['Nova', 'Ocular'],
+  ['AUG', 'Trigger Discipline'], ['P2000', 'Red Wing'], ['MP5-SD', 'Focus'], ['MP9', 'Broken Record'], ['MAG-7', 'MAGnitude'],
+  ['P250', 'Bullfrog'], ['SCAR-20', 'Caged'],
+];
+const container = 'Sealed Genesis Terminal';
 
-// Progress tracking
-const totalWeapons = skins.length;
-const conditionsPerWeapon = conditions.length;
-const totalItems = 1 + (totalWeapons * conditionsPerWeapon * 2); // container + (weapons * conditions * normal+stattrak)
-let completedItems = 0;
+// ---------- Main execution ----------
+(async () => {
+  const prices = {};
+  const skinCatalog = {};
+  const generatedAt = new Date().toISOString();
 
-function renderProgressBar(label, current, total, width = 30) {
-  const percent = total > 0 ? current / total : 0;
-  const filled = Math.round(percent * width);
-  const empty = width - filled;
-  const bar = '█'.repeat(filled) + '░'.repeat(empty);
-  const pct = (percent * 100).toFixed(1).padStart(5);
-  return `[PROGRESS] ${label} [${bar}] ${pct}% (${current}/${total})`;
-}
+  const totalWeapons = skins.length;
+  const totalItems = 1 + totalWeapons * conditions.length * 2; // container + each condition normal+stattrak
+  let completed = 0;
+  const renderBar = (label) => {
+    const pct = ((completed / totalItems) * 100).toFixed(1).padStart(5);
+    const bar = '█'.repeat(Math.round(pct / 5)) + '░'.repeat(20 - Math.round(pct / 5));
+    console.log(`[PROGRESS] ${label} [${bar}] ${pct}% (${completed}/${totalItems})`);
+  };
 
-function logProgress(label) {
-  completedItems++;
-  console.log(renderProgressBar(label, completedItems, totalItems));
-}
+  // Container price
+  console.log('[MAIN] Fetching container price');
+  const containerResult = await lookup(container, true);
+  prices[container] = containerResult.success ? { success: true, price: containerResult.price, listings: containerResult.listings, volume: containerResult.volume } : { success: false };
+  completed++; renderBar('Container');
 
-// Export utility functions for testing
-export { getConditionPrices, shouldUsePlaywright, recordRateLimit, resetRateLimit };
-
-console.log(renderProgressBar('Initializing', 0, totalItems));
-
-// Check rate limit before container lookup
-if (shouldUsePlaywright()) {
-  console.log(`[MAIN] Rate limited detected, using Playwright for container`);
-  const pwPrice = await playwrightFallback(container);
-  prices[container] = pwPrice ? { success: true, price: pwPrice, listings: '--', volume: '--' } : { success: false };
-} else {
-  prices[container] = await lookup(container, true)
-}
-console.log(`[MAIN] Container price: ${prices[container]?.price || 'unavailable'}`);
-logProgress('Container');
-
-for (const [weapon, skin] of skins) {
-  console.log(`[MAIN] Processing weapon: ${weapon} | ${skin}`);
-  // Process all conditions in parallel for this weapon/skin
-  const conditionPromises = conditions.map(async (condition) => {
-    console.log(`[MAIN]   Fetching ${weapon} | ${skin} (${condition})`)
-    const entries = await lookupCondition(weapon, skin, condition)
-    for (const [marketHashName, result] of entries) {
-      prices[marketHashName] = result?.sell_price_text
-        ? { success: true, price: result.sell_price_text, listings: result.sell_listings, volume: result.volume || '--' }
-        : { success: false }
-      const status = result?.sell_price_text ? '✓' : '✗';
-      console.log(`[MAIN]   ${status} ${marketHashName}: ${result?.sell_price_text || 'unavailable'}`)
-      logProgress(marketHashName);
-    }
-  })
-  await Promise.all(conditionPromises)
-  // Small pause between weapons to be gentle on the API
-  await wait(2000)
-}
-
-try {
-  console.log('[CATALOG] Fetching skin catalog from CSGO-API...');
-  const catalogResponse = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json', { signal: AbortSignal.timeout(15000) })
-  if (catalogResponse.ok) {
-    const catalog = await catalogResponse.json()
-    let found = 0;
-    for (const [weapon, skin] of skins) {
-      const item = catalog.find((entry) => entry.name === `${weapon} | ${skin}`)
-      if (item?.image) {
-        skinCatalog[`${weapon} | ${skin}`] = item.image
-        found++;
+  // Iterate weapons & conditions
+  for (const [weapon, skin] of skins) {
+    for (const cond of conditions) {
+      const entries = await lookupCondition(weapon, skin, cond);
+      for (const [name, data] of entries) {
+        if (data) {
+          prices[name] = { success: true, price: data.sell_price_text, listings: data.sell_listings, volume: data.volume || '--' };
+        } else {
+          prices[name] = { success: false };
+        }
+        completed++; renderBar(name);
       }
     }
-    console.log(`[CATALOG] ✓ Found ${found}/${skins.length} skin images`);
-  } else {
-    console.log('[CATALOG] ✗ Failed to fetch catalog (non-OK response)');
+    // gentle pause between weapons
+    await wait(2000);
   }
-} catch (err) {
-  console.log(`[CATALOG] ✗ Error fetching catalog: ${err.message}`);
-}
 
-await mkdir('public', { recursive: true })
-prices._meta = {
-  source: 'Steam Community Market search/render',
-  generatedAt,
-  note: 'Prices are exact buyer-facing sell_price_text values returned by Steam.',
-}
-await writeFile('public/prices.json', `${JSON.stringify(prices, null, 2)}\n`)
-await writeFile('public/skins.json', `${JSON.stringify(skinCatalog, null, 2)}\n`)
-
-// Final progress bar
-console.log(renderProgressBar('Complete', totalItems, totalItems));
-
-// Summary statistics
-const totalEntries = Object.keys(prices).length - 1; // exclude _meta
-const successful = Object.values(prices).filter(v => v && v.success === true).length;
-const unavailable = Object.values(prices).filter(v => v && v.success === false).length;
-const runtime = ((Date.now() - start) / 1000).toFixed(2);
-
-console.log(`[SUMMARY] ========================================`);
-console.log(`[SUMMARY] Total entries: ${totalEntries}`);
-console.log(`[SUMMARY] Successful: ${successful}`);
-console.log(`[SUMMARY] Unavailable: ${unavailable}`);
-console.log(`[SUMMARY] Success rate: ${((successful / totalEntries) * 100).toFixed(1)}%`);
-console.log(`[SUMMARY] Total runtime: ${runtime}s`);
-console.log(`[SUMMARY] Written to: public/prices.json, public/skins.json`);
-console.log(`[SUMMARY] ========================================`);
-
-// Close Playwright browser if it was launched to ensure the script exits cleanly
-if (!_browserLaunchFailed) {
+  // Fetch skin images from external CSGO‑API
   try {
-    const browser = await getBrowser();
-    await browser.close();
-    console.log('[PLAYWRIGHT] Browser closed');
-  } catch (e) {
-    console.error('[PLAYWRIGHT] Error closing browser:', e);
+    console.log('[CATALOG] Fetching skin catalog');
+    const resp = await fetch('https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/skins.json', { signal: AbortSignal.timeout(15000) });
+    if (resp.ok) {
+      const catalog = await resp.json();
+      for (const [weapon, skin] of skins) {
+        const entry = catalog.find(e => e.name === `${weapon} | ${skin}`);
+        if (entry?.image) skinCatalog[`${weapon} | ${skin}`] = entry.image;
+      }
+    }
+  } catch (e) { console.log('[CATALOG] error', e.message); }
+
+  // Write output files
+  await mkdir('public', { recursive: true });
+  prices._meta = { source: 'Steam Community Market', generatedAt, note: 'Prices are buyer‑facing sell_price_text values.' };
+  await writeFile('public/prices.json', JSON.stringify(prices, null, 2) + '\n');
+  await writeFile('public/skins.json', JSON.stringify(skinCatalog, null, 2) + '\n');
+
+  const runtime = ((Date.now() - start) / 1000).toFixed(2);
+  console.log(`[SUMMARY] Completed in ${runtime}s – ${Object.keys(prices).length - 1} entries written`);
+
+  // Clean up Playwright
+  if (!_browserLaunchFailed) {
+    try { const b = await getBrowser(); await b.close(); console.log('[PLAYWRIGHT] Browser closed'); } catch (e) { console.error(e); }
   }
-}
+})();
+
+// Export utility functions for external use
+export { getConditionPrices, shouldUsePlaywright, recordRateLimit, resetRateLimit };
+
