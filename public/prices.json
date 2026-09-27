@@ -1,243 +1,523 @@
 {
-  "case": "--",
-  "weapons": {
-    "AK-47 | The Oligarch": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ AK-47 | The Oligarch": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "M4A4 | Full Throttle": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ M4A4 | Full Throttle": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "AWP | Ice Coaled": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ AWP | Ice Coaled": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "Glock-18 | Mirror Mosaic": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ Glock-18 | Mirror Mosaic": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "MP7 | Smoking Kills": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ MP7 | Smoking Kills": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "M4A1-S | Liquidation": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ M4A1-S | Liquidation": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "Dual Berettas | Angel Eyes": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ Dual Berettas | Angel Eyes": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "UMP-45 | Continuum": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ UMP-45 | Continuum": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "MAC-10 | Cat Fight": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ MAC-10 | Cat Fight": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "Nova | Ocular": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ Nova | Ocular": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "AUG | Trigger Discipline": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ AUG | Trigger Discipline": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "P2000 | Red Wing": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ P2000 | Red Wing": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "MP5-SD | Focus": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ MP5-SD | Focus": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "MP9 | Broken Record": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ MP9 | Broken Record": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "MAG-7 | MAGnitude": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ MAG-7 | MAGnitude": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "P250 | Bullfrog": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ P250 | Bullfrog": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "SCAR-20 | Caged": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    },
-    "StatTrak™ SCAR-20 | Caged": {
-      "Factory New": "--",
-      "Minimal Wear": "--",
-      "Field-Tested": "--",
-      "Well-Worn": "--",
-      "Battle-Scarred": "--"
-    }
+  "Sealed Genesis Terminal": {
+    "success": true,
+    "price": "$0.09",
+    "listings": "--",
+    "volume": "41,922"
+  },
+  "AK-47 | The Oligarch (Factory New)": {
+    "success": true,
+    "price": "$353.86",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AK-47 | The Oligarch (Minimal Wear)": {
+    "success": true,
+    "price": "$136.77",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AK-47 | The Oligarch (Field-Tested)": {
+    "success": true,
+    "price": "$55.74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AK-47 | The Oligarch (Well-Worn)": {
+    "success": true,
+    "price": "$39.74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AK-47 | The Oligarch (Battle-Scarred)": {
+    "success": true,
+    "price": "$32.77",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A4 | Full Throttle (Factory New)": {
+    "success": true,
+    "price": "$273.52",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A4 | Full Throttle (Minimal Wear)": {
+    "success": true,
+    "price": "$98.14",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A4 | Full Throttle (Field-Tested)": {
+    "success": true,
+    "price": "$46.93",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A4 | Full Throttle (Well-Worn)": {
+    "success": true,
+    "price": "$35.65",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A4 | Full Throttle (Battle-Scarred)": {
+    "success": true,
+    "price": "$30.84",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AWP | Ice Coaled (Factory New)": {
+    "success": true,
+    "price": "$36.76",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AWP | Ice Coaled (Minimal Wear)": {
+    "success": true,
+    "price": "$16.92",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AWP | Ice Coaled (Field-Tested)": {
+    "success": true,
+    "price": "$8.99",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AWP | Ice Coaled (Well-Worn)": {
+    "success": true,
+    "price": "$5.93",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AWP | Ice Coaled (Battle-Scarred)": {
+    "success": true,
+    "price": "$4.74",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Glock-18 | Mirror Mosaic (Factory New)": {
+    "success": true,
+    "price": "$32.02",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Glock-18 | Mirror Mosaic (Minimal Wear)": {
+    "success": true,
+    "price": "$12.89",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Glock-18 | Mirror Mosaic (Field-Tested)": {
+    "success": true,
+    "price": "$7.08",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Glock-18 | Mirror Mosaic (Well-Worn)": {
+    "success": true,
+    "price": "$5.11",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Glock-18 | Mirror Mosaic (Battle-Scarred)": {
+    "success": true,
+    "price": "$4.30",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP7 | Smoking Kills (Factory New)": {
+    "success": true,
+    "price": "$34.90",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP7 | Smoking Kills (Minimal Wear)": {
+    "success": true,
+    "price": "$14.79",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP7 | Smoking Kills (Field-Tested)": {
+    "success": true,
+    "price": "$8.14",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP7 | Smoking Kills (Well-Worn)": {
+    "success": true,
+    "price": "$5.81",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP7 | Smoking Kills (Battle-Scarred)": {
+    "success": true,
+    "price": "3,80€",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A1-S | Liquidation (Factory New)": {
+    "success": true,
+    "price": "11,06€",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A1-S | Liquidation (Minimal Wear)": {
+    "success": true,
+    "price": "5,24€",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A1-S | Liquidation (Field-Tested)": {
+    "success": true,
+    "price": "$2.68",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A1-S | Liquidation (Well-Worn)": {
+    "success": true,
+    "price": "$1.57",
+    "listings": "--",
+    "volume": "--"
+  },
+  "M4A1-S | Liquidation (Battle-Scarred)": {
+    "success": true,
+    "price": "$1.10",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Dual Berettas | Angel Eyes (Factory New)": {
+    "success": true,
+    "price": "$4.89",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Dual Berettas | Angel Eyes (Minimal Wear)": {
+    "success": true,
+    "price": "$1.89",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Dual Berettas | Angel Eyes (Field-Tested)": {
+    "success": true,
+    "price": "$0.82",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Dual Berettas | Angel Eyes (Well-Worn)": {
+    "success": true,
+    "price": "$0.65",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Dual Berettas | Angel Eyes (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.52",
+    "listings": "--",
+    "volume": "--"
+  },
+  "UMP-45 | Continuum (Factory New)": {
+    "success": true,
+    "price": "$4.25",
+    "listings": "--",
+    "volume": "--"
+  },
+  "UMP-45 | Continuum (Minimal Wear)": {
+    "success": true,
+    "price": "$1.69",
+    "listings": "--",
+    "volume": "--"
+  },
+  "UMP-45 | Continuum (Field-Tested)": {
+    "success": true,
+    "price": "$0.76",
+    "listings": "--",
+    "volume": "--"
+  },
+  "UMP-45 | Continuum (Well-Worn)": {
+    "success": true,
+    "price": "$0.64",
+    "listings": "--",
+    "volume": "--"
+  },
+  "UMP-45 | Continuum (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.57",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAC-10 | Cat Fight (Factory New)": {
+    "success": true,
+    "price": "$4.11",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAC-10 | Cat Fight (Minimal Wear)": {
+    "success": true,
+    "price": "$1.70",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAC-10 | Cat Fight (Field-Tested)": {
+    "success": true,
+    "price": "$0.76",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAC-10 | Cat Fight (Well-Worn)": {
+    "success": true,
+    "price": "$0.65",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAC-10 | Cat Fight (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.49",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Nova | Ocular (Factory New)": {
+    "success": true,
+    "price": "$4.06",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Nova | Ocular (Minimal Wear)": {
+    "success": true,
+    "price": "$1.76",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Nova | Ocular (Field-Tested)": {
+    "success": true,
+    "price": "$0.78",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Nova | Ocular (Well-Worn)": {
+    "success": true,
+    "price": "0,58€",
+    "listings": "--",
+    "volume": "--"
+  },
+  "Nova | Ocular (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.54",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AUG | Trigger Discipline (Factory New)": {
+    "success": true,
+    "price": "$0.93",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AUG | Trigger Discipline (Minimal Wear)": {
+    "success": true,
+    "price": "$0.27",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AUG | Trigger Discipline (Field-Tested)": {
+    "success": true,
+    "price": "$0.14",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AUG | Trigger Discipline (Well-Worn)": {
+    "success": true,
+    "price": "$0.10",
+    "listings": "--",
+    "volume": "--"
+  },
+  "AUG | Trigger Discipline (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.11",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P2000 | Red Wing (Factory New)": {
+    "success": true,
+    "price": "$0.93",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P2000 | Red Wing (Minimal Wear)": {
+    "success": true,
+    "price": "$0.26",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P2000 | Red Wing (Field-Tested)": {
+    "success": true,
+    "price": "$0.14",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P2000 | Red Wing (Well-Worn)": {
+    "success": true,
+    "price": "$0.11",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P2000 | Red Wing (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.13",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP5-SD | Focus (Factory New)": {
+    "success": true,
+    "price": "$0.89",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP5-SD | Focus (Minimal Wear)": {
+    "success": true,
+    "price": "$0.29",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP5-SD | Focus (Field-Tested)": {
+    "success": true,
+    "price": "$0.14",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP5-SD | Focus (Well-Worn)": {
+    "success": true,
+    "price": "$0.10",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP5-SD | Focus (Battle-Scarred)": {
+    "success": true,
+    "price": "0,09€",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP9 | Broken Record (Factory New)": {
+    "success": true,
+    "price": "$0.89",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP9 | Broken Record (Minimal Wear)": {
+    "success": true,
+    "price": "$0.29",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP9 | Broken Record (Field-Tested)": {
+    "success": true,
+    "price": "$0.12",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP9 | Broken Record (Well-Worn)": {
+    "success": true,
+    "price": "$0.11",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MP9 | Broken Record (Battle-Scarred)": {
+    "success": true,
+    "price": "0,10€",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAG-7 | MAGnitude (Factory New)": {
+    "success": true,
+    "price": "$0.84",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAG-7 | MAGnitude (Minimal Wear)": {
+    "success": true,
+    "price": "$0.30",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAG-7 | MAGnitude (Field-Tested)": {
+    "success": true,
+    "price": "$0.14",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAG-7 | MAGnitude (Well-Worn)": {
+    "success": true,
+    "price": "$0.10",
+    "listings": "--",
+    "volume": "--"
+  },
+  "MAG-7 | MAGnitude (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.10",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P250 | Bullfrog (Factory New)": {
+    "success": true,
+    "price": "$0.89",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P250 | Bullfrog (Minimal Wear)": {
+    "success": true,
+    "price": "$0.27",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P250 | Bullfrog (Field-Tested)": {
+    "success": true,
+    "price": "$0.15",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P250 | Bullfrog (Well-Worn)": {
+    "success": true,
+    "price": "$0.10",
+    "listings": "--",
+    "volume": "--"
+  },
+  "P250 | Bullfrog (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.10",
+    "listings": "--",
+    "volume": "--"
+  },
+  "SCAR-20 | Caged (Factory New)": {
+    "success": true,
+    "price": "$0.84",
+    "listings": "--",
+    "volume": "--"
+  },
+  "SCAR-20 | Caged (Minimal Wear)": {
+    "success": true,
+    "price": "$0.28",
+    "listings": "--",
+    "volume": "--"
+  },
+  "SCAR-20 | Caged (Field-Tested)": {
+    "success": true,
+    "price": "$0.14",
+    "listings": "--",
+    "volume": "--"
+  },
+  "SCAR-20 | Caged (Well-Worn)": {
+    "success": true,
+    "price": "$0.10",
+    "listings": "--",
+    "volume": "--"
+  },
+  "SCAR-20 | Caged (Battle-Scarred)": {
+    "success": true,
+    "price": "$0.09",
+    "listings": "--",
+    "volume": "--"
+  },
+  "_meta": {
+    "source": "Steam Community Market",
+    "generatedAt": "2026-09-27T15:18:15.445Z",
+    "note": "Prices are buyer‑facing sell_price_text values."
   }
 }
