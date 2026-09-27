@@ -14,17 +14,21 @@ let usePlaywrightFallback = false;
 function recordRateLimit(hit) {
   if (hit) {
     consecutive429s++;
-    // Do NOT switch to global Playwright fallback here – we will handle per‑request fallback later
+    if (consecutive429s >= RATE_LIMIT_THRESHOLD && !usePlaywrightFallback) {
+      usePlaywrightFallback = true;
+      console.log(`[RATE LIMIT] ${consecutive429s} consecutive 429s - switching to Playwright fallback`);
+    }
   } else {
     consecutive429s = 0;
-    // Reset any global fallback flag
-    usePlaywrightFallback = false;
+    if (usePlaywrightFallback) {
+      console.log(`[RATE LIMIT] Successful request - switching back to API`);
+      usePlaywrightFallback = false;
+    }
   }
 }
 
 function shouldUsePlaywright() {
-  // Disabled Playwright fallback due to authentication requirements
-  return false;
+  return usePlaywrightFallback;
 }
 
 function resetRateLimit() {
@@ -356,23 +360,42 @@ let _browserLaunchFailed = false;
 // Cache for weapon pages to avoid reopening for each condition
 const weaponPageCache = new Map();
 
+// Updated Playwright browser handling – store instance for reuse and proper cleanup
+let _browserInstance = null;
 async function getBrowser() {
-  if (!_browserPromise && !_browserLaunchFailed) {
+  if (!_browserInstance && !_browserLaunchFailed) {
     console.log('[PLAYWRIGHT] Launching headless browser...');
     try {
-      _browserPromise = chromium.launch({ headless: true });
-      await _browserPromise; // Wait for launch to verify it works
+      _browserInstance = await chromium.launch({ headless: true });
     } catch (e) {
       console.log('[PLAYWRIGHT] Browser launch failed (not installed?):', e.message);
       _browserLaunchFailed = true;
-      _browserPromise = null;
+      _browserInstance = null;
       throw e;
     }
   }
   if (_browserLaunchFailed) {
     throw new Error('Playwright browser not available');
   }
-  return _browserPromise;
+  return _browserInstance;
+}
+
+async function getBrowserContext() {
+  // Create a new browser context with realistic headers to mimic a real user.
+  // Re‑use the existing browser instance for efficiency.
+  const browser = await getBrowser();
+  return await browser.newContext({
+    userAgent: defaultHeaders['User-Agent'],
+    viewport: { width: 1280, height: 720 },
+    locale: 'en-US',
+    timezoneId: 'America/New_York',
+    extraHTTPHeaders: {
+      'Accept-Language': defaultHeaders['Accept-Language'],
+      Accept: defaultHeaders['Accept'],
+      Referer: defaultHeaders['Referer'],
+      'X-Requested-With': defaultHeaders['X-Requested-With'],
+    },
+  });
 }
 
 async function playwrightFallback(marketHashName, condition = null) {
@@ -402,9 +425,14 @@ async function playwrightFallback(marketHashName, condition = null) {
     const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
 
     // Use domcontentloaded instead of networkidle - more reliable for Steam's dynamic content
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await wait(5000); // Give JS more time to render prices
-    
+    await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+  // Wait for the page's JavaScript to populate the listing info
+  try {
+    await page.waitForFunction(() => !!window.g_rgListingInfo, { timeout: 15000 });
+  } catch {
+    // If the variable never appears, fall back to a longer static wait
+    await wait(12000);
+  }
     // Debug: log page title and URL to verify we're on the right page
     const title = await page.title();
     console.log(`[PLAYWRIGHT] Page title: ${title}`);
@@ -491,18 +519,7 @@ async function getConditionPrices(weaponSkin) {
     return {};
   }
   const browser = await getBrowser();
-  const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
-    viewport: { width: 1280, height: 720 },
-    locale: 'en-US',
-    timezoneId: 'America/New_York',
-    // Additional headers to better mimic a real browser
-    extraHTTPHeaders: {
-      'Accept-Language': 'en-US,en;q=0.9',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Upgrade-Insecure-Requests': '1',
-    },
-  });
+  const context = await getBrowserContext();
   const page = await context.newPage();
   const encoded = encodeURIComponent(weaponSkin);
   const url = `https://steamcommunity.com/market/listings/730/${encoded}`;
@@ -549,7 +566,24 @@ async function getConditionPrices(weaponSkin) {
       }
     }
   }
-
+  // Additional fallback: parse visible price rows from the market orders table
+  if (Object.keys(conditionMap).length === 0) {
+    try {
+      const rows = await page.$$eval('.market_commodity_orders_table tr', trs => trs.map(tr => {
+        const cells = tr.querySelectorAll('td');
+        const cond = cells[0]?.innerText?.trim();
+        const price = cells[1]?.querySelector('.market_commodity_orders_table_price')?.innerText?.trim();
+        return { cond, price };
+      }));
+      rows.forEach(({ cond, price }) => {
+        if (cond && price && !conditionMap[cond]) {
+          conditionMap[cond] = price;
+        }
+      });
+    } catch (e) {
+      console.error('[PLAYWRIGHT] Failed to parse market orders table:', e.message);
+    }
+  }
   // Cache the result for future lookups of the same weapon/skin
   weaponPageCache.set(weaponSkin, conditionMap);
 
@@ -638,7 +672,9 @@ function logProgress(label) {
   console.log(renderProgressBar(label, completedItems, totalItems));
 }
 
-console.log(`[MAIN] Starting price fetch for container: ${container}`);
+// Export utility functions for testing
+export { getConditionPrices, shouldUsePlaywright, recordRateLimit, resetRateLimit };
+
 console.log(renderProgressBar('Initializing', 0, totalItems));
 
 // Check rate limit before container lookup

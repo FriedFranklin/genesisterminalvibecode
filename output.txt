@@ -1,0 +1,1001 @@
+[MAIN] Starting price fetch for container: Sealed Genesis Terminal
+[PROGRESS] Initializing [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0.0% (0/171)
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=Sealed%20Genesis%20Terminal
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=Sealed%20Genesis%20Terminal
+[MAIN] Container price: €0,09
+[PROGRESS] Container [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0.6% (1/171)
+[MAIN] Processing weapon: AK-47 | The Oligarch
+[MAIN]   Fetching AK-47 | The Oligarch (Factory New)
+[LOOKUP] Searching for: AK-47 | The Oligarch
+[API] Fetching: /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Factory%20New)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[MAIN]   Fetching AK-47 | The Oligarch (Minimal Wear)
+[LOOKUP] Searching for: AK-47 | The Oligarch
+[API] Fetching: /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Minimal%20Wear)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[MAIN]   Fetching AK-47 | The Oligarch (Field-Tested)
+[LOOKUP] Searching for: AK-47 | The Oligarch
+[API] Fetching: /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Field-Tested)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[MAIN]   Fetching AK-47 | The Oligarch (Well-Worn)
+[LOOKUP] Searching for: AK-47 | The Oligarch
+[API] Fetching: /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Well-Worn)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[MAIN]   Fetching AK-47 | The Oligarch (Battle-Scarred)
+[LOOKUP] Searching for: AK-47 | The Oligarch
+[API] Fetching: /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Battle-Scarred)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[API] Response: 200 OK for /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Factory%20New)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[PRICE] Fetching price for: AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PRICE] Fetching price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Minimal%20Wear)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[PRICE] Fetching price for: AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PRICE] Fetching price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Field-Tested)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[PRICE] Fetching price for: AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PRICE] Fetching price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Well-Worn)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[PRICE] Fetching price for: AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PRICE] Fetching price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/search/render/?query=AK-47%20%7C%20The%20Oligarch%20(Battle-Scarred)&start=0&count=10&search_descriptions=0&sort_column=price&sort_dir=asc&appid=730&norender=1&currency=3
+[PRICE] Fetching price for: AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PRICE] Fetching price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] Trying HTML scrape fallback...
+[API] Fetching: /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/listings/730/AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 200 OK for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Fetching: /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[RATE LIMIT] 3 consecutive 429s - switching to Playwright fallback
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Response: 429 Too Many Requests for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] All attempts failed for /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=1&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=1&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=3&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=6&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=2&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=5&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=7&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: AK-47 | The Oligarch
+[PLAYWRIGHT] Launching headless browser...
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[API] Skipping API endpoint (rate limited): /market/priceoverview/?appid=730&currency=8&market_hash_name=AK-47%20%7C%20The%20Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: StatTrak™ AK-47 | The Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: StatTrak™ AK-47 | The Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: AK-47 | The Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: StatTrak™ AK-47 | The Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: AK-47 | The Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: AK-47 | The Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: StatTrak™ AK-47 | The Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: StatTrak™ AK-47 | The Oligarch
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PRICE] All API/HTML methods failed, trying Playwright browser fallback...
+[PLAYWRIGHT] Attempting browser scrape for: AK-47 | The Oligarch
+[PLAYWRIGHT] ✗ Failed to find price for: AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: AK-47 | The Oligarch
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] ✗ Failed to find price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: StatTrak™ AK-47 | The Oligarch
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] ✗ Failed to find price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: StatTrak™ AK-47 | The Oligarch
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] ✗ Failed to find price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: StatTrak™ AK-47 | The Oligarch
+[MAIN]   ✗ AK-47 | The Oligarch: unavailable
+[PROGRESS] AK-47 | The Oligarch [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   1.2% (2/171)
+[MAIN]   ✗ StatTrak™ AK-47 | The Oligarch: unavailable
+[PROGRESS] StatTrak™ AK-47 | The Oligarch [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   1.8% (3/171)
+[PLAYWRIGHT] ✗ Failed to find price for: AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: AK-47 | The Oligarch
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] ✗ Failed to find price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: StatTrak™ AK-47 | The Oligarch
+[PLAYWRIGHT] ✗ Failed to find price for: AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: AK-47 | The Oligarch
+[MAIN]   ✗ AK-47 | The Oligarch: unavailable
+[PROGRESS] AK-47 | The Oligarch [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   2.3% (4/171)
+[MAIN]   ✗ StatTrak™ AK-47 | The Oligarch: unavailable
+[PROGRESS] StatTrak™ AK-47 | The Oligarch [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   2.9% (5/171)
+[PLAYWRIGHT] ✗ Failed to find price for: AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: AK-47 | The Oligarch
+[MAIN]   ✗ AK-47 | The Oligarch: unavailable
+[PROGRESS] AK-47 | The Oligarch [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   3.5% (6/171)
+[MAIN]   ✗ StatTrak™ AK-47 | The Oligarch: unavailable
+[PROGRESS] StatTrak™ AK-47 | The Oligarch [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   4.1% (7/171)
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/StatTrak%E2%84%A2%20AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] ✗ Failed to find price for: StatTrak™ AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: StatTrak™ AK-47 | The Oligarch
+[MAIN]   ✗ AK-47 | The Oligarch: unavailable
+[PROGRESS] AK-47 | The Oligarch [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   4.7% (8/171)
+[MAIN]   ✗ StatTrak™ AK-47 | The Oligarch: unavailable
+[PROGRESS] StatTrak™ AK-47 | The Oligarch [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   5.3% (9/171)
+[PLAYWRIGHT] Page title: Market Item - Steam Community Market
+[PLAYWRIGHT] Current URL: https://steamcommunity.com/market/listings/730/AK-47%20%7C%20The%20Oligarch
+[PLAYWRIGHT] ✗ Failed to find price for: AK-47 | The Oligarch
+[PRICE] ✗ All methods failed for: AK-47 | The Oligarch
+[MAIN]   ✗ AK-47 | The Oligarch: unavailable
+[PROGRESS] AK-47 | The Oligarch [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   5.8% (10/171)
+[MAIN]   ✗ StatTrak™ AK-47 | The Oligarch: unavailable
+[PROGRESS] StatTrak™ AK-47 | The Oligarch [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   6.4% (11/171)
+[MAIN] Processing weapon: M4A4 | Full Throttle
+[MAIN]   Fetching M4A4 | Full Throttle (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A4 | Full Throttle
+[MAIN]   Fetching M4A4 | Full Throttle (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A4 | Full Throttle
+[MAIN]   Fetching M4A4 | Full Throttle (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A4 | Full Throttle
+[MAIN]   Fetching M4A4 | Full Throttle (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A4 | Full Throttle
+[MAIN]   Fetching M4A4 | Full Throttle (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A4 | Full Throttle
+[MAIN]   ✗ M4A4 | Full Throttle: unavailable
+[PROGRESS] M4A4 | Full Throttle [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   7.0% (12/171)
+[MAIN]   ✗ StatTrak™ M4A4 | Full Throttle: unavailable
+[PROGRESS] StatTrak™ M4A4 | Full Throttle [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   7.6% (13/171)
+[MAIN]   ✗ M4A4 | Full Throttle: unavailable
+[PROGRESS] M4A4 | Full Throttle [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   8.2% (14/171)
+[MAIN]   ✗ StatTrak™ M4A4 | Full Throttle: unavailable
+[PROGRESS] StatTrak™ M4A4 | Full Throttle [███░░░░░░░░░░░░░░░░░░░░░░░░░░░]   8.8% (15/171)
+[MAIN]   ✗ M4A4 | Full Throttle: unavailable
+[PROGRESS] M4A4 | Full Throttle [███░░░░░░░░░░░░░░░░░░░░░░░░░░░]   9.4% (16/171)
+[MAIN]   ✗ StatTrak™ M4A4 | Full Throttle: unavailable
+[PROGRESS] StatTrak™ M4A4 | Full Throttle [███░░░░░░░░░░░░░░░░░░░░░░░░░░░]   9.9% (17/171)
+[MAIN]   ✗ M4A4 | Full Throttle: unavailable
+[PROGRESS] M4A4 | Full Throttle [███░░░░░░░░░░░░░░░░░░░░░░░░░░░]  10.5% (18/171)
+[MAIN]   ✗ StatTrak™ M4A4 | Full Throttle: unavailable
+[PROGRESS] StatTrak™ M4A4 | Full Throttle [███░░░░░░░░░░░░░░░░░░░░░░░░░░░]  11.1% (19/171)
+[MAIN]   ✗ M4A4 | Full Throttle: unavailable
+[PROGRESS] M4A4 | Full Throttle [████░░░░░░░░░░░░░░░░░░░░░░░░░░]  11.7% (20/171)
+[MAIN]   ✗ StatTrak™ M4A4 | Full Throttle: unavailable
+[PROGRESS] StatTrak™ M4A4 | Full Throttle [████░░░░░░░░░░░░░░░░░░░░░░░░░░]  12.3% (21/171)
+[MAIN] Processing weapon: AWP | Ice Coaled
+[MAIN]   Fetching AWP | Ice Coaled (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: AWP | Ice Coaled
+[MAIN]   Fetching AWP | Ice Coaled (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: AWP | Ice Coaled
+[MAIN]   Fetching AWP | Ice Coaled (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: AWP | Ice Coaled
+[MAIN]   Fetching AWP | Ice Coaled (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: AWP | Ice Coaled
+[MAIN]   Fetching AWP | Ice Coaled (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: AWP | Ice Coaled
+[MAIN]   ✗ AWP | Ice Coaled: unavailable
+[PROGRESS] AWP | Ice Coaled [████░░░░░░░░░░░░░░░░░░░░░░░░░░]  12.9% (22/171)
+[MAIN]   ✗ StatTrak™ AWP | Ice Coaled: unavailable
+[PROGRESS] StatTrak™ AWP | Ice Coaled [████░░░░░░░░░░░░░░░░░░░░░░░░░░]  13.5% (23/171)
+[MAIN]   ✗ AWP | Ice Coaled: unavailable
+[PROGRESS] AWP | Ice Coaled [████░░░░░░░░░░░░░░░░░░░░░░░░░░]  14.0% (24/171)
+[MAIN]   ✗ StatTrak™ AWP | Ice Coaled: unavailable
+[PROGRESS] StatTrak™ AWP | Ice Coaled [████░░░░░░░░░░░░░░░░░░░░░░░░░░]  14.6% (25/171)
+[MAIN]   ✗ AWP | Ice Coaled: unavailable
+[PROGRESS] AWP | Ice Coaled [█████░░░░░░░░░░░░░░░░░░░░░░░░░]  15.2% (26/171)
+[MAIN]   ✗ StatTrak™ AWP | Ice Coaled: unavailable
+[PROGRESS] StatTrak™ AWP | Ice Coaled [█████░░░░░░░░░░░░░░░░░░░░░░░░░]  15.8% (27/171)
+[MAIN]   ✗ AWP | Ice Coaled: unavailable
+[PROGRESS] AWP | Ice Coaled [█████░░░░░░░░░░░░░░░░░░░░░░░░░]  16.4% (28/171)
+[MAIN]   ✗ StatTrak™ AWP | Ice Coaled: unavailable
+[PROGRESS] StatTrak™ AWP | Ice Coaled [█████░░░░░░░░░░░░░░░░░░░░░░░░░]  17.0% (29/171)
+[MAIN]   ✗ AWP | Ice Coaled: unavailable
+[PROGRESS] AWP | Ice Coaled [█████░░░░░░░░░░░░░░░░░░░░░░░░░]  17.5% (30/171)
+[MAIN]   ✗ StatTrak™ AWP | Ice Coaled: unavailable
+[PROGRESS] StatTrak™ AWP | Ice Coaled [█████░░░░░░░░░░░░░░░░░░░░░░░░░]  18.1% (31/171)
+[MAIN] Processing weapon: Glock-18 | Mirror Mosaic
+[MAIN]   Fetching Glock-18 | Mirror Mosaic (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: Glock-18 | Mirror Mosaic
+[MAIN]   Fetching Glock-18 | Mirror Mosaic (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: Glock-18 | Mirror Mosaic
+[MAIN]   Fetching Glock-18 | Mirror Mosaic (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: Glock-18 | Mirror Mosaic
+[MAIN]   Fetching Glock-18 | Mirror Mosaic (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: Glock-18 | Mirror Mosaic
+[MAIN]   Fetching Glock-18 | Mirror Mosaic (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: Glock-18 | Mirror Mosaic
+[MAIN]   ✗ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] Glock-18 | Mirror Mosaic [██████░░░░░░░░░░░░░░░░░░░░░░░░]  18.7% (32/171)
+[MAIN]   ✗ StatTrak™ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] StatTrak™ Glock-18 | Mirror Mosaic [██████░░░░░░░░░░░░░░░░░░░░░░░░]  19.3% (33/171)
+[MAIN]   ✗ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] Glock-18 | Mirror Mosaic [██████░░░░░░░░░░░░░░░░░░░░░░░░]  19.9% (34/171)
+[MAIN]   ✗ StatTrak™ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] StatTrak™ Glock-18 | Mirror Mosaic [██████░░░░░░░░░░░░░░░░░░░░░░░░]  20.5% (35/171)
+[MAIN]   ✗ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] Glock-18 | Mirror Mosaic [██████░░░░░░░░░░░░░░░░░░░░░░░░]  21.1% (36/171)
+[MAIN]   ✗ StatTrak™ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] StatTrak™ Glock-18 | Mirror Mosaic [██████░░░░░░░░░░░░░░░░░░░░░░░░]  21.6% (37/171)
+[MAIN]   ✗ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] Glock-18 | Mirror Mosaic [███████░░░░░░░░░░░░░░░░░░░░░░░]  22.2% (38/171)
+[MAIN]   ✗ StatTrak™ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] StatTrak™ Glock-18 | Mirror Mosaic [███████░░░░░░░░░░░░░░░░░░░░░░░]  22.8% (39/171)
+[MAIN]   ✗ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] Glock-18 | Mirror Mosaic [███████░░░░░░░░░░░░░░░░░░░░░░░]  23.4% (40/171)
+[MAIN]   ✗ StatTrak™ Glock-18 | Mirror Mosaic: unavailable
+[PROGRESS] StatTrak™ Glock-18 | Mirror Mosaic [███████░░░░░░░░░░░░░░░░░░░░░░░]  24.0% (41/171)
+[MAIN] Processing weapon: MP7 | Smoking Kills
+[MAIN]   Fetching MP7 | Smoking Kills (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: MP7 | Smoking Kills
+[MAIN]   Fetching MP7 | Smoking Kills (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: MP7 | Smoking Kills
+[MAIN]   Fetching MP7 | Smoking Kills (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: MP7 | Smoking Kills
+[MAIN]   Fetching MP7 | Smoking Kills (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: MP7 | Smoking Kills
+[MAIN]   Fetching MP7 | Smoking Kills (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: MP7 | Smoking Kills
+[MAIN]   ✗ MP7 | Smoking Kills: unavailable
+[PROGRESS] MP7 | Smoking Kills [███████░░░░░░░░░░░░░░░░░░░░░░░]  24.6% (42/171)
+[MAIN]   ✗ StatTrak™ MP7 | Smoking Kills: unavailable
+[PROGRESS] StatTrak™ MP7 | Smoking Kills [████████░░░░░░░░░░░░░░░░░░░░░░]  25.1% (43/171)
+[MAIN]   ✗ MP7 | Smoking Kills: unavailable
+[PROGRESS] MP7 | Smoking Kills [████████░░░░░░░░░░░░░░░░░░░░░░]  25.7% (44/171)
+[MAIN]   ✗ StatTrak™ MP7 | Smoking Kills: unavailable
+[PROGRESS] StatTrak™ MP7 | Smoking Kills [████████░░░░░░░░░░░░░░░░░░░░░░]  26.3% (45/171)
+[MAIN]   ✗ MP7 | Smoking Kills: unavailable
+[PROGRESS] MP7 | Smoking Kills [████████░░░░░░░░░░░░░░░░░░░░░░]  26.9% (46/171)
+[MAIN]   ✗ StatTrak™ MP7 | Smoking Kills: unavailable
+[PROGRESS] StatTrak™ MP7 | Smoking Kills [████████░░░░░░░░░░░░░░░░░░░░░░]  27.5% (47/171)
+[MAIN]   ✗ MP7 | Smoking Kills: unavailable
+[PROGRESS] MP7 | Smoking Kills [████████░░░░░░░░░░░░░░░░░░░░░░]  28.1% (48/171)
+[MAIN]   ✗ StatTrak™ MP7 | Smoking Kills: unavailable
+[PROGRESS] StatTrak™ MP7 | Smoking Kills [█████████░░░░░░░░░░░░░░░░░░░░░]  28.7% (49/171)
+[MAIN]   ✗ MP7 | Smoking Kills: unavailable
+[PROGRESS] MP7 | Smoking Kills [█████████░░░░░░░░░░░░░░░░░░░░░]  29.2% (50/171)
+[MAIN]   ✗ StatTrak™ MP7 | Smoking Kills: unavailable
+[PROGRESS] StatTrak™ MP7 | Smoking Kills [█████████░░░░░░░░░░░░░░░░░░░░░]  29.8% (51/171)
+[MAIN] Processing weapon: M4A1-S | Liquidation
+[MAIN]   Fetching M4A1-S | Liquidation (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A1-S | Liquidation
+[MAIN]   Fetching M4A1-S | Liquidation (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A1-S | Liquidation
+[MAIN]   Fetching M4A1-S | Liquidation (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A1-S | Liquidation
+[MAIN]   Fetching M4A1-S | Liquidation (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A1-S | Liquidation
+[MAIN]   Fetching M4A1-S | Liquidation (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: M4A1-S | Liquidation
+[MAIN]   ✗ M4A1-S | Liquidation: unavailable
+[PROGRESS] M4A1-S | Liquidation [█████████░░░░░░░░░░░░░░░░░░░░░]  30.4% (52/171)
+[MAIN]   ✗ StatTrak™ M4A1-S | Liquidation: unavailable
+[PROGRESS] StatTrak™ M4A1-S | Liquidation [█████████░░░░░░░░░░░░░░░░░░░░░]  31.0% (53/171)
+[MAIN]   ✗ M4A1-S | Liquidation: unavailable
+[PROGRESS] M4A1-S | Liquidation [█████████░░░░░░░░░░░░░░░░░░░░░]  31.6% (54/171)
+[MAIN]   ✗ StatTrak™ M4A1-S | Liquidation: unavailable
+[PROGRESS] StatTrak™ M4A1-S | Liquidation [██████████░░░░░░░░░░░░░░░░░░░░]  32.2% (55/171)
+[MAIN]   ✗ M4A1-S | Liquidation: unavailable
+[PROGRESS] M4A1-S | Liquidation [██████████░░░░░░░░░░░░░░░░░░░░]  32.7% (56/171)
+[MAIN]   ✗ StatTrak™ M4A1-S | Liquidation: unavailable
+[PROGRESS] StatTrak™ M4A1-S | Liquidation [██████████░░░░░░░░░░░░░░░░░░░░]  33.3% (57/171)
+[MAIN]   ✗ M4A1-S | Liquidation: unavailable
+[PROGRESS] M4A1-S | Liquidation [██████████░░░░░░░░░░░░░░░░░░░░]  33.9% (58/171)
+[MAIN]   ✗ StatTrak™ M4A1-S | Liquidation: unavailable
+[PROGRESS] StatTrak™ M4A1-S | Liquidation [██████████░░░░░░░░░░░░░░░░░░░░]  34.5% (59/171)
+[MAIN]   ✗ M4A1-S | Liquidation: unavailable
+[PROGRESS] M4A1-S | Liquidation [███████████░░░░░░░░░░░░░░░░░░░]  35.1% (60/171)
+[MAIN]   ✗ StatTrak™ M4A1-S | Liquidation: unavailable
+[PROGRESS] StatTrak™ M4A1-S | Liquidation [███████████░░░░░░░░░░░░░░░░░░░]  35.7% (61/171)
+[MAIN] Processing weapon: Dual Berettas | Angel Eyes
+[MAIN]   Fetching Dual Berettas | Angel Eyes (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: Dual Berettas | Angel Eyes
+[MAIN]   Fetching Dual Berettas | Angel Eyes (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: Dual Berettas | Angel Eyes
+[MAIN]   Fetching Dual Berettas | Angel Eyes (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: Dual Berettas | Angel Eyes
+[MAIN]   Fetching Dual Berettas | Angel Eyes (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: Dual Berettas | Angel Eyes
+[MAIN]   Fetching Dual Berettas | Angel Eyes (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: Dual Berettas | Angel Eyes
+[LOOKUP] ✗ Error for Dual Berettas | Angel Eyes (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Dual Berettas | Angel Eyes (Factory New): unavailable
+[PROGRESS] Dual Berettas | Angel Eyes (Factory New) [███████████░░░░░░░░░░░░░░░░░░░]  36.3% (62/171)
+[MAIN]   ✗ StatTrak™ Dual Berettas | Angel Eyes (Factory New): unavailable
+[PROGRESS] StatTrak™ Dual Berettas | Angel Eyes (Factory New) [███████████░░░░░░░░░░░░░░░░░░░]  36.8% (63/171)
+[LOOKUP] ✗ Error for Dual Berettas | Angel Eyes (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Dual Berettas | Angel Eyes (Minimal Wear): unavailable
+[PROGRESS] Dual Berettas | Angel Eyes (Minimal Wear) [███████████░░░░░░░░░░░░░░░░░░░]  37.4% (64/171)
+[MAIN]   ✗ StatTrak™ Dual Berettas | Angel Eyes (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ Dual Berettas | Angel Eyes (Minimal Wear) [███████████░░░░░░░░░░░░░░░░░░░]  38.0% (65/171)
+[LOOKUP] ✗ Error for Dual Berettas | Angel Eyes (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Dual Berettas | Angel Eyes (Field-Tested): unavailable
+[PROGRESS] Dual Berettas | Angel Eyes (Field-Tested) [████████████░░░░░░░░░░░░░░░░░░]  38.6% (66/171)
+[MAIN]   ✗ StatTrak™ Dual Berettas | Angel Eyes (Field-Tested): unavailable
+[PROGRESS] StatTrak™ Dual Berettas | Angel Eyes (Field-Tested) [████████████░░░░░░░░░░░░░░░░░░]  39.2% (67/171)
+[LOOKUP] ✗ Error for Dual Berettas | Angel Eyes (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Dual Berettas | Angel Eyes (Well-Worn): unavailable
+[PROGRESS] Dual Berettas | Angel Eyes (Well-Worn) [████████████░░░░░░░░░░░░░░░░░░]  39.8% (68/171)
+[MAIN]   ✗ StatTrak™ Dual Berettas | Angel Eyes (Well-Worn): unavailable
+[PROGRESS] StatTrak™ Dual Berettas | Angel Eyes (Well-Worn) [████████████░░░░░░░░░░░░░░░░░░]  40.4% (69/171)
+[LOOKUP] ✗ Error for Dual Berettas | Angel Eyes (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Dual Berettas | Angel Eyes (Battle-Scarred): unavailable
+[PROGRESS] Dual Berettas | Angel Eyes (Battle-Scarred) [████████████░░░░░░░░░░░░░░░░░░]  40.9% (70/171)
+[MAIN]   ✗ StatTrak™ Dual Berettas | Angel Eyes (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ Dual Berettas | Angel Eyes (Battle-Scarred) [████████████░░░░░░░░░░░░░░░░░░]  41.5% (71/171)
+[MAIN] Processing weapon: UMP-45 | Continuum
+[MAIN]   Fetching UMP-45 | Continuum (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: UMP-45 | Continuum
+[MAIN]   Fetching UMP-45 | Continuum (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: UMP-45 | Continuum
+[MAIN]   Fetching UMP-45 | Continuum (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: UMP-45 | Continuum
+[MAIN]   Fetching UMP-45 | Continuum (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: UMP-45 | Continuum
+[MAIN]   Fetching UMP-45 | Continuum (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: UMP-45 | Continuum
+[LOOKUP] ✗ Error for UMP-45 | Continuum (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ UMP-45 | Continuum (Factory New): unavailable
+[PROGRESS] UMP-45 | Continuum (Factory New) [█████████████░░░░░░░░░░░░░░░░░]  42.1% (72/171)
+[MAIN]   ✗ StatTrak™ UMP-45 | Continuum (Factory New): unavailable
+[PROGRESS] StatTrak™ UMP-45 | Continuum (Factory New) [█████████████░░░░░░░░░░░░░░░░░]  42.7% (73/171)
+[LOOKUP] ✗ Error for UMP-45 | Continuum (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ UMP-45 | Continuum (Minimal Wear): unavailable
+[PROGRESS] UMP-45 | Continuum (Minimal Wear) [█████████████░░░░░░░░░░░░░░░░░]  43.3% (74/171)
+[MAIN]   ✗ StatTrak™ UMP-45 | Continuum (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ UMP-45 | Continuum (Minimal Wear) [█████████████░░░░░░░░░░░░░░░░░]  43.9% (75/171)
+[LOOKUP] ✗ Error for UMP-45 | Continuum (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ UMP-45 | Continuum (Field-Tested): unavailable
+[PROGRESS] UMP-45 | Continuum (Field-Tested) [█████████████░░░░░░░░░░░░░░░░░]  44.4% (76/171)
+[MAIN]   ✗ StatTrak™ UMP-45 | Continuum (Field-Tested): unavailable
+[PROGRESS] StatTrak™ UMP-45 | Continuum (Field-Tested) [██████████████░░░░░░░░░░░░░░░░]  45.0% (77/171)
+[LOOKUP] ✗ Error for UMP-45 | Continuum (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ UMP-45 | Continuum (Well-Worn): unavailable
+[PROGRESS] UMP-45 | Continuum (Well-Worn) [██████████████░░░░░░░░░░░░░░░░]  45.6% (78/171)
+[MAIN]   ✗ StatTrak™ UMP-45 | Continuum (Well-Worn): unavailable
+[PROGRESS] StatTrak™ UMP-45 | Continuum (Well-Worn) [██████████████░░░░░░░░░░░░░░░░]  46.2% (79/171)
+[LOOKUP] ✗ Error for UMP-45 | Continuum (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ UMP-45 | Continuum (Battle-Scarred): unavailable
+[PROGRESS] UMP-45 | Continuum (Battle-Scarred) [██████████████░░░░░░░░░░░░░░░░]  46.8% (80/171)
+[MAIN]   ✗ StatTrak™ UMP-45 | Continuum (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ UMP-45 | Continuum (Battle-Scarred) [██████████████░░░░░░░░░░░░░░░░]  47.4% (81/171)
+[MAIN] Processing weapon: MAC-10 | Cat Fight
+[MAIN]   Fetching MAC-10 | Cat Fight (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: MAC-10 | Cat Fight
+[MAIN]   Fetching MAC-10 | Cat Fight (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: MAC-10 | Cat Fight
+[MAIN]   Fetching MAC-10 | Cat Fight (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: MAC-10 | Cat Fight
+[MAIN]   Fetching MAC-10 | Cat Fight (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: MAC-10 | Cat Fight
+[MAIN]   Fetching MAC-10 | Cat Fight (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: MAC-10 | Cat Fight
+[LOOKUP] ✗ Error for MAC-10 | Cat Fight (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAC-10 | Cat Fight (Factory New): unavailable
+[PROGRESS] MAC-10 | Cat Fight (Factory New) [██████████████░░░░░░░░░░░░░░░░]  48.0% (82/171)
+[MAIN]   ✗ StatTrak™ MAC-10 | Cat Fight (Factory New): unavailable
+[PROGRESS] StatTrak™ MAC-10 | Cat Fight (Factory New) [███████████████░░░░░░░░░░░░░░░]  48.5% (83/171)
+[LOOKUP] ✗ Error for MAC-10 | Cat Fight (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAC-10 | Cat Fight (Minimal Wear): unavailable
+[PROGRESS] MAC-10 | Cat Fight (Minimal Wear) [███████████████░░░░░░░░░░░░░░░]  49.1% (84/171)
+[MAIN]   ✗ StatTrak™ MAC-10 | Cat Fight (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ MAC-10 | Cat Fight (Minimal Wear) [███████████████░░░░░░░░░░░░░░░]  49.7% (85/171)
+[LOOKUP] ✗ Error for MAC-10 | Cat Fight (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAC-10 | Cat Fight (Field-Tested): unavailable
+[PROGRESS] MAC-10 | Cat Fight (Field-Tested) [███████████████░░░░░░░░░░░░░░░]  50.3% (86/171)
+[MAIN]   ✗ StatTrak™ MAC-10 | Cat Fight (Field-Tested): unavailable
+[PROGRESS] StatTrak™ MAC-10 | Cat Fight (Field-Tested) [███████████████░░░░░░░░░░░░░░░]  50.9% (87/171)
+[LOOKUP] ✗ Error for MAC-10 | Cat Fight (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAC-10 | Cat Fight (Well-Worn): unavailable
+[PROGRESS] MAC-10 | Cat Fight (Well-Worn) [███████████████░░░░░░░░░░░░░░░]  51.5% (88/171)
+[MAIN]   ✗ StatTrak™ MAC-10 | Cat Fight (Well-Worn): unavailable
+[PROGRESS] StatTrak™ MAC-10 | Cat Fight (Well-Worn) [████████████████░░░░░░░░░░░░░░]  52.0% (89/171)
+[LOOKUP] ✗ Error for MAC-10 | Cat Fight (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAC-10 | Cat Fight (Battle-Scarred): unavailable
+[PROGRESS] MAC-10 | Cat Fight (Battle-Scarred) [████████████████░░░░░░░░░░░░░░]  52.6% (90/171)
+[MAIN]   ✗ StatTrak™ MAC-10 | Cat Fight (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ MAC-10 | Cat Fight (Battle-Scarred) [████████████████░░░░░░░░░░░░░░]  53.2% (91/171)
+[MAIN] Processing weapon: Nova | Ocular
+[MAIN]   Fetching Nova | Ocular (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: Nova | Ocular
+[MAIN]   Fetching Nova | Ocular (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: Nova | Ocular
+[MAIN]   Fetching Nova | Ocular (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: Nova | Ocular
+[MAIN]   Fetching Nova | Ocular (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: Nova | Ocular
+[MAIN]   Fetching Nova | Ocular (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: Nova | Ocular
+[LOOKUP] ✗ Error for Nova | Ocular (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Nova | Ocular (Factory New): unavailable
+[PROGRESS] Nova | Ocular (Factory New) [████████████████░░░░░░░░░░░░░░]  53.8% (92/171)
+[MAIN]   ✗ StatTrak™ Nova | Ocular (Factory New): unavailable
+[PROGRESS] StatTrak™ Nova | Ocular (Factory New) [████████████████░░░░░░░░░░░░░░]  54.4% (93/171)
+[LOOKUP] ✗ Error for Nova | Ocular (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Nova | Ocular (Minimal Wear): unavailable
+[PROGRESS] Nova | Ocular (Minimal Wear) [████████████████░░░░░░░░░░░░░░]  55.0% (94/171)
+[MAIN]   ✗ StatTrak™ Nova | Ocular (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ Nova | Ocular (Minimal Wear) [█████████████████░░░░░░░░░░░░░]  55.6% (95/171)
+[LOOKUP] ✗ Error for Nova | Ocular (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Nova | Ocular (Field-Tested): unavailable
+[PROGRESS] Nova | Ocular (Field-Tested) [█████████████████░░░░░░░░░░░░░]  56.1% (96/171)
+[MAIN]   ✗ StatTrak™ Nova | Ocular (Field-Tested): unavailable
+[PROGRESS] StatTrak™ Nova | Ocular (Field-Tested) [█████████████████░░░░░░░░░░░░░]  56.7% (97/171)
+[LOOKUP] ✗ Error for Nova | Ocular (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Nova | Ocular (Well-Worn): unavailable
+[PROGRESS] Nova | Ocular (Well-Worn) [█████████████████░░░░░░░░░░░░░]  57.3% (98/171)
+[MAIN]   ✗ StatTrak™ Nova | Ocular (Well-Worn): unavailable
+[PROGRESS] StatTrak™ Nova | Ocular (Well-Worn) [█████████████████░░░░░░░░░░░░░]  57.9% (99/171)
+[LOOKUP] ✗ Error for Nova | Ocular (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ Nova | Ocular (Battle-Scarred): unavailable
+[PROGRESS] Nova | Ocular (Battle-Scarred) [██████████████████░░░░░░░░░░░░]  58.5% (100/171)
+[MAIN]   ✗ StatTrak™ Nova | Ocular (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ Nova | Ocular (Battle-Scarred) [██████████████████░░░░░░░░░░░░]  59.1% (101/171)
+[MAIN] Processing weapon: AUG | Trigger Discipline
+[MAIN]   Fetching AUG | Trigger Discipline (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: AUG | Trigger Discipline
+[MAIN]   Fetching AUG | Trigger Discipline (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: AUG | Trigger Discipline
+[MAIN]   Fetching AUG | Trigger Discipline (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: AUG | Trigger Discipline
+[MAIN]   Fetching AUG | Trigger Discipline (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: AUG | Trigger Discipline
+[MAIN]   Fetching AUG | Trigger Discipline (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: AUG | Trigger Discipline
+[LOOKUP] ✗ Error for AUG | Trigger Discipline (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ AUG | Trigger Discipline (Factory New): unavailable
+[PROGRESS] AUG | Trigger Discipline (Factory New) [██████████████████░░░░░░░░░░░░]  59.6% (102/171)
+[MAIN]   ✗ StatTrak™ AUG | Trigger Discipline (Factory New): unavailable
+[PROGRESS] StatTrak™ AUG | Trigger Discipline (Factory New) [██████████████████░░░░░░░░░░░░]  60.2% (103/171)
+[LOOKUP] ✗ Error for AUG | Trigger Discipline (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ AUG | Trigger Discipline (Minimal Wear): unavailable
+[PROGRESS] AUG | Trigger Discipline (Minimal Wear) [██████████████████░░░░░░░░░░░░]  60.8% (104/171)
+[MAIN]   ✗ StatTrak™ AUG | Trigger Discipline (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ AUG | Trigger Discipline (Minimal Wear) [██████████████████░░░░░░░░░░░░]  61.4% (105/171)
+[LOOKUP] ✗ Error for AUG | Trigger Discipline (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ AUG | Trigger Discipline (Field-Tested): unavailable
+[PROGRESS] AUG | Trigger Discipline (Field-Tested) [███████████████████░░░░░░░░░░░]  62.0% (106/171)
+[MAIN]   ✗ StatTrak™ AUG | Trigger Discipline (Field-Tested): unavailable
+[PROGRESS] StatTrak™ AUG | Trigger Discipline (Field-Tested) [███████████████████░░░░░░░░░░░]  62.6% (107/171)
+[LOOKUP] ✗ Error for AUG | Trigger Discipline (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ AUG | Trigger Discipline (Well-Worn): unavailable
+[PROGRESS] AUG | Trigger Discipline (Well-Worn) [███████████████████░░░░░░░░░░░]  63.2% (108/171)
+[MAIN]   ✗ StatTrak™ AUG | Trigger Discipline (Well-Worn): unavailable
+[PROGRESS] StatTrak™ AUG | Trigger Discipline (Well-Worn) [███████████████████░░░░░░░░░░░]  63.7% (109/171)
+[LOOKUP] ✗ Error for AUG | Trigger Discipline (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ AUG | Trigger Discipline (Battle-Scarred): unavailable
+[PROGRESS] AUG | Trigger Discipline (Battle-Scarred) [███████████████████░░░░░░░░░░░]  64.3% (110/171)
+[MAIN]   ✗ StatTrak™ AUG | Trigger Discipline (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ AUG | Trigger Discipline (Battle-Scarred) [███████████████████░░░░░░░░░░░]  64.9% (111/171)
+[MAIN] Processing weapon: P2000 | Red Wing
+[MAIN]   Fetching P2000 | Red Wing (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: P2000 | Red Wing
+[MAIN]   Fetching P2000 | Red Wing (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: P2000 | Red Wing
+[MAIN]   Fetching P2000 | Red Wing (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: P2000 | Red Wing
+[MAIN]   Fetching P2000 | Red Wing (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: P2000 | Red Wing
+[MAIN]   Fetching P2000 | Red Wing (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: P2000 | Red Wing
+[LOOKUP] ✗ Error for P2000 | Red Wing (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P2000 | Red Wing (Factory New): unavailable
+[PROGRESS] P2000 | Red Wing (Factory New) [████████████████████░░░░░░░░░░]  65.5% (112/171)
+[MAIN]   ✗ StatTrak™ P2000 | Red Wing (Factory New): unavailable
+[PROGRESS] StatTrak™ P2000 | Red Wing (Factory New) [████████████████████░░░░░░░░░░]  66.1% (113/171)
+[LOOKUP] ✗ Error for P2000 | Red Wing (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P2000 | Red Wing (Minimal Wear): unavailable
+[PROGRESS] P2000 | Red Wing (Minimal Wear) [████████████████████░░░░░░░░░░]  66.7% (114/171)
+[MAIN]   ✗ StatTrak™ P2000 | Red Wing (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ P2000 | Red Wing (Minimal Wear) [████████████████████░░░░░░░░░░]  67.3% (115/171)
+[LOOKUP] ✗ Error for P2000 | Red Wing (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P2000 | Red Wing (Field-Tested): unavailable
+[PROGRESS] P2000 | Red Wing (Field-Tested) [████████████████████░░░░░░░░░░]  67.8% (116/171)
+[MAIN]   ✗ StatTrak™ P2000 | Red Wing (Field-Tested): unavailable
+[PROGRESS] StatTrak™ P2000 | Red Wing (Field-Tested) [█████████████████████░░░░░░░░░]  68.4% (117/171)
+[LOOKUP] ✗ Error for P2000 | Red Wing (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P2000 | Red Wing (Well-Worn): unavailable
+[PROGRESS] P2000 | Red Wing (Well-Worn) [█████████████████████░░░░░░░░░]  69.0% (118/171)
+[MAIN]   ✗ StatTrak™ P2000 | Red Wing (Well-Worn): unavailable
+[PROGRESS] StatTrak™ P2000 | Red Wing (Well-Worn) [█████████████████████░░░░░░░░░]  69.6% (119/171)
+[LOOKUP] ✗ Error for P2000 | Red Wing (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P2000 | Red Wing (Battle-Scarred): unavailable
+[PROGRESS] P2000 | Red Wing (Battle-Scarred) [█████████████████████░░░░░░░░░]  70.2% (120/171)
+[MAIN]   ✗ StatTrak™ P2000 | Red Wing (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ P2000 | Red Wing (Battle-Scarred) [█████████████████████░░░░░░░░░]  70.8% (121/171)
+[MAIN] Processing weapon: MP5-SD | Focus
+[MAIN]   Fetching MP5-SD | Focus (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: MP5-SD | Focus
+[MAIN]   Fetching MP5-SD | Focus (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: MP5-SD | Focus
+[MAIN]   Fetching MP5-SD | Focus (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: MP5-SD | Focus
+[MAIN]   Fetching MP5-SD | Focus (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: MP5-SD | Focus
+[MAIN]   Fetching MP5-SD | Focus (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: MP5-SD | Focus
+[LOOKUP] ✗ Error for MP5-SD | Focus (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP5-SD | Focus (Factory New): unavailable
+[PROGRESS] MP5-SD | Focus (Factory New) [█████████████████████░░░░░░░░░]  71.3% (122/171)
+[MAIN]   ✗ StatTrak™ MP5-SD | Focus (Factory New): unavailable
+[PROGRESS] StatTrak™ MP5-SD | Focus (Factory New) [██████████████████████░░░░░░░░]  71.9% (123/171)
+[LOOKUP] ✗ Error for MP5-SD | Focus (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP5-SD | Focus (Minimal Wear): unavailable
+[PROGRESS] MP5-SD | Focus (Minimal Wear) [██████████████████████░░░░░░░░]  72.5% (124/171)
+[MAIN]   ✗ StatTrak™ MP5-SD | Focus (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ MP5-SD | Focus (Minimal Wear) [██████████████████████░░░░░░░░]  73.1% (125/171)
+[LOOKUP] ✗ Error for MP5-SD | Focus (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP5-SD | Focus (Field-Tested): unavailable
+[PROGRESS] MP5-SD | Focus (Field-Tested) [██████████████████████░░░░░░░░]  73.7% (126/171)
+[MAIN]   ✗ StatTrak™ MP5-SD | Focus (Field-Tested): unavailable
+[PROGRESS] StatTrak™ MP5-SD | Focus (Field-Tested) [██████████████████████░░░░░░░░]  74.3% (127/171)
+[LOOKUP] ✗ Error for MP5-SD | Focus (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP5-SD | Focus (Well-Worn): unavailable
+[PROGRESS] MP5-SD | Focus (Well-Worn) [██████████████████████░░░░░░░░]  74.9% (128/171)
+[MAIN]   ✗ StatTrak™ MP5-SD | Focus (Well-Worn): unavailable
+[PROGRESS] StatTrak™ MP5-SD | Focus (Well-Worn) [███████████████████████░░░░░░░]  75.4% (129/171)
+[LOOKUP] ✗ Error for MP5-SD | Focus (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP5-SD | Focus (Battle-Scarred): unavailable
+[PROGRESS] MP5-SD | Focus (Battle-Scarred) [███████████████████████░░░░░░░]  76.0% (130/171)
+[MAIN]   ✗ StatTrak™ MP5-SD | Focus (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ MP5-SD | Focus (Battle-Scarred) [███████████████████████░░░░░░░]  76.6% (131/171)
+[MAIN] Processing weapon: MP9 | Broken Record
+[MAIN]   Fetching MP9 | Broken Record (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: MP9 | Broken Record
+[MAIN]   Fetching MP9 | Broken Record (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: MP9 | Broken Record
+[MAIN]   Fetching MP9 | Broken Record (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: MP9 | Broken Record
+[MAIN]   Fetching MP9 | Broken Record (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: MP9 | Broken Record
+[MAIN]   Fetching MP9 | Broken Record (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: MP9 | Broken Record
+[LOOKUP] ✗ Error for MP9 | Broken Record (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP9 | Broken Record (Factory New): unavailable
+[PROGRESS] MP9 | Broken Record (Factory New) [███████████████████████░░░░░░░]  77.2% (132/171)
+[MAIN]   ✗ StatTrak™ MP9 | Broken Record (Factory New): unavailable
+[PROGRESS] StatTrak™ MP9 | Broken Record (Factory New) [███████████████████████░░░░░░░]  77.8% (133/171)
+[LOOKUP] ✗ Error for MP9 | Broken Record (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP9 | Broken Record (Minimal Wear): unavailable
+[PROGRESS] MP9 | Broken Record (Minimal Wear) [████████████████████████░░░░░░]  78.4% (134/171)
+[MAIN]   ✗ StatTrak™ MP9 | Broken Record (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ MP9 | Broken Record (Minimal Wear) [████████████████████████░░░░░░]  78.9% (135/171)
+[LOOKUP] ✗ Error for MP9 | Broken Record (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP9 | Broken Record (Field-Tested): unavailable
+[PROGRESS] MP9 | Broken Record (Field-Tested) [████████████████████████░░░░░░]  79.5% (136/171)
+[MAIN]   ✗ StatTrak™ MP9 | Broken Record (Field-Tested): unavailable
+[PROGRESS] StatTrak™ MP9 | Broken Record (Field-Tested) [████████████████████████░░░░░░]  80.1% (137/171)
+[LOOKUP] ✗ Error for MP9 | Broken Record (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP9 | Broken Record (Well-Worn): unavailable
+[PROGRESS] MP9 | Broken Record (Well-Worn) [████████████████████████░░░░░░]  80.7% (138/171)
+[MAIN]   ✗ StatTrak™ MP9 | Broken Record (Well-Worn): unavailable
+[PROGRESS] StatTrak™ MP9 | Broken Record (Well-Worn) [████████████████████████░░░░░░]  81.3% (139/171)
+[LOOKUP] ✗ Error for MP9 | Broken Record (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MP9 | Broken Record (Battle-Scarred): unavailable
+[PROGRESS] MP9 | Broken Record (Battle-Scarred) [█████████████████████████░░░░░]  81.9% (140/171)
+[MAIN]   ✗ StatTrak™ MP9 | Broken Record (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ MP9 | Broken Record (Battle-Scarred) [█████████████████████████░░░░░]  82.5% (141/171)
+[MAIN] Processing weapon: MAG-7 | MAGnitude
+[MAIN]   Fetching MAG-7 | MAGnitude (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: MAG-7 | MAGnitude
+[MAIN]   Fetching MAG-7 | MAGnitude (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: MAG-7 | MAGnitude
+[MAIN]   Fetching MAG-7 | MAGnitude (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: MAG-7 | MAGnitude
+[MAIN]   Fetching MAG-7 | MAGnitude (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: MAG-7 | MAGnitude
+[MAIN]   Fetching MAG-7 | MAGnitude (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: MAG-7 | MAGnitude
+[LOOKUP] ✗ Error for MAG-7 | MAGnitude (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAG-7 | MAGnitude (Factory New): unavailable
+[PROGRESS] MAG-7 | MAGnitude (Factory New) [█████████████████████████░░░░░]  83.0% (142/171)
+[MAIN]   ✗ StatTrak™ MAG-7 | MAGnitude (Factory New): unavailable
+[PROGRESS] StatTrak™ MAG-7 | MAGnitude (Factory New) [█████████████████████████░░░░░]  83.6% (143/171)
+[LOOKUP] ✗ Error for MAG-7 | MAGnitude (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAG-7 | MAGnitude (Minimal Wear): unavailable
+[PROGRESS] MAG-7 | MAGnitude (Minimal Wear) [█████████████████████████░░░░░]  84.2% (144/171)
+[MAIN]   ✗ StatTrak™ MAG-7 | MAGnitude (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ MAG-7 | MAGnitude (Minimal Wear) [█████████████████████████░░░░░]  84.8% (145/171)
+[LOOKUP] ✗ Error for MAG-7 | MAGnitude (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAG-7 | MAGnitude (Field-Tested): unavailable
+[PROGRESS] MAG-7 | MAGnitude (Field-Tested) [██████████████████████████░░░░]  85.4% (146/171)
+[MAIN]   ✗ StatTrak™ MAG-7 | MAGnitude (Field-Tested): unavailable
+[PROGRESS] StatTrak™ MAG-7 | MAGnitude (Field-Tested) [██████████████████████████░░░░]  86.0% (147/171)
+[LOOKUP] ✗ Error for MAG-7 | MAGnitude (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAG-7 | MAGnitude (Well-Worn): unavailable
+[PROGRESS] MAG-7 | MAGnitude (Well-Worn) [██████████████████████████░░░░]  86.5% (148/171)
+[MAIN]   ✗ StatTrak™ MAG-7 | MAGnitude (Well-Worn): unavailable
+[PROGRESS] StatTrak™ MAG-7 | MAGnitude (Well-Worn) [██████████████████████████░░░░]  87.1% (149/171)
+[LOOKUP] ✗ Error for MAG-7 | MAGnitude (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ MAG-7 | MAGnitude (Battle-Scarred): unavailable
+[PROGRESS] MAG-7 | MAGnitude (Battle-Scarred) [██████████████████████████░░░░]  87.7% (150/171)
+[MAIN]   ✗ StatTrak™ MAG-7 | MAGnitude (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ MAG-7 | MAGnitude (Battle-Scarred) [██████████████████████████░░░░]  88.3% (151/171)
+[MAIN] Processing weapon: P250 | Bullfrog
+[MAIN]   Fetching P250 | Bullfrog (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: P250 | Bullfrog
+[MAIN]   Fetching P250 | Bullfrog (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: P250 | Bullfrog
+[MAIN]   Fetching P250 | Bullfrog (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: P250 | Bullfrog
+[MAIN]   Fetching P250 | Bullfrog (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: P250 | Bullfrog
+[MAIN]   Fetching P250 | Bullfrog (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: P250 | Bullfrog
+[LOOKUP] ✗ Error for P250 | Bullfrog (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P250 | Bullfrog (Factory New): unavailable
+[PROGRESS] P250 | Bullfrog (Factory New) [███████████████████████████░░░]  88.9% (152/171)
+[MAIN]   ✗ StatTrak™ P250 | Bullfrog (Factory New): unavailable
+[PROGRESS] StatTrak™ P250 | Bullfrog (Factory New) [███████████████████████████░░░]  89.5% (153/171)
+[LOOKUP] ✗ Error for P250 | Bullfrog (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P250 | Bullfrog (Minimal Wear): unavailable
+[PROGRESS] P250 | Bullfrog (Minimal Wear) [███████████████████████████░░░]  90.1% (154/171)
+[MAIN]   ✗ StatTrak™ P250 | Bullfrog (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ P250 | Bullfrog (Minimal Wear) [███████████████████████████░░░]  90.6% (155/171)
+[LOOKUP] ✗ Error for P250 | Bullfrog (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P250 | Bullfrog (Field-Tested): unavailable
+[PROGRESS] P250 | Bullfrog (Field-Tested) [███████████████████████████░░░]  91.2% (156/171)
+[MAIN]   ✗ StatTrak™ P250 | Bullfrog (Field-Tested): unavailable
+[PROGRESS] StatTrak™ P250 | Bullfrog (Field-Tested) [████████████████████████████░░]  91.8% (157/171)
+[LOOKUP] ✗ Error for P250 | Bullfrog (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P250 | Bullfrog (Well-Worn): unavailable
+[PROGRESS] P250 | Bullfrog (Well-Worn) [████████████████████████████░░]  92.4% (158/171)
+[MAIN]   ✗ StatTrak™ P250 | Bullfrog (Well-Worn): unavailable
+[PROGRESS] StatTrak™ P250 | Bullfrog (Well-Worn) [████████████████████████████░░]  93.0% (159/171)
+[LOOKUP] ✗ Error for P250 | Bullfrog (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ P250 | Bullfrog (Battle-Scarred): unavailable
+[PROGRESS] P250 | Bullfrog (Battle-Scarred) [████████████████████████████░░]  93.6% (160/171)
+[MAIN]   ✗ StatTrak™ P250 | Bullfrog (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ P250 | Bullfrog (Battle-Scarred) [████████████████████████████░░]  94.2% (161/171)
+[MAIN] Processing weapon: SCAR-20 | Caged
+[MAIN]   Fetching SCAR-20 | Caged (Factory New)
+[LOOKUP] Rate limited - using Playwright cached page for: SCAR-20 | Caged
+[MAIN]   Fetching SCAR-20 | Caged (Minimal Wear)
+[LOOKUP] Rate limited - using Playwright cached page for: SCAR-20 | Caged
+[MAIN]   Fetching SCAR-20 | Caged (Field-Tested)
+[LOOKUP] Rate limited - using Playwright cached page for: SCAR-20 | Caged
+[MAIN]   Fetching SCAR-20 | Caged (Well-Worn)
+[LOOKUP] Rate limited - using Playwright cached page for: SCAR-20 | Caged
+[MAIN]   Fetching SCAR-20 | Caged (Battle-Scarred)
+[LOOKUP] Rate limited - using Playwright cached page for: SCAR-20 | Caged
+[LOOKUP] ✗ Error for SCAR-20 | Caged (Factory New): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ SCAR-20 | Caged (Factory New): unavailable
+[PROGRESS] SCAR-20 | Caged (Factory New) [████████████████████████████░░]  94.7% (162/171)
+[MAIN]   ✗ StatTrak™ SCAR-20 | Caged (Factory New): unavailable
+[PROGRESS] StatTrak™ SCAR-20 | Caged (Factory New) [█████████████████████████████░]  95.3% (163/171)
+[LOOKUP] ✗ Error for SCAR-20 | Caged (Minimal Wear): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ SCAR-20 | Caged (Minimal Wear): unavailable
+[PROGRESS] SCAR-20 | Caged (Minimal Wear) [█████████████████████████████░]  95.9% (164/171)
+[MAIN]   ✗ StatTrak™ SCAR-20 | Caged (Minimal Wear): unavailable
+[PROGRESS] StatTrak™ SCAR-20 | Caged (Minimal Wear) [█████████████████████████████░]  96.5% (165/171)
+[LOOKUP] ✗ Error for SCAR-20 | Caged (Field-Tested): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ SCAR-20 | Caged (Field-Tested): unavailable
+[PROGRESS] SCAR-20 | Caged (Field-Tested) [█████████████████████████████░]  97.1% (166/171)
+[MAIN]   ✗ StatTrak™ SCAR-20 | Caged (Field-Tested): unavailable
+[PROGRESS] StatTrak™ SCAR-20 | Caged (Field-Tested) [█████████████████████████████░]  97.7% (167/171)
+[LOOKUP] ✗ Error for SCAR-20 | Caged (Well-Worn): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ SCAR-20 | Caged (Well-Worn): unavailable
+[PROGRESS] SCAR-20 | Caged (Well-Worn) [█████████████████████████████░]  98.2% (168/171)
+[MAIN]   ✗ StatTrak™ SCAR-20 | Caged (Well-Worn): unavailable
+[PROGRESS] StatTrak™ SCAR-20 | Caged (Well-Worn) [██████████████████████████████]  98.8% (169/171)
+[LOOKUP] ✗ Error for SCAR-20 | Caged (Battle-Scarred): browser.newContext: Target page, context or browser has been closed
+[MAIN]   ✗ SCAR-20 | Caged (Battle-Scarred): unavailable
+[PROGRESS] SCAR-20 | Caged (Battle-Scarred) [██████████████████████████████]  99.4% (170/171)
+[MAIN]   ✗ StatTrak™ SCAR-20 | Caged (Battle-Scarred): unavailable
+[PROGRESS] StatTrak™ SCAR-20 | Caged (Battle-Scarred) [██████████████████████████████] 100.0% (171/171)
+[CATALOG] Fetching skin catalog from CSGO-API...
+[CATALOG] ✓ Found 17/17 skin images
+[PROGRESS] Complete [██████████████████████████████] 100.0% (171/171)
+[SUMMARY] ========================================
+[SUMMARY] Total entries: 123
+[SUMMARY] Successful: 1
+[SUMMARY] Unavailable: 122
+[SUMMARY] Success rate: 0.8%
+[SUMMARY] Total runtime: 142.07s
+[SUMMARY] Written to: public/prices.json, public/skins.json
+[SUMMARY] ========================================
+[PLAYWRIGHT] Browser closed
