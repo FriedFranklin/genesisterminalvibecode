@@ -3,11 +3,11 @@
     "success": true,
     "price": "$0.09",
     "listings": "--",
-    "volume": "35,110"
+    "volume": "34,733"
   },
   "AK-47 | The Oligarch (Factory New)": {
     "success": true,
-    "price": "$340.76",
+    "price": "$327.65",
     "listings": "--",
     "volume": "--"
   },
@@ -19,19 +19,19 @@
   },
   "AK-47 | The Oligarch (Field-Tested)": {
     "success": true,
-    "price": "$55.85",
+    "price": "$56.99",
     "listings": "--",
     "volume": "--"
   },
   "AK-47 | The Oligarch (Well-Worn)": {
     "success": true,
-    "price": "$38.34",
+    "price": "$40.50",
     "listings": "--",
     "volume": "--"
   },
   "AK-47 | The Oligarch (Battle-Scarred)": {
     "success": true,
-    "price": "$34.29",
+    "price": "$32.02",
     "listings": "--",
     "volume": "--"
   },
@@ -49,55 +49,55 @@
   },
   "M4A4 | Full Throttle (Field-Tested)": {
     "success": true,
-    "price": "$50.99",
+    "price": "$49.94",
     "listings": "--",
     "volume": "--"
   },
   "M4A4 | Full Throttle (Well-Worn)": {
     "success": true,
-    "price": "$37.86",
+    "price": "$36.76",
     "listings": "--",
     "volume": "--"
   },
   "M4A4 | Full Throttle (Battle-Scarred)": {
     "success": true,
-    "price": "$30.75",
+    "price": "$27.30",
     "listings": "--",
     "volume": "--"
   },
   "AWP | Ice Coaled (Factory New)": {
     "success": true,
-    "price": "$38.34",
+    "price": "$36.17",
     "listings": "--",
     "volume": "--"
   },
   "AWP | Ice Coaled (Minimal Wear)": {
     "success": true,
-    "price": "$16.61",
+    "price": "$16.76",
     "listings": "--",
     "volume": "--"
   },
   "AWP | Ice Coaled (Field-Tested)": {
     "success": true,
-    "price": "$8.54",
+    "price": "$8.23",
     "listings": "--",
     "volume": "--"
   },
   "AWP | Ice Coaled (Well-Worn)": {
     "success": true,
-    "price": "$6.15",
+    "price": "$6.00",
     "listings": "--",
     "volume": "--"
   },
   "AWP | Ice Coaled (Battle-Scarred)": {
     "success": true,
-    "price": "$5.00",
+    "price": "$4.68",
     "listings": "--",
     "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Factory New)": {
     "success": true,
-    "price": "$31.89",
+    "price": "$31.29",
     "listings": "--",
     "volume": "--"
   },
@@ -109,19 +109,19 @@
   },
   "Glock-18 | Mirror Mosaic (Field-Tested)": {
     "success": true,
-    "price": "$6.87",
+    "price": "$6.90",
     "listings": "--",
     "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Well-Worn)": {
     "success": true,
-    "price": "$5.20",
+    "price": "$5.13",
     "listings": "--",
     "volume": "--"
   },
   "Glock-18 | Mirror Mosaic (Battle-Scarred)": {
     "success": true,
-    "price": "$4.15",
+    "price": "$3.99",
     "listings": "--",
     "volume": "--"
   },
@@ -133,79 +133,79 @@
   },
   "MP7 | Smoking Kills (Minimal Wear)": {
     "success": true,
-    "price": "$15.41",
+    "price": "$14.32",
     "listings": "--",
     "volume": "--"
   },
   "MP7 | Smoking Kills (Field-Tested)": {
     "success": true,
-    "price": "$7.86",
+    "price": "$7.50",
     "listings": "--",
     "volume": "--"
   },
   "MP7 | Smoking Kills (Well-Worn)": {
     "success": true,
-    "price": "$5.69",
+    "price": "$5.77",
     "listings": "--",
     "volume": "--"
   },
   "MP7 | Smoking Kills (Battle-Scarred)": {
     "success": true,
-    "price": "$3.98",
+    "price": "16,61 zł",
     "listings": "--",
     "volume": "--"
   },
   "M4A1-S | Liquidation (Factory New)": {
     "success": true,
-    "price": "50,04 zł",
+    "price": "$11.79",
     "listings": "--",
     "volume": "--"
   },
   "M4A1-S | Liquidation (Minimal Wear)": {
     "success": true,
-    "price": "$5.53",
+    "price": "$5.70",
     "listings": "--",
     "volume": "--"
   },
   "M4A1-S | Liquidation (Field-Tested)": {
     "success": true,
-    "price": "2,22€",
+    "price": "$2.60",
     "listings": "--",
     "volume": "--"
   },
   "M4A1-S | Liquidation (Well-Worn)": {
     "success": true,
-    "price": "$1.76",
+    "price": "$1.74",
     "listings": "--",
     "volume": "--"
   },
   "M4A1-S | Liquidation (Battle-Scarred)": {
     "success": true,
-    "price": "$1.08",
+    "price": "$1.04",
     "listings": "--",
     "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Factory New)": {
     "success": true,
-    "price": "$4.87",
+    "price": "$4.80",
     "listings": "--",
     "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Minimal Wear)": {
     "success": true,
-    "price": "$2.00",
+    "price": "$1.91",
     "listings": "--",
     "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Field-Tested)": {
     "success": true,
-    "price": "$0.80",
+    "price": "$0.82",
     "listings": "--",
     "volume": "--"
   },
   "Dual Berettas | Angel Eyes (Well-Worn)": {
     "success": true,
-    "price": "$0.66",
+    "price": "$0.69",
     "listings": "--",
     "volume": "--"
   },
@@ -217,31 +217,31 @@
   },
   "UMP-45 | Continuum (Factory New)": {
     "success": true,
-    "price": "$4.25",
+    "price": "$4.17",
     "listings": "--",
     "volume": "--"
   },
   "UMP-45 | Continuum (Minimal Wear)": {
     "success": true,
-    "price": "$1.68",
+    "price": "$1.67",
     "listings": "--",
     "volume": "--"
   },
   "UMP-45 | Continuum (Field-Tested)": {
     "success": true,
-    "price": "$0.80",
+    "price": "$0.77",
     "listings": "--",
     "volume": "--"
   },
   "UMP-45 | Continuum (Well-Worn)": {
     "success": true,
-    "price": "$0.64",
+    "price": "$0.65",
     "listings": "--",
     "volume": "--"
   },
   "UMP-45 | Continuum (Battle-Scarred)": {
     "success": true,
-    "price": "$0.54",
+    "price": "$0.50",
     "listings": "--",
     "volume": "--"
   },
@@ -253,25 +253,25 @@
   },
   "MAC-10 | Cat Fight (Minimal Wear)": {
     "success": true,
-    "price": "$1.68",
+    "price": "$1.69",
     "listings": "--",
     "volume": "--"
   },
   "MAC-10 | Cat Fight (Field-Tested)": {
     "success": true,
-    "price": "$0.78",
+    "price": "$0.80",
     "listings": "--",
     "volume": "--"
   },
   "MAC-10 | Cat Fight (Well-Worn)": {
     "success": true,
-    "price": "$0.65",
+    "price": "$0.69",
     "listings": "--",
     "volume": "--"
   },
   "MAC-10 | Cat Fight (Battle-Scarred)": {
     "success": true,
-    "price": "$0.53",
+    "price": "$0.55",
     "listings": "--",
     "volume": "--"
   },
@@ -283,13 +283,13 @@
   },
   "Nova | Ocular (Minimal Wear)": {
     "success": true,
-    "price": "$1.75",
+    "price": "$1.76",
     "listings": "--",
     "volume": "--"
   },
   "Nova | Ocular (Field-Tested)": {
     "success": true,
-    "price": "$0.87",
+    "price": "$0.77",
     "listings": "--",
     "volume": "--"
   },
@@ -301,19 +301,19 @@
   },
   "Nova | Ocular (Battle-Scarred)": {
     "success": true,
-    "price": "$0.57",
+    "price": "2,19 zł",
     "listings": "--",
     "volume": "--"
   },
   "AUG | Trigger Discipline (Factory New)": {
     "success": true,
-    "price": "$0.94",
+    "price": "$0.92",
     "listings": "--",
     "volume": "--"
   },
   "AUG | Trigger Discipline (Minimal Wear)": {
     "success": true,
-    "price": "$0.28",
+    "price": "$0.29",
     "listings": "--",
     "volume": "--"
   },
@@ -325,13 +325,13 @@
   },
   "AUG | Trigger Discipline (Well-Worn)": {
     "success": true,
-    "price": "$0.12",
+    "price": "$0.11",
     "listings": "--",
     "volume": "--"
   },
   "AUG | Trigger Discipline (Battle-Scarred)": {
     "success": true,
-    "price": "$0.11",
+    "price": "$0.12",
     "listings": "--",
     "volume": "--"
   },
@@ -361,13 +361,13 @@
   },
   "P2000 | Red Wing (Battle-Scarred)": {
     "success": true,
-    "price": "$0.11",
+    "price": "$0.10",
     "listings": "--",
     "volume": "--"
   },
   "MP5-SD | Focus (Factory New)": {
     "success": true,
-    "price": "0,81€",
+    "price": "$0.93",
     "listings": "--",
     "volume": "--"
   },
@@ -391,7 +391,7 @@
   },
   "MP5-SD | Focus (Battle-Scarred)": {
     "success": true,
-    "price": "$0.10",
+    "price": "0,08€",
     "listings": "--",
     "volume": "--"
   },
@@ -409,19 +409,19 @@
   },
   "MP9 | Broken Record (Field-Tested)": {
     "success": true,
-    "price": "$0.12",
+    "price": "0,11€",
     "listings": "--",
     "volume": "--"
   },
   "MP9 | Broken Record (Well-Worn)": {
     "success": true,
-    "price": "$0.10",
+    "price": "0,09€",
     "listings": "--",
     "volume": "--"
   },
   "MP9 | Broken Record (Battle-Scarred)": {
     "success": true,
-    "price": "$0.10",
+    "price": "$0.09",
     "listings": "--",
     "volume": "--"
   },
@@ -433,19 +433,19 @@
   },
   "MAG-7 | MAGnitude (Minimal Wear)": {
     "success": true,
-    "price": "$0.30",
+    "price": "$0.29",
     "listings": "--",
     "volume": "--"
   },
   "MAG-7 | MAGnitude (Field-Tested)": {
     "success": true,
-    "price": "$0.13",
+    "price": "$0.14",
     "listings": "--",
     "volume": "--"
   },
   "MAG-7 | MAGnitude (Well-Worn)": {
     "success": true,
-    "price": "$0.10",
+    "price": "$0.09",
     "listings": "--",
     "volume": "--"
   },
@@ -457,13 +457,13 @@
   },
   "P250 | Bullfrog (Factory New)": {
     "success": true,
-    "price": "$0.88",
+    "price": "$0.89",
     "listings": "--",
     "volume": "--"
   },
   "P250 | Bullfrog (Minimal Wear)": {
     "success": true,
-    "price": "$0.26",
+    "price": "$0.28",
     "listings": "--",
     "volume": "--"
   },
@@ -481,25 +481,25 @@
   },
   "P250 | Bullfrog (Battle-Scarred)": {
     "success": true,
-    "price": "0,09€",
+    "price": "$0.11",
     "listings": "--",
     "volume": "--"
   },
   "SCAR-20 | Caged (Factory New)": {
     "success": true,
-    "price": "$0.89",
+    "price": "$0.88",
     "listings": "--",
     "volume": "--"
   },
   "SCAR-20 | Caged (Minimal Wear)": {
     "success": true,
-    "price": "$0.28",
+    "price": "$0.29",
     "listings": "--",
     "volume": "--"
   },
   "SCAR-20 | Caged (Field-Tested)": {
     "success": true,
-    "price": "0,13€",
+    "price": "$0.15",
     "listings": "--",
     "volume": "--"
   },
@@ -511,13 +511,13 @@
   },
   "SCAR-20 | Caged (Battle-Scarred)": {
     "success": true,
-    "price": "$0.13",
+    "price": "$0.09",
     "listings": "--",
     "volume": "--"
   },
   "_meta": {
     "source": "Steam Community Market",
-    "generatedAt": "2026-09-28T12:29:58.078Z",
+    "generatedAt": "2026-09-28T19:48:28.248Z",
     "note": "Prices are buyer‑facing sell_price_text values."
   }
 }
